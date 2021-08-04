@@ -7,25 +7,27 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_smarteam/counter/counter.dart';
+import 'package:flutter_smarteam/app/constants.dart';
 import 'package:flutter_smarteam/l10n/l10n.dart';
+import 'package:flutter_smarteam/smarteam/smarteam.dart';
+import 'package:sizer/sizer.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        accentColor: const Color(0xFF13B9FF),
-        appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
+    return Sizer(
+      builder: (context, orientation, deviceType) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: kSmarteamThemeData,
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+        ],
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: const SplashPage(),
       ),
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-      ],
-      supportedLocales: AppLocalizations.supportedLocales,
-      home: const CounterPage(),
     );
   }
 }

@@ -1,0 +1,7 @@
+{
+  "@@locale": "ru",
+  "smarteamSplashText": "ЗАГРУЗКА...",
+  "@smarteamSplashText": {
+    "description": "Text shown in Smarteam Splash Page"
+  }
+}
