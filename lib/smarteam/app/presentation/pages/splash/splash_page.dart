@@ -5,11 +5,15 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smarteam/l10n/l10n.dart';
+import 'package:flutter_smarteam/smarteam/app/presentation/blocs/router_cubit.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/pages/constants.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
+
+  static Page page() => const MaterialPage<void>(child: SplashPage());
 
   @override
   State<SplashPage> createState() => _SplashPageState();
@@ -31,6 +35,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     _loadValue.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         _waveController.stop();
+        context.read<RouterCubit>().loginPage();
       }
     });
     _waveController.repeat();

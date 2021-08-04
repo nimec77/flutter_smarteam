@@ -6,6 +6,7 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_smarteam/app/constants.dart';
 import 'package:flutter_smarteam/l10n/l10n.dart';
@@ -26,7 +27,10 @@ class App extends StatelessWidget {
           GlobalMaterialLocalizations.delegate,
         ],
         supportedLocales: AppLocalizations.supportedLocales,
-        home: const SplashPage(),
+        home: BlocProvider(
+          create: (context) => RouterCubit(),
+          child: const AppPage(),
+        ),
       ),
     );
   }
