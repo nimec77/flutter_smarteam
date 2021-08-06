@@ -1,7 +1,8 @@
-import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_smarteam/smarteam/app/presentation/pages/splash/splash_page.dart';
+import 'package:flutter_smarteam/smarteam/app/presentation/blocs/router_cubit.dart';
+import 'package:flutter_smarteam/smarteam/login/presentation/pages/login/login_page.dart';
+import 'package:flutter_smarteam/smarteam/projects/presentation/pages/projects_page.dart';
 import 'package:flutter_smarteam/smarteam/smarteam.dart';
 
 class AppPage extends StatefulWidget {
@@ -12,57 +13,53 @@ class AppPage extends StatefulWidget {
 }
 
 class _AppPageState extends State<AppPage> {
-  late final _NavigatorObs _navigatorObs;
-
-  @override
-  void initState() {
-    _navigatorObs = _NavigatorObs();
-    super.initState();
-  }
+  final _navigatorKey = GlobalKey<NavigatorState>();
 
   @override
   Widget build(BuildContext context) {
-    return FlowBuilder<RouterState>(
-      state: context.select<RouterCubit, RouterState>((cubit) => cubit.state),
-      onGeneratePages: (state, pages) => [
-        state.maybeWhen(
-          loginPage: LoginPage.page,
-          orElse: SplashPage.page,
-        ),
-      ],
-      observers: [_navigatorObs],
+    return BlocListener<RouterCubit, RouterState>(
+      listener: (context, state) => state.maybeWhen(
+        loginPage: () => _navigatorKey.currentState!.pushNamedAndRemoveUntil(LoginPage.route, (route) => false),
+        homePage: () => _navigatorKey.currentState!.pushNamedAndRemoveUntil(ProjectsPage.route, (route) => false),
+        orElse: () => _navigatorKey.currentState!.pushNamedAndRemoveUntil(SplashPage.route, (route) => false),
+      ),
+      child: Navigator(
+        key: _navigatorKey,
+        onGenerateRoute: (settings) {
+          debugPrint(settings.toString());
+
+          switch (settings.name) {
+            case LoginPage.route:
+              return PageRouteBuilder<void>(
+                  pageBuilder: (context, animation, secondaryAnimation) => const LoginPage(),
+                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                    return FadeTransition(
+                      opacity: animation,
+                      child: child,
+                    );
+                  });
+
+            case ProjectsPage.route:
+              return PageRouteBuilder<void>(
+                  pageBuilder: (context, animation, secondaryAnimation) => const ProjectsPage(),
+                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                    return FadeTransition(
+                      opacity: animation,
+                      child: child,
+                    );
+                  });
+          }
+
+          return PageRouteBuilder<void>(
+              pageBuilder: (context, animation, secondaryAnimation) => const SplashPage(),
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: animation,
+                  child: child,
+                );
+              });
+        },
+      ),
     );
-  }
-}
-
-class _NavigatorObs extends NavigatorObserver {
-  @override
-  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    debugPrint('didPop(route:$route, previousRoute:$previousRoute');
-  }
-
-  @override
-  void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
-    debugPrint('didReplace(newRoute:$newRoute, oldRoute:$oldRoute');
-  }
-
-  @override
-  void didStopUserGesture() {
-    debugPrint('didStopUserGesture');
-  }
-
-  @override
-  void didStartUserGesture(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    debugPrint('didStartUserGesture(route:$route, previousRoute:$previousRoute');
-  }
-
-  @override
-  void didRemove(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    debugPrint('didRemove(route:$route, previousRoute:$previousRoute');
-  }
-
-  @override
-  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    debugPrint('didPush(route:$route, previousRoute:$previousRoute');
   }
 }

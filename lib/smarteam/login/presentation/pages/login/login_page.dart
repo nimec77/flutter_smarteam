@@ -6,7 +6,7 @@ import 'package:flutter_smarteam/smarteam/login/presentation/widgets/background_
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
-  static Page page() => const MaterialPage<void>(child: LoginPage());
+  static const String route = '/login';
 
   @override
   Widget build(BuildContext context) {
