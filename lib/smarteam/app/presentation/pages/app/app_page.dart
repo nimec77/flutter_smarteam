@@ -1,61 +1,68 @@
+import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/pages/splash/splash_page.dart';
-import 'package:flutter_smarteam/smarteam/projects/presentation/pages/projects_page.dart';
 import 'package:flutter_smarteam/smarteam/smarteam.dart';
 
-class AppPage extends StatelessWidget {
-  AppPage({Key? key}) : super(key: key);
+class AppPage extends StatefulWidget {
+  const AppPage({Key? key}) : super(key: key);
 
-  final _navigatorKey = GlobalKey<NavigatorState>();
+  @override
+  State<AppPage> createState() => _AppPageState();
+}
+
+class _AppPageState extends State<AppPage> {
+  late final _NavigatorObs _navigatorObs;
+
+  @override
+  void initState() {
+    _navigatorObs = _NavigatorObs();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<RouterCubit, RouterState>(
-      listener: (context, state) {
+    return FlowBuilder<RouterState>(
+      state: context.select<RouterCubit, RouterState>((cubit) => cubit.state),
+      onGeneratePages: (state, pages) => [
         state.maybeWhen(
-          loginPage: () => _navigatorKey.currentState!
-              .pushNamedAndRemoveUntil(LoginPage.route, (route) => route.settings.name == '/'),
-          homePage: () => _navigatorKey.currentState!
-              .pushNamedAndRemoveUntil(ProjectsPage.route, (route) => route.settings.name == '/'),
-          orElse: () => _navigatorKey.currentState!
-              .pushNamedAndRemoveUntil(SplashPage.route, (route) => route.settings.name == '/'),
-        );
-      },
-      child: Navigator(
-        key: _navigatorKey,
-        onPopPage: _handlePopPage,
-        onGenerateRoute: (settings) {
-          switch (settings.name) {
-            case LoginPage.route:
-              return PageRouteBuilder<void>(
-                  pageBuilder: (context, animation, secondaryAnimation) => const LoginPage(),
-                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(
-                      opacity: animation,
-                      child: child,
-                    );
-                  });
-
-            case ProjectsPage.route:
-              return MaterialPageRoute<void>(builder: (_) => const ProjectsPage());
-
-            default:
-              return PageRouteBuilder<void>(
-                  pageBuilder: (context, animation, secondaryAnimation) => const SplashPage(),
-                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(
-                      opacity: animation,
-                      child: child,
-                    );
-                  });
-          }
-        },
-      ),
+          loginPage: LoginPage.page,
+          orElse: SplashPage.page,
+        ),
+      ],
+      observers: [_navigatorObs],
     );
   }
+}
 
-  bool _handlePopPage(Route<dynamic> route, dynamic result) {
-    return route.didPop(result);
+class _NavigatorObs extends NavigatorObserver {
+  @override
+  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    debugPrint('didPop(route:$route, previousRoute:$previousRoute');
+  }
+
+  @override
+  void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
+    debugPrint('didReplace(newRoute:$newRoute, oldRoute:$oldRoute');
+  }
+
+  @override
+  void didStopUserGesture() {
+    debugPrint('didStopUserGesture');
+  }
+
+  @override
+  void didStartUserGesture(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    debugPrint('didStartUserGesture(route:$route, previousRoute:$previousRoute');
+  }
+
+  @override
+  void didRemove(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    debugPrint('didRemove(route:$route, previousRoute:$previousRoute');
+  }
+
+  @override
+  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    debugPrint('didPush(route:$route, previousRoute:$previousRoute');
   }
 }

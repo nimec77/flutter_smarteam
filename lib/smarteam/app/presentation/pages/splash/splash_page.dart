@@ -13,7 +13,7 @@ import 'package:flutter_smarteam/smarteam/app/presentation/pages/constants.dart'
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
 
-  static const route = '/';
+  static Page page() => const MaterialPage<void>(child: SplashPage());
 
   @override
   State<SplashPage> createState() => _SplashPageState();
