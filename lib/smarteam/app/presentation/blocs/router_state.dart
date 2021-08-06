@@ -1,27 +1,10 @@
 part of 'router_cubit.dart';
 
-@immutable
-abstract class RouterState {
-  const RouterState();
-}
+@freezed
+class RouterState with _$RouterState {
+  const factory RouterState.splashPage() = RouterStateSplashPage;
 
-class RouterSplashPage extends RouterState {
-  const RouterSplashPage();
+  const factory RouterState.loginPage() = RouterStateLoginPage;
 
-  @override
-  String toString() => 'RouterSplashPage';
-}
-
-class RouterLoginPage extends RouterState {
-  const RouterLoginPage();
-
-  @override
-  String toString() => 'RouterLoginPage';
-}
-
-class RouterSmarteamPage extends RouterState {
-  const RouterSmarteamPage();
-
-  @override
-  String toString() => 'RouterSmarteamPage';
+  const factory RouterState.homePage() = RouterStateHomePage;
 }

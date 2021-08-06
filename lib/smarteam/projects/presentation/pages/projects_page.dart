@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ProjectsPage extends StatelessWidget {
   const ProjectsPage({Key? key}) : super(key: key);
 
-  static Page page() => const MaterialPage<void>(child: ProjectsPage());
+  static const String route = '/home';
 
   @override
   Widget build(BuildContext context) {
