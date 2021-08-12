@@ -11,9 +11,10 @@ class BackgroundWidget extends StatelessWidget {
       height: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          alignment: Alignment.topLeft,
+          // alignment: Alignment.topLeft,
           image: AssetImage(kBackgroundImage),
-          repeat: ImageRepeat.repeat,
+          // repeat: ImageRepeat.repeat,
+          fit: BoxFit.cover,
         ),
       ),
     );

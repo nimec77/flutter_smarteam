@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smarteam/l10n/l10n.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/router_cubit.dart';
+import 'package:flutter_smarteam/smarteam/app/presentation/helpers/helper.dart' as helper;
 import 'package:flutter_smarteam/smarteam/app/presentation/pages/constants.dart';
 
 class SplashPage extends StatefulWidget {
@@ -90,11 +91,14 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
             if (_image == null) {
               return const LinearGradient(colors: [Colors.transparent], stops: [0]).createShader(bounds);
             }
+            final imageSize = Size(_image!.width.toDouble(), _image!.height.toDouble());
+            final size = MediaQuery.of(context).size;
+            final coverTransform = helper.applyCover(imageSize, size);
             return ImageShader(
               _image!,
-              TileMode.repeated,
-              TileMode.repeated,
-              Matrix4.identity().storage,
+              TileMode.clamp,
+              TileMode.clamp,
+              coverTransform.storage,
             );
           },
           child: Container(
