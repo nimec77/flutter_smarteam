@@ -20,10 +20,10 @@ dependencies:
 
 dev_dependencies:
   bloc_test: ^8.1.0
-  build_runner: ^2.1.0
+  build_runner: ^2.1.1
   flutter_test:
     sdk: flutter
-  freezed: ^0.14.3
+  freezed: ^0.14.5
   mocktail: ^0.1.4
   very_good_analysis: ^2.3.0
 
