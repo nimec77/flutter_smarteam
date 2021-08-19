@@ -1,0 +1,48 @@
+"C:\app\JetBrains\CLion 2021.2\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - NMake Makefiles" C:\Users\nim\IdeaProjects\flutter_smarteam\windows
+-- The CXX compiler identification is MSVC 19.29.30133.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files (x86)/Microsoft Visual Studio/2019/Professional/VC/Tools/MSVC/14.29.30133/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/nim/IdeaProjects/flutter_smarteam/windows/cmake-build-debug
+
+Cannot get compiler information:
+	Compiler exited with error code 2: "C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64\cl.exe" @C:\Users\nim\AppData\Local\Temp\response-file14167675291789160098 C:\Users\nim\AppData\Local\Temp\compiler-file9873663166532424234 | @response-file14167675291789160098=/TP -DUNICODE -D_DEBUG -D_HAS_EXCEPTIONS=0 -D_UNICODE /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /W4 /WX "/wd\"4100\"" /EHsc -std:c++17 /Be /Bd /EP
+	Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30133 for x64
+	Copyright (C) Microsoft Corporation.  All rights reserved.
+	
+	all:
+		@cd C:\Users\nim\IdeaProjects\flutter_smarteam\windows\cmake-build-debug\flutter
+		@set INCLUDE=C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\ATLMFC\include;C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\include;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared;C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt
+		@set LIB=C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\ATLMFC\lib\x64;C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\lib\x64;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\lib\um\x64;C:\Program Files (x86)\Windows Kits\10\lib\10.0.19041.0\ucrt\x64;C:\Program Files (x86)\Windows Kits\10\lib\10.0.19041.0\um\x64
+		@set CL=
+		@set _CL_=
+		@set LINK=
+		C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64\cl.exe @<< C:\Users\nim\AppData\Local\Temp\compiler-file9873663166532424234
+	/TP -DUNICODE -D_DEBUG -D_HAS_EXCEPTIONS=0 -D_UNICODE /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /W4 /WX "/wd\"4100\"" /EHsc -std:c++17 /Be /Bd /EP<<
+	
+	cl /TP -DUNICODE -D_DEBUG -D_HAS_EXCEPTIONS=0 -D_UNICODE /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /W4 /WX "/wd\"4100\"" /EHsc -std:c++17 /Be /Bd /EP
+	cl : Command line error D8021 : invalid numeric argument '/wd"4100"'
+	
+	
+	Compiler exited with error code 2: "C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64\cl.exe" @C:\Users\nim\AppData\Local\Temp\response-file488750452673902743 C:\Users\nim\AppData\Local\Temp\compiler-file9873663166532424234 | @response-file488750452673902743=/TP -DNOMINMAX -DUNICODE -D_DEBUG -D_HAS_EXCEPTIONS=0 -D_UNICODE /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /W4 /WX "/wd\"4100\"" /EHsc -std:c++17 /Be /Bd /EP
+	Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30133 for x64
+	Copyright (C) Microsoft Corporation.  All rights reserved.
+	
+	all:
+		@cd C:\Users\nim\IdeaProjects\flutter_smarteam\windows\cmake-build-debug\runner
+		@set INCLUDE=C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\ATLMFC\include;C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\include;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared;C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt
+		@set LIB=C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\ATLMFC\lib\x64;C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\lib\x64;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\lib\um\x64;C:\Program Files (x86)\Windows Kits\10\lib\10.0.19041.0\ucrt\x64;C:\Program Files (x86)\Windows Kits\10\lib\10.0.19041.0\um\x64
+		@set CL=
+		@set _CL_=
+		@set LINK=
+		C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64\cl.exe @<< C:\Users\nim\AppData\Local\Temp\compiler-file9873663166532424234
+	/TP -DNOMINMAX -DUNICODE -D_DEBUG -D_HAS_EXCEPTIONS=0 -D_UNICODE /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /W4 /WX "/wd\"4100\"" /EHsc -std:c++17 /Be /Bd /EP<<
+	
+	cl /TP -DNOMINMAX -DUNICODE -D_DEBUG -D_HAS_EXCEPTIONS=0 -D_UNICODE /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /W4 /WX "/wd\"4100\"" /EHsc -std:c++17 /Be /Bd /EP
+	cl : Command line error D8021 : invalid numeric argument '/wd"4100"'
+	
+	

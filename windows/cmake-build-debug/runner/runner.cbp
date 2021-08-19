@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="runner"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="msvc8"/>
+		<Option virtualFolders="CMake Files\;CMake Files\flutter\;CMake Files\flutter\ephemeral\;CMake Files\runner\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/cmake-build-debug/runner"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\nim\IdeaProjects\flutter_smarteam\windows\cmake-build-debug\runner\Makefile VERBOSE=1 all"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\nim\IdeaProjects\flutter_smarteam\windows\cmake-build-debug\runner\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\nim\IdeaProjects\flutter_smarteam\windows\cmake-build-debug\runner\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\nim\IdeaProjects\flutter_smarteam\windows\cmake-build-debug\runner\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="flutter_smarteam">
+				<Option output="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/cmake-build-debug/runner/flutter_smarteam.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/cmake-build-debug/runner"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add option="-D_HAS_EXCEPTIONS=0"/>
+					<Add option="-D_DEBUG"/>
+					<Add option="-DNOMINMAX"/>
+					<Add option="-DUNICODE"/>
+					<Add option="-D_UNICODE"/>
+					<Add directory="C:/Users/nim/IdeaProjects/flutter_smarteam/windows"/>
+					<Add directory="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/flutter/ephemeral"/>
+					<Add directory="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/flutter/ephemeral/cpp_client_wrapper/include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\nim\IdeaProjects\flutter_smarteam\windows\cmake-build-debug\runner\Makefile VERBOSE=1 flutter_smarteam"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\nim\IdeaProjects\flutter_smarteam\windows\cmake-build-debug\runner\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\nim\IdeaProjects\flutter_smarteam\windows\cmake-build-debug\runner\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\nim\IdeaProjects\flutter_smarteam\windows\cmake-build-debug\runner\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="flutter_smarteam/fast">
+				<Option output="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/cmake-build-debug/runner/flutter_smarteam.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/cmake-build-debug/runner"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add option="-D_HAS_EXCEPTIONS=0"/>
+					<Add option="-D_DEBUG"/>
+					<Add option="-DNOMINMAX"/>
+					<Add option="-DUNICODE"/>
+					<Add option="-D_UNICODE"/>
+					<Add directory="C:/Users/nim/IdeaProjects/flutter_smarteam/windows"/>
+					<Add directory="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/flutter/ephemeral"/>
+					<Add directory="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/flutter/ephemeral/cpp_client_wrapper/include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\nim\IdeaProjects\flutter_smarteam\windows\cmake-build-debug\runner\Makefile VERBOSE=1 flutter_smarteam/fast"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\nim\IdeaProjects\flutter_smarteam\windows\cmake-build-debug\runner\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\nim\IdeaProjects\flutter_smarteam\windows\cmake-build-debug\runner\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\nim\IdeaProjects\flutter_smarteam\windows\cmake-build-debug\runner\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/flutter/generated_plugin_registrant.cc">
+			<Option target="flutter_smarteam"/>
+		</Unit>
+		<Unit filename="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/flutter/generated_plugin_registrant.h">
+			<Option target="flutter_smarteam"/>
+		</Unit>
+		<Unit filename="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/runner/Runner.rc">
+			<Option target="flutter_smarteam"/>
+		</Unit>
+		<Unit filename="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/runner/flutter_window.cpp">
+			<Option target="flutter_smarteam"/>
+		</Unit>
+		<Unit filename="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/runner/flutter_window.h">
+			<Option target="flutter_smarteam"/>
+		</Unit>
+		<Unit filename="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/runner/main.cpp">
+			<Option target="flutter_smarteam"/>
+		</Unit>
+		<Unit filename="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/runner/runner.exe.manifest">
+			<Option target="flutter_smarteam"/>
+		</Unit>
+		<Unit filename="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/runner/utils.cpp">
+			<Option target="flutter_smarteam"/>
+		</Unit>
+		<Unit filename="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/runner/utils.h">
+			<Option target="flutter_smarteam"/>
+		</Unit>
+		<Unit filename="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/runner/win32_window.cpp">
+			<Option target="flutter_smarteam"/>
+		</Unit>
+		<Unit filename="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/runner/win32_window.h">
+			<Option target="flutter_smarteam"/>
+		</Unit>
+		<Unit filename="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/flutter/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\flutter\"/>
+		</Unit>
+		<Unit filename="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/flutter/generated_plugins.cmake">
+			<Option virtualFolder="CMake Files\flutter\"/>
+		</Unit>
+		<Unit filename="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/flutter/ephemeral/generated_config.cmake">
+			<Option virtualFolder="CMake Files\flutter\ephemeral\"/>
+		</Unit>
+		<Unit filename="C:/Users/nim/IdeaProjects/flutter_smarteam/windows/runner/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\runner\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

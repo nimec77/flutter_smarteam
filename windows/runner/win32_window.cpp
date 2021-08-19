@@ -117,14 +117,25 @@ bool Win32Window::CreateAndShow(const std::wstring& title,
   double scale_factor = dpi / 96.0;
 
   HWND window = CreateWindow(
-      window_class, title.c_str(), WS_OVERLAPPEDWINDOW | WS_VISIBLE,
-      Scale(origin.x, scale_factor), Scale(origin.y, scale_factor),
-      Scale(size.width, scale_factor), Scale(size.height, scale_factor),
-      nullptr, nullptr, GetModuleHandle(nullptr), this);
+      window_class, // Class name
+      title.c_str(), // Window name
+      WS_OVERLAPPEDWINDOW | WS_VISIBLE, // Style
+      Scale(origin.x, scale_factor), // X
+      Scale(origin.y, scale_factor), // Y
+      Scale(size.width, scale_factor), // Width
+      Scale(size.height, scale_factor), // Height
+      nullptr, // Parent
+      nullptr, // Menu
+      GetModuleHandle(nullptr), // Instance
+      this // Param
+      );
 
   if (!window) {
     return false;
   }
+
+  ShowWindow(window, SW_MAXIMIZE);
+  UpdateWindow(window);
 
   return OnCreate();
 }
@@ -188,6 +199,13 @@ Win32Window::MessageHandler(HWND hwnd,
         SetFocus(child_content_);
       }
       return 0;
+
+    case WM_GETMINMAXINFO:
+      LPMINMAXINFO lpMMI = (LPMINMAXINFO)lparam;
+      lpMMI->ptMinTrackSize.x = 800;
+      lpMMI->ptMinTrackSize.y = 600;
+      return 0;
+
   }
 
   return DefWindowProc(window_handle_, message, wparam, lparam);
