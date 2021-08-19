@@ -1,5 +1,5 @@
 name: flutter_smarteam
-description: A Very Good Project created by Very Good CLI.
+description: SmartTeam smart project
 version: 1.0.0+1
 publish_to: none
 
@@ -7,7 +7,7 @@ environment:
   sdk: ">=2.13.0 <3.0.0"
 
 dependencies:
-  bloc: ^7.0.0
+  bloc: ^7.1.0
   flow_builder: ^0.0.4
   flutter:
     sdk: flutter
