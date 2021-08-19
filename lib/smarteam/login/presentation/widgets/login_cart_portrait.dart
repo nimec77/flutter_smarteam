@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_smarteam/smarteam/login/constants.dart';
+import 'package:flutter_smarteam/smarteam/login/presentation/widgets/login_form.dart';
 import 'package:sizer/sizer.dart';
 
-class LoginCartPortrait extends StatefulWidget {
+class LoginCartPortrait extends StatelessWidget {
   const LoginCartPortrait({Key? key}) : super(key: key);
 
-  @override
-  _LoginCartPortraitState createState() => _LoginCartPortraitState();
-}
-
-class _LoginCartPortraitState extends State<LoginCartPortrait> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -25,6 +21,7 @@ class _LoginCartPortraitState extends State<LoginCartPortrait> {
               ),
               borderRadius: BorderRadius.all(Radius.circular(30)),
             ),
+            child: const LoginForm(),
           ),
         );
       },

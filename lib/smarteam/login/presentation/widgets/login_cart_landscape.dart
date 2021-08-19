@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_smarteam/smarteam/login/constants.dart';
+import 'package:flutter_smarteam/smarteam/login/presentation/widgets/login_form.dart';
 
-class LoginCartLandscape extends StatefulWidget {
+class LoginCartLandscape extends StatelessWidget {
   const LoginCartLandscape({Key? key}) : super(key: key);
 
-  @override
-  _LoginCartLandscapeState createState() => _LoginCartLandscapeState();
-}
-
-class _LoginCartLandscapeState extends State<LoginCartLandscape> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -21,6 +17,7 @@ class _LoginCartLandscapeState extends State<LoginCartLandscape> {
             fit: BoxFit.cover,
           ),
         ),
+        child: const LoginForm(),
       ),
     );
   }
