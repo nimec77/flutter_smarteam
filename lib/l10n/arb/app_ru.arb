@@ -19,5 +19,9 @@
   "loginCheckboxText": "Запомнить учетные данные",
   "@loginCheckboxText": {
     "description": "Text shown in the checkbox for remember credentials"
+  },
+  "loginUsernameError": "Не может быть короче 3 символов",
+  "@loginUsernameError": {
+    "description": "Error text if username is less than 3 letters"
   }
 }
