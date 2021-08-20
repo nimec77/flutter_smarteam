@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_smarteam/smarteam/login/constants.dart';
 import 'package:flutter_smarteam/smarteam/login/presentation/widgets/login_form.dart';
 
-class LoginCartLandscape extends StatelessWidget {
-  const LoginCartLandscape({Key? key}) : super(key: key);
+class LoginCart extends StatelessWidget {
+  const LoginCart({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +19,5 @@ class LoginCartLandscape extends StatelessWidget {
         ),
         child: const LoginForm(),
       ),
-    );
-  }
+    );}
 }

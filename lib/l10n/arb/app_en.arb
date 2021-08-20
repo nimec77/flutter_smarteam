@@ -3,5 +3,21 @@
     "smarteamSplashText": "LOADING...",
     "@smarteamSplashText": {
         "description": "Text shown in Smarteam Splash Page"
+    },
+    "loginUsernameText": "Username",
+    "@loginUsernameText": {
+        "description": "Text shown in the label for the username text field"
+    },
+    "loginPasswordText": "Password",
+    "@loginPasswordText": {
+        "description": "Text shown in the label for the password text field"
+    },
+    "loginButtonText": "Enter",
+    "@loginButtonText": {
+        "description": "Text shown in the label for the enter button"
+    },
+    "loginCheckboxText": "Remember credentials",
+    "@loginCheckboxText": {
+        "description": "Text shown in the checkbox for remember credentials"
     }
 }

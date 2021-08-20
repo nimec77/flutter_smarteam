@@ -3,5 +3,21 @@
   "smarteamSplashText": "ЗАГРУЗКА...",
   "@smarteamSplashText": {
     "description": "Text shown in Smarteam Splash Page"
+  },
+  "loginUsernameText": "Пользователь",
+  "@loginUsernameText": {
+    "description": "Text shown in the label for the username text field"
+  },
+  "loginPasswordText": "Пароль",
+  "@loginPasswordText": {
+    "description": "Text shown in the label for the password text field"
+  },
+  "loginButtonText": "Вход",
+  "@loginButtonText": {
+    "description": "Text shown in the label for the enter button"
+  },
+  "loginCheckboxText": "Запомнить учетные данные",
+  "@loginCheckboxText": {
+    "description": "Text shown in the checkbox for remember credentials"
   }
 }
