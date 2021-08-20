@@ -23,5 +23,9 @@
   "loginUsernameError": "Не может быть короче 3 символов",
   "@loginUsernameError": {
     "description": "Error text if username is less than 3 letters"
+  },
+  "loginPasswordError": "Не может быть короче 4 символов",
+  "@loginPasswordError": {
+    "description": "Error text if password is less than 4 letters"
   }
 }

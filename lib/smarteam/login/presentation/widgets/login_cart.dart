@@ -17,7 +17,7 @@ class LoginCart extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: const LoginForm(),
+        child: LoginForm(),
       ),
     );}
 }

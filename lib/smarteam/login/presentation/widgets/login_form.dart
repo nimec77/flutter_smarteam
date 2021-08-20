@@ -1,12 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smarteam/l10n/l10n.dart';
-import 'package:flutter_smarteam/smarteam/login/presentation/widgets/login_button.dart';
-import 'package:flutter_smarteam/smarteam/login/presentation/widgets/remember_checkbox.dart';
+import 'package:flutter_smarteam/smarteam/login/domain/validators/username_and_password_validators.dart';
+import 'package:flutter_smarteam/smarteam/login/presentation/common_widgets/login_button.dart';
+import 'package:flutter_smarteam/smarteam/login/presentation/common_widgets/remember_checkbox.dart';
 import 'package:sizer/sizer.dart';
 
-class LoginForm extends StatefulWidget {
-  const LoginForm({Key? key}) : super(key: key);
+class LoginForm extends StatefulWidget with UsernameAndPasswordValidators {
+  LoginForm({Key? key}) : super(key: key);
 
   @override
   _LoginFormState createState() => _LoginFormState();
@@ -55,7 +56,7 @@ class _LoginFormState extends State<LoginForm> {
                     return null;
                   }
                   debugPrint('Username:$value');
-                  return (value?.length ?? 0) <= 3 ? 'Cant be a less 3' : null;
+                  return !widget.usernameValidator.isValid(value) ? l10n.loginUsernameError : null;
                 },
                 decoration: InputDecoration(
                   labelText: l10n.loginUsernameText,
@@ -79,7 +80,7 @@ class _LoginFormState extends State<LoginForm> {
                     return null;
                   }
                   debugPrint('Password:$value');
-                  return (value?.length ?? 0) <= 4 ? 'Cant be a less 4' : null;
+                  return !widget.passwordValidator.isValid(value) ? l10n.loginPasswordError : null;
                 },
                 decoration: InputDecoration(
                   labelText: l10n.loginPasswordText,

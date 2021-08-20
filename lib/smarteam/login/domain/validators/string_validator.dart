@@ -1,3 +1,3 @@
 abstract class StringValidator {
-  bool isValid(String value);
+  bool isValid(String? value);
 }

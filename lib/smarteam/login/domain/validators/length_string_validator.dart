@@ -6,5 +6,5 @@ class LengthStringValidator implements StringValidator {
   final int minLength;
 
   @override
-  bool isValid(String value) => value.length >= minLength;
+  bool isValid(String? value) => (value?.length ?? 0) >= minLength;
 }

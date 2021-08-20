@@ -1,3 +1,4 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
@@ -42,6 +43,13 @@ mixin _$RouterState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? splashPage,
+    TResult Function()? loginPage,
+    TResult Function()? homePage,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? splashPage,
     TResult Function()? loginPage,
@@ -54,6 +62,13 @@ mixin _$RouterState {
     required TResult Function(RouterStateSplashPage value) splashPage,
     required TResult Function(RouterStateLoginPage value) loginPage,
     required TResult Function(RouterStateHomePage value) homePage,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(RouterStateSplashPage value)? splashPage,
+    TResult Function(RouterStateLoginPage value)? loginPage,
+    TResult Function(RouterStateHomePage value)? homePage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -131,6 +146,16 @@ class _$RouterStateSplashPage implements RouterStateSplashPage {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? splashPage,
+    TResult Function()? loginPage,
+    TResult Function()? homePage,
+  }) {
+    return splashPage?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? splashPage,
     TResult Function()? loginPage,
@@ -151,6 +176,16 @@ class _$RouterStateSplashPage implements RouterStateSplashPage {
     required TResult Function(RouterStateHomePage value) homePage,
   }) {
     return splashPage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(RouterStateSplashPage value)? splashPage,
+    TResult Function(RouterStateLoginPage value)? loginPage,
+    TResult Function(RouterStateHomePage value)? homePage,
+  }) {
+    return splashPage?.call(this);
   }
 
   @override
@@ -221,6 +256,16 @@ class _$RouterStateLoginPage implements RouterStateLoginPage {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? splashPage,
+    TResult Function()? loginPage,
+    TResult Function()? homePage,
+  }) {
+    return loginPage?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? splashPage,
     TResult Function()? loginPage,
@@ -241,6 +286,16 @@ class _$RouterStateLoginPage implements RouterStateLoginPage {
     required TResult Function(RouterStateHomePage value) homePage,
   }) {
     return loginPage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(RouterStateSplashPage value)? splashPage,
+    TResult Function(RouterStateLoginPage value)? loginPage,
+    TResult Function(RouterStateHomePage value)? homePage,
+  }) {
+    return loginPage?.call(this);
   }
 
   @override
@@ -311,6 +366,16 @@ class _$RouterStateHomePage implements RouterStateHomePage {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? splashPage,
+    TResult Function()? loginPage,
+    TResult Function()? homePage,
+  }) {
+    return homePage?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? splashPage,
     TResult Function()? loginPage,
@@ -331,6 +396,16 @@ class _$RouterStateHomePage implements RouterStateHomePage {
     required TResult Function(RouterStateHomePage value) homePage,
   }) {
     return homePage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(RouterStateSplashPage value)? splashPage,
+    TResult Function(RouterStateLoginPage value)? loginPage,
+    TResult Function(RouterStateHomePage value)? homePage,
+  }) {
+    return homePage?.call(this);
   }
 
   @override
