@@ -62,7 +62,9 @@ class _LoginFormState extends State<LoginForm> {
                   labelText: l10n.loginUsernameText,
                 ),
                 onEditingComplete: () {
-                  final nextWidget = _usernameController.text.length > 3 ? _passwordFocusNode : _usernameFocusNode;
+                  final nextWidget = widget.usernameValidator.isValid(_usernameController.text)
+                      ? _passwordFocusNode
+                      : _usernameFocusNode;
                   FocusScope.of(context).requestFocus(nextWidget);
                 },
                 onChanged: (value) {
