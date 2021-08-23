@@ -57,7 +57,6 @@ class _LoginFormState extends State<LoginForm> {
                   if (_usernameFirstEnter) {
                     return null;
                   }
-                  debugPrint('Username:$value');
                   return !widget.usernameValidator.isValid(value) ? l10n.loginUsernameError : null;
                 },
                 decoration: InputDecoration(
@@ -84,7 +83,6 @@ class _LoginFormState extends State<LoginForm> {
                   if (_passwordFirstEnter) {
                     return null;
                   }
-                  debugPrint('Password:$value');
                   return !widget.passwordValidator.isValid(value) ? l10n.loginPasswordError : null;
                 },
                 decoration: InputDecoration(
