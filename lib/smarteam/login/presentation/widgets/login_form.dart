@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smarteam/l10n/l10n.dart';
+import 'package:flutter_smarteam/smarteam/login/constants.dart';
 import 'package:flutter_smarteam/smarteam/login/domain/validators/username_and_password_validators.dart';
 import 'package:flutter_smarteam/smarteam/login/presentation/common_widgets/login_button.dart';
 import 'package:flutter_smarteam/smarteam/login/presentation/common_widgets/remember_checkbox.dart';
@@ -49,6 +50,7 @@ class _LoginFormState extends State<LoginForm> {
           child: Column(
             children: [
               TextFormField(
+                key: kUsernameFieldKey,
                 controller: _usernameController,
                 focusNode: _usernameFocusNode,
                 validator: (value) {
@@ -75,6 +77,7 @@ class _LoginFormState extends State<LoginForm> {
               ),
               const SizedBox(height: 20),
               TextFormField(
+                key: kPasswordFieldKey,
                 controller: _passwordController,
                 focusNode: _passwordFocusNode,
                 validator: (value) {
@@ -106,7 +109,11 @@ class _LoginFormState extends State<LoginForm> {
                 },
               ),
               const SizedBox(height: 20),
-              LoginButton(text: l10n.loginButtonText, enabled: _formIsValidated()),
+              LoginButton(
+                key: kLoginButtonKey,
+                text: l10n.loginButtonText,
+                enabled: _formIsValidated(),
+              ),
             ],
           ),
         ),
