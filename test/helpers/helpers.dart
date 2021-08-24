@@ -5,5 +5,6 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
+export 'golden_helper.dart';
 export 'pump_app.dart';
 export 'widget_helper.dart';
