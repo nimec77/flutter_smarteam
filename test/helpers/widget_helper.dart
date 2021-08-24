@@ -2,7 +2,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 extension FindWidget on WidgetTester {
-  T? findChildWidget<T extends Widget>(Element element) {
+  T? findChildWidget<T extends Widget>(Finder finder) => _findWidget(element(finder));
+
+  T? _findWidget<T extends Widget>(Element element) {
     T? result;
     final elements = <Element>[];
     element.visitChildElements((el) {
@@ -21,7 +23,7 @@ extension FindWidget on WidgetTester {
     }
 
     for (final el in elements) {
-      result = findChildWidget<T>(el);
+      result = _findWidget<T>(el);
       if (result != null) {
         return result;
       }

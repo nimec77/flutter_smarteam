@@ -20,13 +20,11 @@ void main() {
       await widgetTester.pumpSizerAndScaffold(widget);
 
       final usernameFinder = find.byKey(kUsernameFieldKey);
-      final usernameTextFormFieldElement = widgetTester.element(usernameFinder);
-      final usernameTextFieldWidget = widgetTester.findChildWidget<TextField>(usernameTextFormFieldElement);
+      final usernameTextFieldWidget = widgetTester.findChildWidget<TextField>(usernameFinder);
       expect(usernameTextFieldWidget?.decoration?.labelText, l10n.loginUsernameText);
 
       final passwordFinder = find.byKey(kPasswordFieldKey);
-      final passwordTextFormFieldElement = widgetTester.element(passwordFinder);
-      final passwordTextFormFieldWidget = widgetTester.findChildWidget<TextField>(passwordTextFormFieldElement);
+      final passwordTextFormFieldWidget = widgetTester.findChildWidget<TextField>(passwordFinder);
       expect(passwordTextFormFieldWidget?.decoration?.labelText, l10n.loginPasswordText);
 
       final loginButtonFinder = find.byKey(kLoginButtonKey);
