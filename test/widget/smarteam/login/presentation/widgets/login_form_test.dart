@@ -5,7 +5,14 @@ import 'package:flutter_smarteam/smarteam/login/presentation/common_widgets/logi
 import 'package:flutter_smarteam/smarteam/login/presentation/widgets/login_form.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../../helpers/helpers.dart';
+import '../../../../../helpers/helpers.dart';
+
+class Pair {
+  Pair(this.widget, this.l10n);
+
+  final Widget widget;
+  final AppLocalizations l10n;
+}
 
 void main() {
   group('LoginForm text', () {
@@ -93,4 +100,3 @@ void main() {
     });
   });
 }
-
