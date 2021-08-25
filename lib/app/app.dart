@@ -28,7 +28,7 @@ class App extends StatelessWidget {
         ],
         supportedLocales: AppLocalizations.supportedLocales,
         home: BlocProvider(
-          create: (context) => RouterCubit(),
+          create: (context) => RouterBloc(),
           child: const AppPage(),
         ),
       ),

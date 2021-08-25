@@ -1,4 +1,4 @@
-part of 'router_cubit.dart';
+part of 'router_bloc.dart';
 
 @freezed
 class RouterState with _$RouterState {

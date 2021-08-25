@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_smarteam/smarteam/smarteam.dart';
 
 class ProjectsPage extends StatelessWidget {
   const ProjectsPage({Key? key}) : super(key: key);
@@ -17,7 +19,12 @@ class ProjectsPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text('Большой текст', style: Theme.of(context).textTheme.headline1),
-            ElevatedButton(onPressed: () {}, child: const Text('Просто текст')),
+            ElevatedButton(
+              onPressed: () {
+                context.read<RouterBloc>().add(const RouterEvent.loginPageShown());
+              },
+              child: const Text('Просто текст'),
+            ),
           ],
         ),
       ),

@@ -1,10 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smarteam/l10n/l10n.dart';
 import 'package:flutter_smarteam/smarteam/login/constants.dart';
 import 'package:flutter_smarteam/smarteam/login/domain/validators/username_and_password_validators.dart';
 import 'package:flutter_smarteam/smarteam/login/presentation/common_widgets/login_button.dart';
 import 'package:flutter_smarteam/smarteam/login/presentation/common_widgets/remember_checkbox.dart';
+import 'package:flutter_smarteam/smarteam/smarteam.dart';
 import 'package:sizer/sizer.dart';
 
 class LoginForm extends StatefulWidget with UsernameAndPasswordValidators {
@@ -111,6 +113,9 @@ class _LoginFormState extends State<LoginForm> {
                 key: kLoginButtonKey,
                 text: l10n.loginButtonText,
                 enabled: _formIsValidated(),
+                onPressed: () {
+                  context.read<RouterBloc>().add(const RouterEvent.homePageShown());
+                },
               ),
             ],
           ),

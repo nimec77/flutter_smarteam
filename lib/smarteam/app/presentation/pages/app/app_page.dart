@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_smarteam/smarteam/app/presentation/blocs/router_cubit.dart';
+import 'package:flutter_smarteam/smarteam/app/presentation/blocs/router_bloc.dart';
 import 'package:flutter_smarteam/smarteam/login/presentation/pages/login/login_page.dart';
 import 'package:flutter_smarteam/smarteam/projects/presentation/pages/projects_page.dart';
 import 'package:flutter_smarteam/smarteam/smarteam.dart';
@@ -17,7 +17,7 @@ class _AppPageState extends State<AppPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<RouterCubit, RouterState>(
+    return BlocListener<RouterBloc, RouterState>(
       listener: (context, state) => state.maybeWhen(
         loginPage: () => _navigatorKey.currentState!.pushNamedAndRemoveUntil(LoginPage.route, (route) => false),
         homePage: () => _navigatorKey.currentState!.pushNamedAndRemoveUntil(ProjectsPage.route, (route) => false),
@@ -31,33 +31,39 @@ class _AppPageState extends State<AppPage> {
           switch (settings.name) {
             case LoginPage.route:
               return PageRouteBuilder<void>(
-                  pageBuilder: (context, animation, secondaryAnimation) => const LoginPage(),
-                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(
-                      opacity: animation,
-                      child: child,
-                    );
-                  });
+                pageBuilder: (context, animation, secondaryAnimation) => const LoginPage(),
+                transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                  return SlideTransition(
+                    position: Tween<Offset>(
+                      begin: const Offset(0, -1),
+                      end: Offset.zero,
+                    ).animate(animation),
+                    child: child,
+                  );
+                },
+              );
 
             case ProjectsPage.route:
               return PageRouteBuilder<void>(
-                  pageBuilder: (context, animation, secondaryAnimation) => const ProjectsPage(),
-                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(
-                      opacity: animation,
-                      child: child,
-                    );
-                  });
+                pageBuilder: (context, animation, secondaryAnimation) => const ProjectsPage(),
+                transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  );
+                },
+              );
           }
 
           return PageRouteBuilder<void>(
-              pageBuilder: (context, animation, secondaryAnimation) => const SplashPage(),
-              transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                return FadeTransition(
-                  opacity: animation,
-                  child: child,
-                );
-              });
+            pageBuilder: (context, animation, secondaryAnimation) => const SplashPage(),
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+            },
+          );
         },
       ),
     );

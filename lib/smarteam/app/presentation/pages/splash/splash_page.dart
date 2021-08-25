@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smarteam/l10n/l10n.dart';
-import 'package:flutter_smarteam/smarteam/app/presentation/blocs/router_cubit.dart';
+import 'package:flutter_smarteam/smarteam/app/presentation/blocs/router_bloc.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/helpers/helper.dart' as helper;
 import 'package:flutter_smarteam/smarteam/app/presentation/pages/constants.dart';
 
@@ -36,7 +36,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     _loadValue.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         _waveController.stop();
-        context.read<RouterCubit>().loginPage();
+        context.read<RouterBloc>().add(const RouterEvent.loginPageShown());
       }
     });
     _waveController.repeat();
