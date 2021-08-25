@@ -8,6 +8,9 @@ environment:
 
 dependencies:
   bloc: ^7.1.0
+  dart_smarteam:
+    git: git://github.com/nimec77/dart_smarteam.git
+  dartz: ^0.10.0
   flow_builder: ^0.0.4
   flutter:
     sdk: flutter
