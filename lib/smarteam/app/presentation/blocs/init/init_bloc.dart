@@ -38,7 +38,7 @@ class InitBloc extends Bloc<InitEvent, InitState> {
         if (initResult) {
           return InitState.initInProgress(1 - 1 / kLoadDuration.inSeconds);
         }
-        return InitState.initFailure(Error());
+        return InitState.initFailure(SmarteamError('Initialization error'));
       },
     );
   }
@@ -47,7 +47,9 @@ class InitBloc extends Bloc<InitEvent, InitState> {
     yield InitState.initSuccess(smarteam);
   }
 
-  Stream<InitState> _mapInitTimeUpToState(InitEvent event) async* {}
+  Stream<InitState> _mapInitTimeUpToState(InitEvent event) async* {
+    yield const InitState.initTimeout();
+  }
 
   Stream<InitState> _mapInitExitedToState(InitEvent event) async* {
     await SystemNavigator.pop(animated: true);
