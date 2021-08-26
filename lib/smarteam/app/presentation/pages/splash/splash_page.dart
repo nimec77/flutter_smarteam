@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smarteam/l10n/l10n.dart';
-import 'package:flutter_smarteam/smarteam/app/presentation/blocs/router_bloc.dart';
+import 'package:flutter_smarteam/smarteam/app/presentation/blocs/router/router_bloc.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/helpers/helper.dart' as helper;
 import 'package:flutter_smarteam/smarteam/app/presentation/pages/constants.dart';
 

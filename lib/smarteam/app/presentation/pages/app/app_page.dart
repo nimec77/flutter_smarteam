@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_smarteam/smarteam/app/presentation/blocs/router_bloc.dart';
+import 'package:flutter_smarteam/smarteam/app/presentation/blocs/router/router_bloc.dart';
 import 'package:flutter_smarteam/smarteam/login/presentation/pages/login/login_page.dart';
 import 'package:flutter_smarteam/smarteam/projects/presentation/pages/projects_page.dart';
 import 'package:flutter_smarteam/smarteam/smarteam.dart';
