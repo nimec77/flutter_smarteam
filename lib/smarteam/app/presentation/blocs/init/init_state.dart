@@ -6,7 +6,7 @@ class InitState with _$InitState {
 
   const factory InitState.initInProgress(double progress) = InitStateInProgress;
 
-  const factory InitState.initSuccess() = InitStateSuccess;
+  const factory InitState.initSuccess(Smarteam smarteam) = InitStateSuccess;
 
   const factory InitState.initFailure(Error error) = InitStateFailure;
 

@@ -38,10 +38,13 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
       if (status == AnimationStatus.completed) {
         _waveController.stop();
         context.read<RouterBloc>().add(const RouterEvent.loginPageShown());
+        context.read<InitBloc>().add(const InitEvent.initCompleted());
       }
     });
     _waveController.repeat();
     _loadController.forward();
+    context.read<InitBloc>().add(const InitEvent.initStarted());
+
     super.initState();
   }
 
@@ -60,6 +63,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     _image = null;
     _waveController.dispose();
     _loadController.dispose();
+
     super.dispose();
   }
 
@@ -67,6 +71,18 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
+    context.select<InitBloc, InitState>((bloc) => bloc.state).maybeWhen(
+          initInProgress: (progress) {
+            debugPrint(progress.toString());
+            final value = _loadController.value;
+            if (value < progress) {
+              _loadController
+                ..value = progress
+                ..forward();
+            }
+          },
+          orElse: () {},
+        );
     return Stack(
       children: [
         Container(
@@ -141,7 +157,7 @@ class _WavePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    debugPrint(loadValue.toString());
+    // debugPrint(loadValue.toString());
     final textBox = textKey.currentContext?.findRenderObject() as RenderBox?;
     if (textBox == null || renderBox == null) {
       return;
