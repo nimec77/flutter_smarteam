@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smarteam/l10n/l10n.dart';
+import 'package:flutter_smarteam/smarteam/app/presentation/blocs/init/init_bloc.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/router/router_bloc.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/helpers/helper.dart' as helper;
 import 'package:flutter_smarteam/smarteam/app/presentation/pages/constants.dart';
@@ -112,6 +113,12 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
             ),
           ),
         ),
+        TextButton(
+          onPressed: () {
+            context.read<InitBloc>().add(const InitEvent.initExited());
+          },
+          child: const Text('Increase value'),
+        ),
       ],
     );
   }
@@ -134,6 +141,7 @@ class _WavePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    debugPrint(loadValue.toString());
     final textBox = textKey.currentContext?.findRenderObject() as RenderBox?;
     if (textBox == null || renderBox == null) {
       return;

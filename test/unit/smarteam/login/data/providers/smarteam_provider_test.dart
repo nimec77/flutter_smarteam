@@ -1,38 +1,41 @@
+import 'package:dart_smarteam/smarteam.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter_smarteam/smarteam/login/data/providers/smarteam_provider.dart';
+import 'package:flutter_smarteam/smarteam/login/data/providers/smarteam_login_provider.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../../constants.dart';
+
 void main() {
-  late final SmarteamProvider smarteamProvider;
+  const smarteam = Smarteam();
+  late final SmarteamLoginProvider smarteamProvider;
 
   setUpAll(() async {
-    smarteamProvider = SmarteamProvider();
-    await smarteamProvider.init();
+    await smarteam.init();
+    smarteamProvider = SmarteamLoginProvider(const Smarteam());
   });
 
   tearDownAll(() async {
-    await smarteamProvider.dispose();
+    await smarteam.dispose();
   });
 
-  group('Create and destroy tests', () {
-    test('Create test', () async {
-      final result = await smarteamProvider.init();
+  group('SmarteamProvider functions test', () {
+    test('Test userLogin', () async {
+      final result = await smarteamProvider.userLogin(kUsername, kPassword);
 
-      result.fold(
-        print,
-        print,
-      );
+      expect(result, isA<Either<Error, bool>>());
+      expect(result.isRight(), equals(true));
+      expect(result | false, equals(true));
+
+      await smarteamProvider.userLogoff();
+    });
+
+    test('Test userLogout', () async {
+      await smarteamProvider.userLogin(kUsername, kPassword);
+      final result = await smarteamProvider.userLogoff();
+
       expect(result, isA<Either<Error, bool>>());
       expect(result.isRight(), equals(true));
       expect(result | false, equals(true));
     });
-  });
-
-  test('Test userLogin', () async {
-    final result = await smarteamProvider.userLogin('username', 'password');
-
-    expect(result, isA<Either<Error, bool>>());
-    expect(result.isRight(), equals(true));
-    expect(result | false, equals(false));
   });
 }

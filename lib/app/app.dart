@@ -10,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_smarteam/app/constants.dart';
 import 'package:flutter_smarteam/l10n/l10n.dart';
+import 'package:flutter_smarteam/smarteam/app/presentation/blocs/init/init_bloc.dart';
 import 'package:flutter_smarteam/smarteam/smarteam.dart';
 import 'package:sizer/sizer.dart';
 
@@ -27,8 +28,11 @@ class App extends StatelessWidget {
           GlobalMaterialLocalizations.delegate,
         ],
         supportedLocales: AppLocalizations.supportedLocales,
-        home: BlocProvider(
-          create: (context) => RouterBloc(),
+        home: MultiBlocProvider(
+          providers: [
+            BlocProvider<InitBloc>(create: (context) => InitBloc()),
+            BlocProvider<RouterBloc>(create: (context) => RouterBloc()),
+          ],
           child: const AppPage(),
         ),
       ),
