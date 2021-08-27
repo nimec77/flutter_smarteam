@@ -73,7 +73,13 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     return BlocBuilder<InitBloc, InitState>(
       buildWhen: (previousState, state) {
         return state.maybeWhen(
-          initInProgress: (_) => true,
+          initInProgress: (progress) {
+            final value = previousState.maybeWhen(
+              initInProgress: (v) => v,
+              orElse: () => 0.0,
+            );
+            return value != progress;
+          },
           initFailure: (_) => true,
           initTimeout: () => true,
           orElse: () => false,
@@ -167,12 +173,9 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   }
 
   void _changeProgress(double progress) {
-    final value = _loadController.value;
-    if (value < progress) {
-      _loadController
-        ..value = progress
-        ..forward();
-    }
+    _loadController
+      ..value = progress
+      ..forward();
   }
 
   void _stop() {
