@@ -8,7 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smarteam/l10n/l10n.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/init/init_bloc.dart';
-import 'package:flutter_smarteam/smarteam/app/presentation/blocs/router/router_bloc.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/helpers/helper.dart' as helper;
 import 'package:flutter_smarteam/smarteam/app/presentation/pages/constants.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/widgets/show_error_widget.dart';
@@ -28,6 +27,8 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   late final AnimationController _loadController;
   late final Animation<double> _loadValue;
   ui.Image? _image;
+  var _showError = false;
+  String _errorMessage = '';
 
   @override
   void initState() {
@@ -38,12 +39,9 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     _loadValue.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         _waveController.stop();
-        context.read<RouterBloc>().add(const RouterEvent.loginPageShown());
-        context.read<InitBloc>().add(const InitEvent.initCompleted());
+        context.read<InitBloc>().add(const InitEvent.initEnded());
       }
     });
-    _waveController.repeat();
-    _loadController.forward();
     context.read<InitBloc>().add(const InitEvent.initStarted());
 
     super.initState();
@@ -72,67 +70,123 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    // context.select<InitBloc, InitState>((bloc) => bloc.state).maybeWhen(
-    //       initInProgress: (progress) {
-    //         debugPrint(progress.toString());
-    //         final value = _loadController.value;
-    //         if (value < progress) {
-    //           _loadController
-    //             ..value = progress
-    //             ..forward();
-    //         }
-    //       },
-    //       orElse: () {},
-    //     );
-    return Stack(
-      children: [
-        Container(
-          width: double.infinity,
-          height: double.infinity,
-          color: Theme.of(context).colorScheme.secondary,
-          child: AnimatedBuilder(
-            animation: _waveController,
-            builder: (context, child) => CustomPaint(
-              painter: _WavePainter(
-                textKey: _textKey,
-                waveValue: _waveController.value,
-                loadValue: _loadController.value,
-                waveColor: Theme.of(context).primaryColor,
-                renderBox: context.findRenderObject() as RenderBox?,
-              ),
-            ),
-          ),
-        ),
-        ShaderMask(
-          blendMode: BlendMode.srcOut,
-          shaderCallback: (bounds) {
-            if (_image == null) {
-              return const LinearGradient(colors: [Colors.transparent], stops: [0]).createShader(bounds);
-            }
-            final imageSize = Size(_image!.width.toDouble(), _image!.height.toDouble());
-            final size = MediaQuery.of(context).size;
-            final coverTransform = helper.applyCover(imageSize, size);
-            return ImageShader(
-              _image!,
-              TileMode.clamp,
-              TileMode.clamp,
-              coverTransform.storage,
-            );
+    return BlocBuilder<InitBloc, InitState>(
+      buildWhen: (previousState, state) {
+        return state.maybeWhen(
+          initInProgress: (_) => true,
+          initFailure: (_) => true,
+          initTimeout: () => true,
+          orElse: () => false,
+        );
+      },
+      builder: (context, state) {
+        state.maybeWhen(
+          initFailure: (error) {
+            _stop();
+            _errorMessage = error.toString();
+            _showError = true;
           },
-          child: Container(
-            color: Colors.transparent,
-            child: Center(
-              child: Text(
-                l10n.smarteamSplashText,
-                key: _textKey,
-                style: Theme.of(context).textTheme.headline1!.copyWith(fontWeight: FontWeight.w900),
+          initInProgress: (progress) {
+            _play();
+            _changeProgress(progress);
+            _showError = false;
+          },
+          initTimeout: () {
+            _stop();
+            _errorMessage = l10n.splashPageTimeoutErrorMessage;
+            _showError = true;
+          },
+          orElse: () {},
+        );
+        return Stack(
+          children: [
+            Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: Theme.of(context).colorScheme.secondary,
+              child: AnimatedBuilder(
+                animation: _waveController,
+                builder: (context, child) => CustomPaint(
+                  painter: _WavePainter(
+                    textKey: _textKey,
+                    waveValue: _waveController.value,
+                    loadValue: _loadController.value,
+                    waveColor: Theme.of(context).primaryColor,
+                    renderBox: context.findRenderObject() as RenderBox?,
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
-        const ShowErrorWidget(),
-      ],
+            ShaderMask(
+              blendMode: BlendMode.srcOut,
+              shaderCallback: (bounds) {
+                if (_image == null) {
+                  return const LinearGradient(colors: [Colors.transparent], stops: [0]).createShader(bounds);
+                }
+                final imageSize = Size(_image!.width.toDouble(), _image!.height.toDouble());
+                final size = MediaQuery.of(context).size;
+                final coverTransform = helper.applyCover(imageSize, size);
+                return ImageShader(
+                  _image!,
+                  TileMode.clamp,
+                  TileMode.clamp,
+                  coverTransform.storage,
+                );
+              },
+              child: Container(
+                color: Colors.transparent,
+                child: Center(
+                  child: Text(
+                    l10n.smarteamSplashText,
+                    key: _textKey,
+                    style: Theme.of(context).textTheme.headline1!.copyWith(fontWeight: FontWeight.w900),
+                  ),
+                ),
+              ),
+            ),
+            AnimatedOpacity(
+              opacity: _showError ? 1.0 : 0.0,
+              duration: const Duration(milliseconds: 500),
+              child: AbsorbPointer(
+                absorbing: !_showError,
+                child: ShowErrorWidget(
+                  errorMessage: _errorMessage,
+                  onRepeat: () {
+                    context.read<InitBloc>().add(const InitEvent.initStarted());
+                  },
+                  onExit: () {
+                    context.read<InitBloc>().add(const InitEvent.initExited());
+                  },
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
+  }
+
+  void _changeProgress(double progress) {
+    final value = _loadController.value;
+    if (value < progress) {
+      _loadController
+        ..value = progress
+        ..forward();
+    }
+  }
+
+  void _stop() {
+    if (_loadController.isAnimating) {
+      _loadController.stop(canceled: false);
+      _waveController.stop(canceled: false);
+    }
+  }
+
+  void _play() {
+    if (!_loadController.isAnimating) {
+      _loadController.forward();
+      _waveController.repeat();
+    }
   }
 }
 

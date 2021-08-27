@@ -17,9 +17,9 @@ void main() {
     });
 
     blocTest<InitBloc, InitState>(
-      'emits [InitState.initSuccess] when event InitEvent.initCompleted',
+      'emits [InitState.initSuccess] when event InitEvent.initEnded if state is not InitState.initFailure',
       build: () => InitBloc(smarteam: mockSmarteam),
-      act: (initBloc) => initBloc.add(const InitEvent.initCompleted()),
+      act: (initBloc) => initBloc.add(const InitEvent.initEnded()),
       expect: () =>
       [
         InitState.initSuccess(mockSmarteam),

@@ -27,5 +27,17 @@
   "loginPasswordError": "Не может быть короче 4 символов",
   "@loginPasswordError": {
     "description": "Error text if password is less than 4 letters"
+  },
+  "showErrorWidgetRepeatButtonText": "Повторить",
+  "@showErrorWidgetRepeatButtonText": {
+    "description": "Text displayed on repeat button in ShowErrorWidget"
+  },
+  "showErrorWidgetExitButtonText": "Выход",
+  "@showErrorWidgetExitButtonText": {
+    "description": "Text displayed on exit button in ShowErrorWidget"
+  },
+  "splashPageTimeoutErrorMessage": "Инициализация не была завершена в отведенное время.",
+  "@splashPageTimeoutErrorMessage": {
+    "description": "Error message displayed on initialization timeout"
   }
 }

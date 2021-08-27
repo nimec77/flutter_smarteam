@@ -27,5 +27,17 @@
     "loginPasswordError": "Can't be less than 4 letters",
     "@loginPasswordError": {
         "description": "Error text if password is less than 4 letters"
+    },
+    "showErrorWidgetRepeatButtonText": "Repeat",
+    "@showErrorWidgetRepeatButtonText": {
+        "description": "Text displayed on repeat button in ShowErrorWidget"
+    },
+    "showErrorWidgetExitButtonText": "Exit",
+    "@showErrorWidgetExitButtonText": {
+        "description": "Text displayed on exit button in ShowErrorWidget"
+    },
+    "splashPageTimeoutErrorMessage": "Initialization was not completed in the allotted time.",
+    "@splashPageTimeoutErrorMessage": {
+        "description": "Error message displayed on initialization timeout"
     }
 }

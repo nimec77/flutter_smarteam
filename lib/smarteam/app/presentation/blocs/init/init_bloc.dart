@@ -23,7 +23,7 @@ class InitBloc extends Bloc<InitEvent, InitState> {
   Stream<InitState> mapEventToState(InitEvent event) async* {
     yield* event.map(
       initStarted: _mapInitStartedToState,
-      initCompleted: _mapInitCompletedToState,
+      initEneded: _mapInitCompletedToState,
       initTimeUp: _mapInitTimeUpToState,
       initExited: _mapInitExitedToState,
     );
@@ -32,6 +32,7 @@ class InitBloc extends Bloc<InitEvent, InitState> {
   Stream<InitState> _mapInitStartedToState(InitEvent event) async* {
     yield const InitState.initInProgress(0.1);
     final result = await smarteam.init();
+    await Future<void>.delayed(const Duration(seconds: 1));
     yield result.fold(
       (error) => InitState.initFailure(error),
       (initResult) {
@@ -44,7 +45,9 @@ class InitBloc extends Bloc<InitEvent, InitState> {
   }
 
   Stream<InitState> _mapInitCompletedToState(InitEvent event) async* {
-    yield InitState.initSuccess(smarteam);
+    if (state is! InitStateFailure) {
+      yield InitState.initSuccess(smarteam);
+    }
   }
 
   Stream<InitState> _mapInitTimeUpToState(InitEvent event) async* {
