@@ -11,6 +11,7 @@ import 'package:flutter_smarteam/smarteam/app/presentation/blocs/init/init_bloc.
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/router/router_bloc.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/helpers/helper.dart' as helper;
 import 'package:flutter_smarteam/smarteam/app/presentation/pages/constants.dart';
+import 'package:flutter_smarteam/smarteam/app/presentation/widgets/show_error_widget.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -71,18 +72,18 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    context.select<InitBloc, InitState>((bloc) => bloc.state).maybeWhen(
-          initInProgress: (progress) {
-            debugPrint(progress.toString());
-            final value = _loadController.value;
-            if (value < progress) {
-              _loadController
-                ..value = progress
-                ..forward();
-            }
-          },
-          orElse: () {},
-        );
+    // context.select<InitBloc, InitState>((bloc) => bloc.state).maybeWhen(
+    //       initInProgress: (progress) {
+    //         debugPrint(progress.toString());
+    //         final value = _loadController.value;
+    //         if (value < progress) {
+    //           _loadController
+    //             ..value = progress
+    //             ..forward();
+    //         }
+    //       },
+    //       orElse: () {},
+    //     );
     return Stack(
       children: [
         Container(
@@ -129,12 +130,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
             ),
           ),
         ),
-        TextButton(
-          onPressed: () {
-            context.read<InitBloc>().add(const InitEvent.initExited());
-          },
-          child: const Text('Increase value'),
-        ),
+        const ShowErrorWidget(),
       ],
     );
   }
