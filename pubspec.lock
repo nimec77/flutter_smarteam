@@ -181,7 +181,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: f4a9ebd9b8538e0883ba47f63095bb3bc715ae4e
+      resolved-ref: "6b925576f6f6c5f518040514ad2d94e2a6c26a1b"
       url: "git://github.com/nimec77/dart_smarteam.git"
     source: git
     version: "1.0.0"

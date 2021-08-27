@@ -38,7 +38,7 @@ void main() {
 
     blocTest<InitBloc, InitState>(
       'emits [InitState.initInProgress(0.1), InitState.initInProgress(1 - 1 / kLoadDuration.inSeconds)]'
-          ' when event InitEvent.initStarted success',
+          ' when event InitEvent.initStarted Right(true)',
       build: () {
         when(mockSmarteam.init).thenAnswer((_) => Future.value(const Right<Error, bool>(true)));
 
@@ -53,8 +53,8 @@ void main() {
     );
 
     blocTest<InitBloc, InitState>(
-      "emits [InitState.initInProgress(0.1), InitState.initFailure(SmarteamError('Initialization error')]"
-          ' when event InitEvent.initStarted failure',
+      "emits [InitState.initInProgress(0.1), InitState.initFailure(SmarteamError('Smarteam initialization error')]"
+          ' when event InitEvent.initStarted Right(false)',
       build: () {
         when(mockSmarteam.init).thenAnswer((_) => Future.value(const Right<Error, bool>(false)));
 
@@ -64,7 +64,23 @@ void main() {
       expect: () =>
       [
         const InitState.initInProgress(0.1),
-        InitState.initFailure(SmarteamError('Initialization error')),
+        InitState.initFailure(SmarteamError('Smarteam initialization error')),
+      ],
+    );
+
+    blocTest<InitBloc, InitState>(
+      "emits [InitState.initInProgress(0.1), InitState.initFailure(SmarteamError('Error')]"
+          ' when event InitEvent.initStarted Left(SmarteamError)',
+      build: () {
+        when(mockSmarteam.init).thenAnswer((_) => Future.value(Left(SmarteamError('Error'))));
+
+        return InitBloc(smarteam: mockSmarteam);
+      },
+      act: (initBloc) => initBloc.add(const InitEvent.initStarted()),
+      expect: () =>
+      [
+        const InitState.initInProgress(0.1),
+        InitState.initFailure(SmarteamError('Error')),
       ],
     );
   });

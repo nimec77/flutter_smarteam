@@ -38,7 +38,7 @@ class InitBloc extends Bloc<InitEvent, InitState> {
         if (initResult) {
           return InitState.initInProgress(1 - 1 / kLoadDuration.inSeconds);
         }
-        return InitState.initFailure(SmarteamError('Initialization error'));
+        return InitState.initFailure(SmarteamError('Smarteam initialization error'));
       },
     );
   }
