@@ -210,7 +210,6 @@ class _WavePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    // debugPrint(loadValue.toString());
     final textBox = textKey.currentContext?.findRenderObject() as RenderBox?;
     if (textBox == null || renderBox == null) {
       return;
