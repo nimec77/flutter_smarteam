@@ -31,6 +31,7 @@ class InitBloc extends Bloc<InitEvent, InitState> {
 
   Stream<InitState> _mapInitStartedToState(InitEvent event) async* {
     yield const InitState.initInProgress(0.1);
+    unawaited(_timeout());
     final result = await smarteam.init();
     await Future<void>.delayed(const Duration(seconds: 1));
     yield result.fold(
@@ -57,5 +58,13 @@ class InitBloc extends Bloc<InitEvent, InitState> {
   Stream<InitState> _mapInitExitedToState(InitEventExited event) async* {
     await SystemNavigator.pop(animated: true);
     exit(0);
+  }
+
+  Future<void> _timeout() async {
+    await Future<void>.delayed(kLoadDuration);
+    state.maybeWhen(
+      initInProgress: (_) => add(const InitEvent.initTimeUp()),
+      orElse: () {},
+    );
   }
 }
