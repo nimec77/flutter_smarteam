@@ -8,11 +8,9 @@ class AuthState with _$AuthState {
 
   const factory AuthState.loginSuccess() = AuthStateLoginSuccess;
 
-  const factory AuthState.loginFailure() = AuthStateLoginFailure;
+  const factory AuthState.loginFailure(Error error) = AuthStateLoginFailure;
 
   const factory AuthState.logoutInProgress() = AuthStateLogoutInProgress;
 
-  const factory AuthState.logoutSuccess() = AuthStateLogoutSuccess;
-
-  const factory AuthState.logoutFailure() = AuthStateLogoutFailure;
+  const factory AuthState.logoutFailure(Error error) = AuthStateLogoutFailure;
 }

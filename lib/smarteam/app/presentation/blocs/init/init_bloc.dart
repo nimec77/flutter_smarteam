@@ -23,7 +23,7 @@ class InitBloc extends Bloc<InitEvent, InitState> {
   Stream<InitState> mapEventToState(InitEvent event) async* {
     yield* event.map(
       initStarted: _mapInitStartedToState,
-      initEneded: _mapInitCompletedToState,
+      initEnded: _mapInitEndedToState,
       initTimeUp: _mapInitTimeUpToState,
       initExited: _mapInitExitedToState,
     );
@@ -44,17 +44,17 @@ class InitBloc extends Bloc<InitEvent, InitState> {
     );
   }
 
-  Stream<InitState> _mapInitCompletedToState(InitEvent event) async* {
+  Stream<InitState> _mapInitEndedToState(InitEventEnded event) async* {
     if (state is! InitStateFailure) {
-      yield InitState.initSuccess(smarteam);
+      yield const InitState.initSuccess();
     }
   }
 
-  Stream<InitState> _mapInitTimeUpToState(InitEvent event) async* {
+  Stream<InitState> _mapInitTimeUpToState(InitEventTimeUp event) async* {
     yield const InitState.initTimeout();
   }
 
-  Stream<InitState> _mapInitExitedToState(InitEvent event) async* {
+  Stream<InitState> _mapInitExitedToState(InitEventExited event) async* {
     await SystemNavigator.pop(animated: true);
     exit(0);
   }

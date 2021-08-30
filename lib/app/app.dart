@@ -11,14 +11,45 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_smarteam/app/constants.dart';
 import 'package:flutter_smarteam/l10n/l10n.dart';
+import 'package:flutter_smarteam/smarteam/app/presentation/blocs/auth/auth_bloc.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/init/init_bloc.dart';
+import 'package:flutter_smarteam/smarteam/login/data/providers/smarteam_login_provider.dart';
+import 'package:flutter_smarteam/smarteam/login/data/repositories/smarteam_repository_imp.dart';
+import 'package:flutter_smarteam/smarteam/login/domain/ports/smarteam_repository.dart';
 import 'package:flutter_smarteam/smarteam/smarteam.dart';
 import 'package:sizer/sizer.dart';
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({Key? key, required this.smarteam}) : super(key: key);
 
   final Smarteam smarteam;
+
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  late final SmarteamLoginProvider _smarteamLoginProvider;
+  late final SmarteamLoginRepository _smarteamLoginRepository;
+  late final InitBloc _initBloc;
+  late final AuthBloc _authBloc;
+
+  @override
+  void initState() {
+    _smarteamLoginProvider = SmarteamLoginProvider(widget.smarteam);
+    _smarteamLoginRepository = SmarteamLoginRepositoryImp(_smarteamLoginProvider);
+    _initBloc = InitBloc(smarteam: widget.smarteam);
+    _authBloc = AuthBloc(_smarteamLoginRepository);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _authBloc.close();
+    _initBloc.close();
+    widget.smarteam.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +64,11 @@ class App extends StatelessWidget {
         supportedLocales: AppLocalizations.supportedLocales,
         home: MultiBlocProvider(
           providers: [
-            BlocProvider<InitBloc>(create: (context) => InitBloc(smarteam: smarteam)),
-            BlocProvider<RouterBloc>(create: (context) => RouterBloc()),
+            BlocProvider<InitBloc>.value(value: _initBloc),
+            BlocProvider<AuthBloc>.value(value: _authBloc),
+            BlocProvider<RouterBloc>(
+              create: (context) => RouterBloc(initBloc: _initBloc, authBloc: _authBloc),
+            ),
           ],
           child: const AppPage(),
         ),

@@ -21,7 +21,7 @@ class _$InitEventTearOff {
     return const InitEventStarted();
   }
 
-  InitEventEnded initEneded() {
+  InitEventEnded initEnded() {
     return const InitEventEnded();
   }
 
@@ -42,7 +42,7 @@ mixin _$InitEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initStarted,
-    required TResult Function() initEneded,
+    required TResult Function() initEnded,
     required TResult Function() initTimeUp,
     required TResult Function() initExited,
   }) =>
@@ -50,7 +50,7 @@ mixin _$InitEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initStarted,
-    TResult Function()? initEneded,
+    TResult Function()? initEnded,
     TResult Function()? initTimeUp,
     TResult Function()? initExited,
   }) =>
@@ -58,7 +58,7 @@ mixin _$InitEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initStarted,
-    TResult Function()? initEneded,
+    TResult Function()? initEnded,
     TResult Function()? initTimeUp,
     TResult Function()? initExited,
     required TResult orElse(),
@@ -67,7 +67,7 @@ mixin _$InitEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InitEventStarted value) initStarted,
-    required TResult Function(InitEventEnded value) initEneded,
+    required TResult Function(InitEventEnded value) initEnded,
     required TResult Function(InitEventTimeUp value) initTimeUp,
     required TResult Function(InitEventExited value) initExited,
   }) =>
@@ -75,7 +75,7 @@ mixin _$InitEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(InitEventStarted value)? initStarted,
-    TResult Function(InitEventEnded value)? initEneded,
+    TResult Function(InitEventEnded value)? initEnded,
     TResult Function(InitEventTimeUp value)? initTimeUp,
     TResult Function(InitEventExited value)? initExited,
   }) =>
@@ -83,7 +83,7 @@ mixin _$InitEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitEventStarted value)? initStarted,
-    TResult Function(InitEventEnded value)? initEneded,
+    TResult Function(InitEventEnded value)? initEnded,
     TResult Function(InitEventTimeUp value)? initTimeUp,
     TResult Function(InitEventExited value)? initExited,
     required TResult orElse(),
@@ -146,7 +146,7 @@ class _$InitEventStarted implements InitEventStarted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initStarted,
-    required TResult Function() initEneded,
+    required TResult Function() initEnded,
     required TResult Function() initTimeUp,
     required TResult Function() initExited,
   }) {
@@ -157,7 +157,7 @@ class _$InitEventStarted implements InitEventStarted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initStarted,
-    TResult Function()? initEneded,
+    TResult Function()? initEnded,
     TResult Function()? initTimeUp,
     TResult Function()? initExited,
   }) {
@@ -168,7 +168,7 @@ class _$InitEventStarted implements InitEventStarted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initStarted,
-    TResult Function()? initEneded,
+    TResult Function()? initEnded,
     TResult Function()? initTimeUp,
     TResult Function()? initExited,
     required TResult orElse(),
@@ -183,7 +183,7 @@ class _$InitEventStarted implements InitEventStarted {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InitEventStarted value) initStarted,
-    required TResult Function(InitEventEnded value) initEneded,
+    required TResult Function(InitEventEnded value) initEnded,
     required TResult Function(InitEventTimeUp value) initTimeUp,
     required TResult Function(InitEventExited value) initExited,
   }) {
@@ -194,7 +194,7 @@ class _$InitEventStarted implements InitEventStarted {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(InitEventStarted value)? initStarted,
-    TResult Function(InitEventEnded value)? initEneded,
+    TResult Function(InitEventEnded value)? initEnded,
     TResult Function(InitEventTimeUp value)? initTimeUp,
     TResult Function(InitEventExited value)? initExited,
   }) {
@@ -205,7 +205,7 @@ class _$InitEventStarted implements InitEventStarted {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitEventStarted value)? initStarted,
-    TResult Function(InitEventEnded value)? initEneded,
+    TResult Function(InitEventEnded value)? initEnded,
     TResult Function(InitEventTimeUp value)? initTimeUp,
     TResult Function(InitEventExited value)? initExited,
     required TResult orElse(),
@@ -246,7 +246,7 @@ class _$InitEventEnded implements InitEventEnded {
 
   @override
   String toString() {
-    return 'InitEvent.initEneded()';
+    return 'InitEvent.initEnded()';
   }
 
   @override
@@ -261,35 +261,35 @@ class _$InitEventEnded implements InitEventEnded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initStarted,
-    required TResult Function() initEneded,
+    required TResult Function() initEnded,
     required TResult Function() initTimeUp,
     required TResult Function() initExited,
   }) {
-    return initEneded();
+    return initEnded();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initStarted,
-    TResult Function()? initEneded,
+    TResult Function()? initEnded,
     TResult Function()? initTimeUp,
     TResult Function()? initExited,
   }) {
-    return initEneded?.call();
+    return initEnded?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initStarted,
-    TResult Function()? initEneded,
+    TResult Function()? initEnded,
     TResult Function()? initTimeUp,
     TResult Function()? initExited,
     required TResult orElse(),
   }) {
-    if (initEneded != null) {
-      return initEneded();
+    if (initEnded != null) {
+      return initEnded();
     }
     return orElse();
   }
@@ -298,35 +298,35 @@ class _$InitEventEnded implements InitEventEnded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InitEventStarted value) initStarted,
-    required TResult Function(InitEventEnded value) initEneded,
+    required TResult Function(InitEventEnded value) initEnded,
     required TResult Function(InitEventTimeUp value) initTimeUp,
     required TResult Function(InitEventExited value) initExited,
   }) {
-    return initEneded(this);
+    return initEnded(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(InitEventStarted value)? initStarted,
-    TResult Function(InitEventEnded value)? initEneded,
+    TResult Function(InitEventEnded value)? initEnded,
     TResult Function(InitEventTimeUp value)? initTimeUp,
     TResult Function(InitEventExited value)? initExited,
   }) {
-    return initEneded?.call(this);
+    return initEnded?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitEventStarted value)? initStarted,
-    TResult Function(InitEventEnded value)? initEneded,
+    TResult Function(InitEventEnded value)? initEnded,
     TResult Function(InitEventTimeUp value)? initTimeUp,
     TResult Function(InitEventExited value)? initExited,
     required TResult orElse(),
   }) {
-    if (initEneded != null) {
-      return initEneded(this);
+    if (initEnded != null) {
+      return initEnded(this);
     }
     return orElse();
   }
@@ -376,7 +376,7 @@ class _$InitEventTimeUp implements InitEventTimeUp {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initStarted,
-    required TResult Function() initEneded,
+    required TResult Function() initEnded,
     required TResult Function() initTimeUp,
     required TResult Function() initExited,
   }) {
@@ -387,7 +387,7 @@ class _$InitEventTimeUp implements InitEventTimeUp {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initStarted,
-    TResult Function()? initEneded,
+    TResult Function()? initEnded,
     TResult Function()? initTimeUp,
     TResult Function()? initExited,
   }) {
@@ -398,7 +398,7 @@ class _$InitEventTimeUp implements InitEventTimeUp {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initStarted,
-    TResult Function()? initEneded,
+    TResult Function()? initEnded,
     TResult Function()? initTimeUp,
     TResult Function()? initExited,
     required TResult orElse(),
@@ -413,7 +413,7 @@ class _$InitEventTimeUp implements InitEventTimeUp {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InitEventStarted value) initStarted,
-    required TResult Function(InitEventEnded value) initEneded,
+    required TResult Function(InitEventEnded value) initEnded,
     required TResult Function(InitEventTimeUp value) initTimeUp,
     required TResult Function(InitEventExited value) initExited,
   }) {
@@ -424,7 +424,7 @@ class _$InitEventTimeUp implements InitEventTimeUp {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(InitEventStarted value)? initStarted,
-    TResult Function(InitEventEnded value)? initEneded,
+    TResult Function(InitEventEnded value)? initEnded,
     TResult Function(InitEventTimeUp value)? initTimeUp,
     TResult Function(InitEventExited value)? initExited,
   }) {
@@ -435,7 +435,7 @@ class _$InitEventTimeUp implements InitEventTimeUp {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitEventStarted value)? initStarted,
-    TResult Function(InitEventEnded value)? initEneded,
+    TResult Function(InitEventEnded value)? initEnded,
     TResult Function(InitEventTimeUp value)? initTimeUp,
     TResult Function(InitEventExited value)? initExited,
     required TResult orElse(),
@@ -491,7 +491,7 @@ class _$InitEventExited implements InitEventExited {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initStarted,
-    required TResult Function() initEneded,
+    required TResult Function() initEnded,
     required TResult Function() initTimeUp,
     required TResult Function() initExited,
   }) {
@@ -502,7 +502,7 @@ class _$InitEventExited implements InitEventExited {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initStarted,
-    TResult Function()? initEneded,
+    TResult Function()? initEnded,
     TResult Function()? initTimeUp,
     TResult Function()? initExited,
   }) {
@@ -513,7 +513,7 @@ class _$InitEventExited implements InitEventExited {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initStarted,
-    TResult Function()? initEneded,
+    TResult Function()? initEnded,
     TResult Function()? initTimeUp,
     TResult Function()? initExited,
     required TResult orElse(),
@@ -528,7 +528,7 @@ class _$InitEventExited implements InitEventExited {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InitEventStarted value) initStarted,
-    required TResult Function(InitEventEnded value) initEneded,
+    required TResult Function(InitEventEnded value) initEnded,
     required TResult Function(InitEventTimeUp value) initTimeUp,
     required TResult Function(InitEventExited value) initExited,
   }) {
@@ -539,7 +539,7 @@ class _$InitEventExited implements InitEventExited {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(InitEventStarted value)? initStarted,
-    TResult Function(InitEventEnded value)? initEneded,
+    TResult Function(InitEventEnded value)? initEnded,
     TResult Function(InitEventTimeUp value)? initTimeUp,
     TResult Function(InitEventExited value)? initExited,
   }) {
@@ -550,7 +550,7 @@ class _$InitEventExited implements InitEventExited {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitEventStarted value)? initStarted,
-    TResult Function(InitEventEnded value)? initEneded,
+    TResult Function(InitEventEnded value)? initEnded,
     TResult Function(InitEventTimeUp value)? initTimeUp,
     TResult Function(InitEventExited value)? initExited,
     required TResult orElse(),
@@ -580,10 +580,8 @@ class _$InitStateTearOff {
     );
   }
 
-  InitStateSuccess initSuccess(Smarteam smarteam) {
-    return InitStateSuccess(
-      smarteam,
-    );
+  InitStateSuccess initSuccess() {
+    return const InitStateSuccess();
   }
 
   InitStateFailure initFailure(Error error) {
@@ -606,7 +604,7 @@ mixin _$InitState {
   TResult when<TResult extends Object?>({
     required TResult Function() notInit,
     required TResult Function(double progress) initInProgress,
-    required TResult Function(Smarteam smarteam) initSuccess,
+    required TResult Function() initSuccess,
     required TResult Function(Error error) initFailure,
     required TResult Function() initTimeout,
   }) =>
@@ -615,7 +613,7 @@ mixin _$InitState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function(Smarteam smarteam)? initSuccess,
+    TResult Function()? initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
   }) =>
@@ -624,7 +622,7 @@ mixin _$InitState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function(Smarteam smarteam)? initSuccess,
+    TResult Function()? initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
     required TResult orElse(),
@@ -716,7 +714,7 @@ class _$InitStateNotInit implements InitStateNotInit {
   TResult when<TResult extends Object?>({
     required TResult Function() notInit,
     required TResult Function(double progress) initInProgress,
-    required TResult Function(Smarteam smarteam) initSuccess,
+    required TResult Function() initSuccess,
     required TResult Function(Error error) initFailure,
     required TResult Function() initTimeout,
   }) {
@@ -728,7 +726,7 @@ class _$InitStateNotInit implements InitStateNotInit {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function(Smarteam smarteam)? initSuccess,
+    TResult Function()? initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
   }) {
@@ -740,7 +738,7 @@ class _$InitStateNotInit implements InitStateNotInit {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function(Smarteam smarteam)? initSuccess,
+    TResult Function()? initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
     required TResult orElse(),
@@ -864,7 +862,7 @@ class _$InitStateInProgress implements InitStateInProgress {
   TResult when<TResult extends Object?>({
     required TResult Function() notInit,
     required TResult Function(double progress) initInProgress,
-    required TResult Function(Smarteam smarteam) initSuccess,
+    required TResult Function() initSuccess,
     required TResult Function(Error error) initFailure,
     required TResult Function() initTimeout,
   }) {
@@ -876,7 +874,7 @@ class _$InitStateInProgress implements InitStateInProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function(Smarteam smarteam)? initSuccess,
+    TResult Function()? initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
   }) {
@@ -888,7 +886,7 @@ class _$InitStateInProgress implements InitStateInProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function(Smarteam smarteam)? initSuccess,
+    TResult Function()? initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
     required TResult orElse(),
@@ -954,7 +952,6 @@ abstract class $InitStateSuccessCopyWith<$Res> {
   factory $InitStateSuccessCopyWith(
           InitStateSuccess value, $Res Function(InitStateSuccess) then) =
       _$InitStateSuccessCopyWithImpl<$Res>;
-  $Res call({Smarteam smarteam});
 }
 
 /// @nodoc
@@ -966,61 +963,36 @@ class _$InitStateSuccessCopyWithImpl<$Res> extends _$InitStateCopyWithImpl<$Res>
 
   @override
   InitStateSuccess get _value => super._value as InitStateSuccess;
-
-  @override
-  $Res call({
-    Object? smarteam = freezed,
-  }) {
-    return _then(InitStateSuccess(
-      smarteam == freezed
-          ? _value.smarteam
-          : smarteam // ignore: cast_nullable_to_non_nullable
-              as Smarteam,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$InitStateSuccess implements InitStateSuccess {
-  const _$InitStateSuccess(this.smarteam);
-
-  @override
-  final Smarteam smarteam;
+  const _$InitStateSuccess();
 
   @override
   String toString() {
-    return 'InitState.initSuccess(smarteam: $smarteam)';
+    return 'InitState.initSuccess()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is InitStateSuccess &&
-            (identical(other.smarteam, smarteam) ||
-                const DeepCollectionEquality()
-                    .equals(other.smarteam, smarteam)));
+    return identical(this, other) || (other is InitStateSuccess);
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(smarteam);
-
-  @JsonKey(ignore: true)
-  @override
-  $InitStateSuccessCopyWith<InitStateSuccess> get copyWith =>
-      _$InitStateSuccessCopyWithImpl<InitStateSuccess>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() notInit,
     required TResult Function(double progress) initInProgress,
-    required TResult Function(Smarteam smarteam) initSuccess,
+    required TResult Function() initSuccess,
     required TResult Function(Error error) initFailure,
     required TResult Function() initTimeout,
   }) {
-    return initSuccess(smarteam);
+    return initSuccess();
   }
 
   @override
@@ -1028,11 +1000,11 @@ class _$InitStateSuccess implements InitStateSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function(Smarteam smarteam)? initSuccess,
+    TResult Function()? initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
   }) {
-    return initSuccess?.call(smarteam);
+    return initSuccess?.call();
   }
 
   @override
@@ -1040,13 +1012,13 @@ class _$InitStateSuccess implements InitStateSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function(Smarteam smarteam)? initSuccess,
+    TResult Function()? initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
     required TResult orElse(),
   }) {
     if (initSuccess != null) {
-      return initSuccess(smarteam);
+      return initSuccess();
     }
     return orElse();
   }
@@ -1093,12 +1065,7 @@ class _$InitStateSuccess implements InitStateSuccess {
 }
 
 abstract class InitStateSuccess implements InitState {
-  const factory InitStateSuccess(Smarteam smarteam) = _$InitStateSuccess;
-
-  Smarteam get smarteam => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $InitStateSuccessCopyWith<InitStateSuccess> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory InitStateSuccess() = _$InitStateSuccess;
 }
 
 /// @nodoc
@@ -1167,7 +1134,7 @@ class _$InitStateFailure implements InitStateFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() notInit,
     required TResult Function(double progress) initInProgress,
-    required TResult Function(Smarteam smarteam) initSuccess,
+    required TResult Function() initSuccess,
     required TResult Function(Error error) initFailure,
     required TResult Function() initTimeout,
   }) {
@@ -1179,7 +1146,7 @@ class _$InitStateFailure implements InitStateFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function(Smarteam smarteam)? initSuccess,
+    TResult Function()? initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
   }) {
@@ -1191,7 +1158,7 @@ class _$InitStateFailure implements InitStateFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function(Smarteam smarteam)? initSuccess,
+    TResult Function()? initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
     required TResult orElse(),
@@ -1293,7 +1260,7 @@ class _$InitStateTimeout implements InitStateTimeout {
   TResult when<TResult extends Object?>({
     required TResult Function() notInit,
     required TResult Function(double progress) initInProgress,
-    required TResult Function(Smarteam smarteam) initSuccess,
+    required TResult Function() initSuccess,
     required TResult Function(Error error) initFailure,
     required TResult Function() initTimeout,
   }) {
@@ -1305,7 +1272,7 @@ class _$InitStateTimeout implements InitStateTimeout {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function(Smarteam smarteam)? initSuccess,
+    TResult Function()? initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
   }) {
@@ -1317,7 +1284,7 @@ class _$InitStateTimeout implements InitStateTimeout {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function(Smarteam smarteam)? initSuccess,
+    TResult Function()? initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
     required TResult orElse(),

@@ -21,7 +21,7 @@ void main() {
       build: () => InitBloc(smarteam: mockSmarteam),
       act: (initBloc) => initBloc.add(const InitEvent.initEnded()),
       expect: () => [
-        InitState.initSuccess(mockSmarteam),
+        const InitState.initSuccess(),
       ],
     );
 
