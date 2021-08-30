@@ -3,7 +3,9 @@ import 'package:flutter_smarteam/smarteam/login/constants.dart';
 import 'package:flutter_smarteam/smarteam/login/presentation/widgets/login_form.dart';
 
 class LoginCart extends StatelessWidget {
-  const LoginCart({Key? key}) : super(key: key);
+  const LoginCart({Key? key, this.enabled = true}) : super(key: key);
+
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class LoginCart extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: LoginForm(),
+        child: LoginForm(enabled: enabled),
       ),
     );}
 }

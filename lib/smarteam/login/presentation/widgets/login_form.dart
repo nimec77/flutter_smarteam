@@ -10,7 +10,9 @@ import 'package:flutter_smarteam/smarteam/login/presentation/common_widgets/reme
 import 'package:sizer/sizer.dart';
 
 class LoginForm extends StatefulWidget with UsernameAndPasswordValidators {
-  LoginForm({Key? key}) : super(key: key);
+  LoginForm({Key? key, this.enabled = true}) : super(key: key);
+
+  final bool enabled;
 
   @override
   _LoginFormState createState() => _LoginFormState();
@@ -35,6 +37,8 @@ class _LoginFormState extends State<LoginForm> {
   void dispose() {
     _usernameController.dispose();
     _passwordController.dispose();
+    _usernameFocusNode.dispose();
+    _passwordFocusNode.dispose();
     super.dispose();
   }
 
@@ -53,6 +57,7 @@ class _LoginFormState extends State<LoginForm> {
             children: [
               TextFormField(
                 key: kUsernameFieldKey,
+                enabled: widget.enabled,
                 controller: _usernameController,
                 focusNode: _usernameFocusNode,
                 validator: (value) {
@@ -79,6 +84,7 @@ class _LoginFormState extends State<LoginForm> {
               const SizedBox(height: 20),
               TextFormField(
                 key: kPasswordFieldKey,
+                enabled: widget.enabled,
                 controller: _passwordController,
                 focusNode: _passwordFocusNode,
                 validator: (value) {
@@ -101,7 +107,7 @@ class _LoginFormState extends State<LoginForm> {
               RememberCheckbox(
                 title: l10n.loginCheckboxText,
                 value: _rememberCredentials && _formIsValidated(),
-                enabled: _formIsValidated(),
+                enabled: widget.enabled && _formIsValidated(),
                 onChanged: (value) {
                   setState(() {
                     _rememberCredentials = value ?? false;
@@ -112,7 +118,7 @@ class _LoginFormState extends State<LoginForm> {
               LoginButton(
                 key: kLoginButtonKey,
                 text: l10n.loginButtonText,
-                enabled: _formIsValidated(),
+                enabled: widget.enabled && _formIsValidated(),
                 onPressed: () {
                   context.read<AuthBloc>().add(
                         AuthEvent.loginStarted(
