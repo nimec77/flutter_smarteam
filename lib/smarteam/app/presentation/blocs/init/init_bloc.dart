@@ -18,6 +18,7 @@ class InitBloc extends Bloc<InitEvent, InitState> {
   InitBloc({required this.smarteam}) : super(const InitState.notInit());
 
   final Smarteam smarteam;
+  bool _initialized = false;
 
   @override
   Stream<InitState> mapEventToState(InitEvent event) async* {
@@ -30,6 +31,7 @@ class InitBloc extends Bloc<InitEvent, InitState> {
   }
 
   Stream<InitState> _mapInitStartedToState(InitEvent event) async* {
+    _initialized = false;
     yield const InitState.initInProgress(0.1);
     final result = await smarteam.init();
     await Future<void>.delayed(const Duration(seconds: 1));
@@ -37,17 +39,17 @@ class InitBloc extends Bloc<InitEvent, InitState> {
       (error) => InitState.initFailure(error),
       (initResult) {
         if (initResult) {
+          _initialized = true;
           return InitState.initInProgress(1 - 1 / kLoadDuration.inSeconds);
         }
         return InitState.initFailure(SmarteamError('Smarteam initialization error'));
       },
     );
-    // TODO: Надо разобраться с TimeOut
   }
 
   Stream<InitState> _mapInitEndedToState(InitEventEnded event) async* {
     if (state is! InitStateFailure) {
-      yield const InitState.initSuccess();
+      yield _initialized ? const InitState.initSuccess() : const InitState.initTimeout();
     }
   }
 
