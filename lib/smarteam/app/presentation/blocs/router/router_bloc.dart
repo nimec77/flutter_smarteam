@@ -49,10 +49,14 @@ class RouterBloc extends Bloc<RouterEvent, RouterState> {
   }
 
   Stream<RouterState> _mapLoginPageShownToState(RouterEventLoginPageShown event) async* {
-    yield const RouterState.loginPage();
+    if (initBloc.state is InitStateSuccess) {
+      yield const RouterState.loginPage();
+    }
   }
 
   Stream<RouterState> _mapHomePageShownToState(RouterEventHomePageShown event) async* {
-    yield const RouterState.homePage();
+    if (initBloc.state is InitStateSuccess && authBloc.state is AuthStateLoginSuccess) {
+      yield const RouterState.homePage();
+    }
   }
 }

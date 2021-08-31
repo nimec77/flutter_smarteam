@@ -13,7 +13,7 @@ void main() {
   final mockSmarteam = MockSmarteam();
 
   group('InitBloc test', () {
-    test('Initial state is notInit', () {
+    test('Initial state is InitBloc.notInit', () {
       expect(InitBloc(smarteam: mockSmarteam).state, equals(const InitState.notInit()));
     });
 

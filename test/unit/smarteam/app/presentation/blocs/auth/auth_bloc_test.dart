@@ -2,6 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dart_smarteam/smarteam.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_smarteam/smarteam/app/domain/errors/smarteam_login_failure.dart';
+import 'package:flutter_smarteam/smarteam/app/domain/errors/smarteam_logout_failure.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/auth/auth_bloc.dart';
 import 'package:flutter_smarteam/smarteam/login/domain/ports/smarteam_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -15,7 +16,7 @@ void main() {
   final logoutError = SmarteamError('Logout Error');
 
   group('AuthBloc test', () {
-    test('Inital state is notAuthorized', () {
+    test('Initial state is AuthState.notAuthorized', () {
       expect(AuthBloc(smarteamLoginRepository: mockSmarteamLoginRepository).state,
           equals(const AuthState.notAuthorized()));
     });
@@ -75,11 +76,58 @@ void main() {
     );
 
     blocTest<AuthBloc, AuthState>(
-      'emits [AuthState.logoutInProgress()] when event AuthEvent.logoutStarted if logout successful',
+      'emits [AuthState.logoutInProgress(), AuthState.notAuthorized()] when event AuthEvent.logoutStarted '
+      'if logout successful',
       build: () {
         when(mockSmarteamLoginRepository.userLogout).thenAnswer((_) => Future.value(const Right(true)));
 
         return AuthBloc(smarteamLoginRepository: mockSmarteamLoginRepository);
+      },
+      act: (authBloc) => authBloc.add(const AuthEvent.logoutStarted()),
+      expect: () => [
+        const AuthState.logoutInProgress(),
+        const AuthState.notAuthorized(),
+      ],
+      verify: (_) {
+        verify(mockSmarteamLoginRepository.userLogout).called(1);
+      },
+    );
+
+    blocTest<AuthBloc, AuthState>(
+      'emits [AuthState.loginInProgress(), AuthState.logoutFailure(SmarteamLogoutFailure()), AuthState.notAuthorized()]'
+      ' when event AuthEvent.logoutStarted if logout failed',
+      build: () {
+        when(mockSmarteamLoginRepository.userLogout).thenAnswer((_) => Future.value(const Right(false)));
+
+        return AuthBloc(smarteamLoginRepository: mockSmarteamLoginRepository);
+      },
+      act: (authBloc) => authBloc.add(const AuthEvent.logoutStarted()),
+      expect: () => [
+        const AuthState.logoutInProgress(),
+        AuthState.logoutFailure(SmarteamLogoutFailure()),
+        const AuthState.notAuthorized(),
+      ],
+      verify: (_) {
+        verify(mockSmarteamLoginRepository.userLogout).called(1);
+      },
+    );
+
+    blocTest<AuthBloc, AuthState>(
+      'emits [AuthState.loginInProgress(), AuthState.logoutFailure(logoutError), AuthState.notAuthorized()]'
+          ' when event AuthEvent.logoutStarted if logout false',
+      build: () {
+        when(mockSmarteamLoginRepository.userLogout).thenAnswer((_) => Future.value(Left(logoutError)));
+
+        return AuthBloc(smarteamLoginRepository: mockSmarteamLoginRepository);
+      },
+      act: (authBloc) => authBloc.add(const AuthEvent.logoutStarted()),
+      expect: () => [
+        const AuthState.logoutInProgress(),
+        AuthState.logoutFailure(logoutError),
+        const AuthState.notAuthorized(),
+      ],
+      verify: (_) {
+        verify(mockSmarteamLoginRepository.userLogout).called(1);
       },
     );
   });
