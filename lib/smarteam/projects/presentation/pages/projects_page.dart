@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_smarteam/smarteam/smarteam.dart';
+import 'package:flutter_smarteam/smarteam/app/presentation/blocs/auth/auth_bloc.dart';
 
 class ProjectsPage extends StatelessWidget {
   const ProjectsPage({Key? key}) : super(key: key);
@@ -21,9 +21,9 @@ class ProjectsPage extends StatelessWidget {
             Text('Большой текст', style: Theme.of(context).textTheme.headline1),
             ElevatedButton(
               onPressed: () {
-                context.read<RouterBloc>().add(const RouterEvent.loginPageShown());
+                context.read<AuthBloc>().add(const AuthEvent.logoutStarted());
               },
-              child: const Text('Просто текст'),
+              child: const Text('Выйти из Smarteam'),
             ),
           ],
         ),

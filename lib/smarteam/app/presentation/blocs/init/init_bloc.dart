@@ -4,15 +4,14 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:dart_smarteam/smarteam.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_smarteam/smarteam/app/domain/errors/smarteam_init_error.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/pages/constants.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 
-part 'init_event.dart';
-
-part 'init_state.dart';
-
 part 'init_bloc.freezed.dart';
+part 'init_event.dart';
+part 'init_state.dart';
 
 class InitBloc extends Bloc<InitEvent, InitState> {
   InitBloc({required this.smarteam}) : super(const InitState.notInit());
@@ -42,7 +41,7 @@ class InitBloc extends Bloc<InitEvent, InitState> {
           _initialized = true;
           return InitState.initInProgress(1 - 1 / kLoadDuration.inSeconds);
         }
-        return InitState.initFailure(SmarteamError('Smarteam initialization error'));
+        return InitState.initFailure(SmarteamInitError());
       },
     );
   }

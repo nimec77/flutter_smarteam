@@ -1,19 +1,18 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dart_smarteam/smarteam.dart';
+import 'package:flutter_smarteam/smarteam/app/domain/errors/smarteam_login_failure.dart';
+import 'package:flutter_smarteam/smarteam/app/domain/errors/smarteam_logout_failure.dart';
 import 'package:flutter_smarteam/smarteam/login/domain/ports/smarteam_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 
+part 'auth_bloc.freezed.dart';
 part 'auth_event.dart';
-
 part 'auth_state.dart';
 
-part 'auth_bloc.freezed.dart';
-
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc(this.smarteamLoginRepository) : super(const AuthState.notAuthorized());
+  AuthBloc({required this.smarteamLoginRepository}) : super(const AuthState.notAuthorized());
 
   final SmarteamLoginRepository smarteamLoginRepository;
 
@@ -36,7 +35,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         if (loginResult) {
           return const AuthState.loginSuccess();
         }
-        return AuthState.loginFailure(SmarteamError('Login failure'));
+        return AuthState.loginFailure(SmarteamLoginFailure());
       },
     );
   }
@@ -51,7 +50,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       },
       (logoutResult) async* {
         if (!logoutResult) {
-          yield AuthState.logoutFailure(SmarteamError('Logout failure'));
+          yield AuthState.logoutFailure(SmarteamLogoutFailure());
           await Future<void>.delayed(const Duration(seconds: 1));
         }
       },

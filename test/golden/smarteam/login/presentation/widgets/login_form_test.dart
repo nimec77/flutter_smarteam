@@ -14,7 +14,7 @@ void main() {
 
   testGoldens('LoginForm render test', (tester) async {
     final widget = BlocProvider<AuthBloc>(
-      create: (context) => AuthBloc(mockSmarteamLoginRepository),
+      create: (context) => AuthBloc(smarteamLoginRepository: mockSmarteamLoginRepository),
       child: LoginForm(),
     );
     final builder = GoldenBuilder.column()..addScenario('LoginForm', widget);

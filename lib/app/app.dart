@@ -39,7 +39,7 @@ class _AppState extends State<App> {
     _smarteamLoginProvider = SmarteamLoginProvider(widget.smarteam);
     _smarteamLoginRepository = SmarteamLoginRepositoryImp(_smarteamLoginProvider);
     _initBloc = InitBloc(smarteam: widget.smarteam);
-    _authBloc = AuthBloc(_smarteamLoginRepository);
+    _authBloc = AuthBloc(smarteamLoginRepository: _smarteamLoginRepository);
     super.initState();
   }
 
