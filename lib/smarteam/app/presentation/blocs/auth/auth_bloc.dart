@@ -8,13 +8,22 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 
 part 'auth_bloc.freezed.dart';
+
 part 'auth_event.dart';
+
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc({required this.smarteamLoginRepository}) : super(const AuthState.notAuthorized());
 
   final SmarteamLoginRepository smarteamLoginRepository;
+  StreamSubscription<AuthState>? _loginInProgressSubscription;
+
+  @override
+  Future<void> close() {
+    _loginInProgressSubscription?.cancel();
+    return super.close();
+  }
 
   @override
   Stream<AuthState> mapEventToState(
@@ -22,22 +31,31 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async* {
     yield* event.map(
       loginStarted: _mapLoginStartedToState,
+      loginCanceled: _mapLoginCanceledToState,
       logoutStarted: _mapLogoutStartedToState,
     );
   }
 
   Stream<AuthState> _mapLoginStartedToState(AuthEventLoginStarted event) async* {
-    yield const AuthState.loginInProgress();
-    final result = await smarteamLoginRepository.userLogin(event.username, event.password);
-    yield result.fold(
-      (error) => AuthState.loginFailure(error),
-      (loginResult) {
-        if (loginResult) {
-          return const AuthState.loginSuccess();
-        }
-        return AuthState.loginFailure(SmarteamLoginFailure());
-      },
-    );
+    // TODO: разобраться с потоком
+    _loginInProgressSubscription =  Stream<AuthState>.periodic(const Duration(seconds: 1), (seconds) => AuthState.loginInProgress(seconds)).listen((event) { });
+
+    // yield const AuthState.loginInProgress(0);
+
+    // final result = await smarteamLoginRepository.userLogin(event.username, event.password);
+    // yield result.fold(
+    //   (error) => AuthState.loginFailure(error),
+    //   (loginResult) {
+    //     if (loginResult) {
+    //       return const AuthState.loginSuccess();
+    //     }
+    //     return AuthState.loginFailure(SmarteamLoginFailure());
+    //   },
+    // );
+  }
+
+  Stream<AuthState> _mapLoginCanceledToState(AuthEventLoginCanceled event) async* {
+    yield const AuthState.notAuthorized();
   }
 
   Stream<AuthState> _mapLogoutStartedToState(AuthEventLogoutStarted event) async* {

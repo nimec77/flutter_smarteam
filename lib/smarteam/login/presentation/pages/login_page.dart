@@ -19,15 +19,32 @@ class LoginPage extends StatelessWidget {
         },
         builder: (context, state) {
           final enabled = state.maybeWhen(
-            loginInProgress: () => false,
+            loginInProgress: (_) => false,
             logoutInProgress: () => false,
             orElse: () => true,
+          );
+          final loginInProgress = state.maybeWhen(
+            loginInProgress: (_) => true,
+            orElse: () => false,
+          );
+          final showLoginInProgress = state.maybeWhen(
+            loginInProgress: (seconds) => seconds > 1,
+            orElse: () => false,
           );
           return Stack(
             children: [
               const BackgroundWidget(),
               LoginCart(enabled: enabled),
-              const LoginInProgress(),
+              if (loginInProgress)
+                AnimatedOpacity(
+                  opacity: showLoginInProgress ? 1.0 : 0.0,
+                  duration: const Duration(milliseconds: 500),
+                  child: LoginInProgress(
+                    onCancel: () {
+                      context.read<AuthBloc>().add(const AuthEvent.loginCanceled());
+                    },
+                  ),
+                ),
             ],
           );
         },
