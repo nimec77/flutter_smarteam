@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/auth/auth_bloc.dart';
 import 'package:flutter_smarteam/smarteam/login/presentation/common_widgets/background_widget.dart';
 import 'package:flutter_smarteam/smarteam/login/presentation/widgets/login_cart.dart';
+import 'package:flutter_smarteam/smarteam/login/presentation/widgets/login_in_progress.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -26,6 +27,7 @@ class LoginPage extends StatelessWidget {
             children: [
               const BackgroundWidget(),
               LoginCart(enabled: enabled),
+              const LoginInProgress(),
             ],
           );
         },
