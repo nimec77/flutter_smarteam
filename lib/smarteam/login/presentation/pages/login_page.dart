@@ -28,7 +28,7 @@ class LoginPage extends StatelessWidget {
             orElse: () => false,
           );
           final showLoginInProgress = state.maybeWhen(
-            loginInProgress: (seconds) => seconds > 1,
+            loginInProgress: (showCancel) => showCancel,
             orElse: () => false,
           );
           return Stack(

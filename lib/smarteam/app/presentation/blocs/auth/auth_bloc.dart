@@ -31,16 +31,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async* {
     yield* event.map(
       loginStarted: _mapLoginStartedToState,
+      loginShowCancel: _mapLoginShowCancelToState,
       loginCanceled: _mapLoginCanceledToState,
       logoutStarted: _mapLogoutStartedToState,
     );
   }
 
   Stream<AuthState> _mapLoginStartedToState(AuthEventLoginStarted event) async* {
-    // TODO: разобраться с потоком
-    _loginInProgressSubscription =  Stream<AuthState>.periodic(const Duration(seconds: 1), (seconds) => AuthState.loginInProgress(seconds)).listen((event) { });
+    yield const AuthState.loginInProgress(showCancel: false);
 
-    // yield const AuthState.loginInProgress(0);
+    Future.delayed(const Duration(seconds: 1), _showCancel);
 
     // final result = await smarteamLoginRepository.userLogin(event.username, event.password);
     // yield result.fold(
@@ -52,6 +52,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     //     return AuthState.loginFailure(SmarteamLoginFailure());
     //   },
     // );
+  }
+
+  Stream<AuthState> _mapLoginShowCancelToState(AuthEventShowCancel event) async* {
+    yield const AuthState.loginInProgress(showCancel: true);
   }
 
   Stream<AuthState> _mapLoginCanceledToState(AuthEventLoginCanceled event) async* {
@@ -74,5 +78,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       },
     );
     yield const AuthState.notAuthorized();
+  }
+
+  void _showCancel() {
+    if (state is AuthstateLoginInProgress) {
+      add(const AuthEvent.loginShowCancel());
+    }
   }
 }

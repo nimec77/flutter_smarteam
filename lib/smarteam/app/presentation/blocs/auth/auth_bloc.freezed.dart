@@ -25,6 +25,10 @@ class _$AuthEventTearOff {
     );
   }
 
+  AuthEventShowCancel loginShowCancel() {
+    return const AuthEventShowCancel();
+  }
+
   AuthEventLoginCanceled loginCanceled() {
     return const AuthEventLoginCanceled();
   }
@@ -42,6 +46,7 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String username, String password) loginStarted,
+    required TResult Function() loginShowCancel,
     required TResult Function() loginCanceled,
     required TResult Function() logoutStarted,
   }) =>
@@ -49,6 +54,7 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
+    TResult Function()? loginShowCancel,
     TResult Function()? loginCanceled,
     TResult Function()? logoutStarted,
   }) =>
@@ -56,6 +62,7 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
+    TResult Function()? loginShowCancel,
     TResult Function()? loginCanceled,
     TResult Function()? logoutStarted,
     required TResult orElse(),
@@ -64,6 +71,7 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(AuthEventLoginStarted value) loginStarted,
+    required TResult Function(AuthEventShowCancel value) loginShowCancel,
     required TResult Function(AuthEventLoginCanceled value) loginCanceled,
     required TResult Function(AuthEventLogoutStarted value) logoutStarted,
   }) =>
@@ -71,6 +79,7 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthEventLoginStarted value)? loginStarted,
+    TResult Function(AuthEventShowCancel value)? loginShowCancel,
     TResult Function(AuthEventLoginCanceled value)? loginCanceled,
     TResult Function(AuthEventLogoutStarted value)? logoutStarted,
   }) =>
@@ -78,6 +87,7 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthEventLoginStarted value)? loginStarted,
+    TResult Function(AuthEventShowCancel value)? loginShowCancel,
     TResult Function(AuthEventLoginCanceled value)? loginCanceled,
     TResult Function(AuthEventLogoutStarted value)? logoutStarted,
     required TResult orElse(),
@@ -181,6 +191,7 @@ class _$AuthEventLoginStarted implements AuthEventLoginStarted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String username, String password) loginStarted,
+    required TResult Function() loginShowCancel,
     required TResult Function() loginCanceled,
     required TResult Function() logoutStarted,
   }) {
@@ -191,6 +202,7 @@ class _$AuthEventLoginStarted implements AuthEventLoginStarted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
+    TResult Function()? loginShowCancel,
     TResult Function()? loginCanceled,
     TResult Function()? logoutStarted,
   }) {
@@ -201,6 +213,7 @@ class _$AuthEventLoginStarted implements AuthEventLoginStarted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
+    TResult Function()? loginShowCancel,
     TResult Function()? loginCanceled,
     TResult Function()? logoutStarted,
     required TResult orElse(),
@@ -215,6 +228,7 @@ class _$AuthEventLoginStarted implements AuthEventLoginStarted {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(AuthEventLoginStarted value) loginStarted,
+    required TResult Function(AuthEventShowCancel value) loginShowCancel,
     required TResult Function(AuthEventLoginCanceled value) loginCanceled,
     required TResult Function(AuthEventLogoutStarted value) logoutStarted,
   }) {
@@ -225,6 +239,7 @@ class _$AuthEventLoginStarted implements AuthEventLoginStarted {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthEventLoginStarted value)? loginStarted,
+    TResult Function(AuthEventShowCancel value)? loginShowCancel,
     TResult Function(AuthEventLoginCanceled value)? loginCanceled,
     TResult Function(AuthEventLogoutStarted value)? logoutStarted,
   }) {
@@ -235,6 +250,7 @@ class _$AuthEventLoginStarted implements AuthEventLoginStarted {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthEventLoginStarted value)? loginStarted,
+    TResult Function(AuthEventShowCancel value)? loginShowCancel,
     TResult Function(AuthEventLoginCanceled value)? loginCanceled,
     TResult Function(AuthEventLogoutStarted value)? logoutStarted,
     required TResult orElse(),
@@ -256,6 +272,122 @@ abstract class AuthEventLoginStarted implements AuthEvent {
   @JsonKey(ignore: true)
   $AuthEventLoginStartedCopyWith<AuthEventLoginStarted> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AuthEventShowCancelCopyWith<$Res> {
+  factory $AuthEventShowCancelCopyWith(
+          AuthEventShowCancel value, $Res Function(AuthEventShowCancel) then) =
+      _$AuthEventShowCancelCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$AuthEventShowCancelCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res>
+    implements $AuthEventShowCancelCopyWith<$Res> {
+  _$AuthEventShowCancelCopyWithImpl(
+      AuthEventShowCancel _value, $Res Function(AuthEventShowCancel) _then)
+      : super(_value, (v) => _then(v as AuthEventShowCancel));
+
+  @override
+  AuthEventShowCancel get _value => super._value as AuthEventShowCancel;
+}
+
+/// @nodoc
+
+class _$AuthEventShowCancel implements AuthEventShowCancel {
+  const _$AuthEventShowCancel();
+
+  @override
+  String toString() {
+    return 'AuthEvent.loginShowCancel()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is AuthEventShowCancel);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String username, String password) loginStarted,
+    required TResult Function() loginShowCancel,
+    required TResult Function() loginCanceled,
+    required TResult Function() logoutStarted,
+  }) {
+    return loginShowCancel();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String username, String password)? loginStarted,
+    TResult Function()? loginShowCancel,
+    TResult Function()? loginCanceled,
+    TResult Function()? logoutStarted,
+  }) {
+    return loginShowCancel?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String username, String password)? loginStarted,
+    TResult Function()? loginShowCancel,
+    TResult Function()? loginCanceled,
+    TResult Function()? logoutStarted,
+    required TResult orElse(),
+  }) {
+    if (loginShowCancel != null) {
+      return loginShowCancel();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthEventLoginStarted value) loginStarted,
+    required TResult Function(AuthEventShowCancel value) loginShowCancel,
+    required TResult Function(AuthEventLoginCanceled value) loginCanceled,
+    required TResult Function(AuthEventLogoutStarted value) logoutStarted,
+  }) {
+    return loginShowCancel(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthEventLoginStarted value)? loginStarted,
+    TResult Function(AuthEventShowCancel value)? loginShowCancel,
+    TResult Function(AuthEventLoginCanceled value)? loginCanceled,
+    TResult Function(AuthEventLogoutStarted value)? logoutStarted,
+  }) {
+    return loginShowCancel?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthEventLoginStarted value)? loginStarted,
+    TResult Function(AuthEventShowCancel value)? loginShowCancel,
+    TResult Function(AuthEventLoginCanceled value)? loginCanceled,
+    TResult Function(AuthEventLogoutStarted value)? logoutStarted,
+    required TResult orElse(),
+  }) {
+    if (loginShowCancel != null) {
+      return loginShowCancel(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthEventShowCancel implements AuthEvent {
+  const factory AuthEventShowCancel() = _$AuthEventShowCancel;
 }
 
 /// @nodoc
@@ -299,6 +431,7 @@ class _$AuthEventLoginCanceled implements AuthEventLoginCanceled {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String username, String password) loginStarted,
+    required TResult Function() loginShowCancel,
     required TResult Function() loginCanceled,
     required TResult Function() logoutStarted,
   }) {
@@ -309,6 +442,7 @@ class _$AuthEventLoginCanceled implements AuthEventLoginCanceled {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
+    TResult Function()? loginShowCancel,
     TResult Function()? loginCanceled,
     TResult Function()? logoutStarted,
   }) {
@@ -319,6 +453,7 @@ class _$AuthEventLoginCanceled implements AuthEventLoginCanceled {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
+    TResult Function()? loginShowCancel,
     TResult Function()? loginCanceled,
     TResult Function()? logoutStarted,
     required TResult orElse(),
@@ -333,6 +468,7 @@ class _$AuthEventLoginCanceled implements AuthEventLoginCanceled {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(AuthEventLoginStarted value) loginStarted,
+    required TResult Function(AuthEventShowCancel value) loginShowCancel,
     required TResult Function(AuthEventLoginCanceled value) loginCanceled,
     required TResult Function(AuthEventLogoutStarted value) logoutStarted,
   }) {
@@ -343,6 +479,7 @@ class _$AuthEventLoginCanceled implements AuthEventLoginCanceled {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthEventLoginStarted value)? loginStarted,
+    TResult Function(AuthEventShowCancel value)? loginShowCancel,
     TResult Function(AuthEventLoginCanceled value)? loginCanceled,
     TResult Function(AuthEventLogoutStarted value)? logoutStarted,
   }) {
@@ -353,6 +490,7 @@ class _$AuthEventLoginCanceled implements AuthEventLoginCanceled {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthEventLoginStarted value)? loginStarted,
+    TResult Function(AuthEventShowCancel value)? loginShowCancel,
     TResult Function(AuthEventLoginCanceled value)? loginCanceled,
     TResult Function(AuthEventLogoutStarted value)? logoutStarted,
     required TResult orElse(),
@@ -409,6 +547,7 @@ class _$AuthEventLogoutStarted implements AuthEventLogoutStarted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String username, String password) loginStarted,
+    required TResult Function() loginShowCancel,
     required TResult Function() loginCanceled,
     required TResult Function() logoutStarted,
   }) {
@@ -419,6 +558,7 @@ class _$AuthEventLogoutStarted implements AuthEventLogoutStarted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
+    TResult Function()? loginShowCancel,
     TResult Function()? loginCanceled,
     TResult Function()? logoutStarted,
   }) {
@@ -429,6 +569,7 @@ class _$AuthEventLogoutStarted implements AuthEventLogoutStarted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
+    TResult Function()? loginShowCancel,
     TResult Function()? loginCanceled,
     TResult Function()? logoutStarted,
     required TResult orElse(),
@@ -443,6 +584,7 @@ class _$AuthEventLogoutStarted implements AuthEventLogoutStarted {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(AuthEventLoginStarted value) loginStarted,
+    required TResult Function(AuthEventShowCancel value) loginShowCancel,
     required TResult Function(AuthEventLoginCanceled value) loginCanceled,
     required TResult Function(AuthEventLogoutStarted value) logoutStarted,
   }) {
@@ -453,6 +595,7 @@ class _$AuthEventLogoutStarted implements AuthEventLogoutStarted {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthEventLoginStarted value)? loginStarted,
+    TResult Function(AuthEventShowCancel value)? loginShowCancel,
     TResult Function(AuthEventLoginCanceled value)? loginCanceled,
     TResult Function(AuthEventLogoutStarted value)? logoutStarted,
   }) {
@@ -463,6 +606,7 @@ class _$AuthEventLogoutStarted implements AuthEventLogoutStarted {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthEventLoginStarted value)? loginStarted,
+    TResult Function(AuthEventShowCancel value)? loginShowCancel,
     TResult Function(AuthEventLoginCanceled value)? loginCanceled,
     TResult Function(AuthEventLogoutStarted value)? logoutStarted,
     required TResult orElse(),
@@ -486,9 +630,9 @@ class _$AuthStateTearOff {
     return const AuthStateNotAuthorized();
   }
 
-  AuthstateLoginInProgress loginInProgress(int seconds) {
+  AuthstateLoginInProgress loginInProgress({required bool showCancel}) {
     return AuthstateLoginInProgress(
-      seconds,
+      showCancel: showCancel,
     );
   }
 
@@ -521,7 +665,7 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
-    required TResult Function(int seconds) loginInProgress,
+    required TResult Function(bool showCancel) loginInProgress,
     required TResult Function() loginSuccess,
     required TResult Function(Error error) loginFailure,
     required TResult Function() logoutInProgress,
@@ -531,7 +675,7 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(int seconds)? loginInProgress,
+    TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
@@ -541,7 +685,7 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(int seconds)? loginInProgress,
+    TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
@@ -638,7 +782,7 @@ class _$AuthStateNotAuthorized implements AuthStateNotAuthorized {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
-    required TResult Function(int seconds) loginInProgress,
+    required TResult Function(bool showCancel) loginInProgress,
     required TResult Function() loginSuccess,
     required TResult Function(Error error) loginFailure,
     required TResult Function() logoutInProgress,
@@ -651,7 +795,7 @@ class _$AuthStateNotAuthorized implements AuthStateNotAuthorized {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(int seconds)? loginInProgress,
+    TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
@@ -664,7 +808,7 @@ class _$AuthStateNotAuthorized implements AuthStateNotAuthorized {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(int seconds)? loginInProgress,
+    TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
@@ -730,7 +874,7 @@ abstract class $AuthstateLoginInProgressCopyWith<$Res> {
   factory $AuthstateLoginInProgressCopyWith(AuthstateLoginInProgress value,
           $Res Function(AuthstateLoginInProgress) then) =
       _$AuthstateLoginInProgressCopyWithImpl<$Res>;
-  $Res call({int seconds});
+  $Res call({bool showCancel});
 }
 
 /// @nodoc
@@ -747,13 +891,13 @@ class _$AuthstateLoginInProgressCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? seconds = freezed,
+    Object? showCancel = freezed,
   }) {
     return _then(AuthstateLoginInProgress(
-      seconds == freezed
-          ? _value.seconds
-          : seconds // ignore: cast_nullable_to_non_nullable
-              as int,
+      showCancel: showCancel == freezed
+          ? _value.showCancel
+          : showCancel // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -761,27 +905,28 @@ class _$AuthstateLoginInProgressCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AuthstateLoginInProgress implements AuthstateLoginInProgress {
-  const _$AuthstateLoginInProgress(this.seconds);
+  const _$AuthstateLoginInProgress({required this.showCancel});
 
   @override
-  final int seconds;
+  final bool showCancel;
 
   @override
   String toString() {
-    return 'AuthState.loginInProgress(seconds: $seconds)';
+    return 'AuthState.loginInProgress(showCancel: $showCancel)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is AuthstateLoginInProgress &&
-            (identical(other.seconds, seconds) ||
-                const DeepCollectionEquality().equals(other.seconds, seconds)));
+            (identical(other.showCancel, showCancel) ||
+                const DeepCollectionEquality()
+                    .equals(other.showCancel, showCancel)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(seconds);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(showCancel);
 
   @JsonKey(ignore: true)
   @override
@@ -793,33 +938,33 @@ class _$AuthstateLoginInProgress implements AuthstateLoginInProgress {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
-    required TResult Function(int seconds) loginInProgress,
+    required TResult Function(bool showCancel) loginInProgress,
     required TResult Function() loginSuccess,
     required TResult Function(Error error) loginFailure,
     required TResult Function() logoutInProgress,
     required TResult Function(Error error) logoutFailure,
   }) {
-    return loginInProgress(seconds);
+    return loginInProgress(showCancel);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(int seconds)? loginInProgress,
+    TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
     TResult Function(Error error)? logoutFailure,
   }) {
-    return loginInProgress?.call(seconds);
+    return loginInProgress?.call(showCancel);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(int seconds)? loginInProgress,
+    TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
@@ -827,7 +972,7 @@ class _$AuthstateLoginInProgress implements AuthstateLoginInProgress {
     required TResult orElse(),
   }) {
     if (loginInProgress != null) {
-      return loginInProgress(seconds);
+      return loginInProgress(showCancel);
     }
     return orElse();
   }
@@ -877,10 +1022,10 @@ class _$AuthstateLoginInProgress implements AuthstateLoginInProgress {
 }
 
 abstract class AuthstateLoginInProgress implements AuthState {
-  const factory AuthstateLoginInProgress(int seconds) =
+  const factory AuthstateLoginInProgress({required bool showCancel}) =
       _$AuthstateLoginInProgress;
 
-  int get seconds => throw _privateConstructorUsedError;
+  bool get showCancel => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AuthstateLoginInProgressCopyWith<AuthstateLoginInProgress> get copyWith =>
       throw _privateConstructorUsedError;
@@ -927,7 +1072,7 @@ class _$AuthStateLoginSuccess implements AuthStateLoginSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
-    required TResult Function(int seconds) loginInProgress,
+    required TResult Function(bool showCancel) loginInProgress,
     required TResult Function() loginSuccess,
     required TResult Function(Error error) loginFailure,
     required TResult Function() logoutInProgress,
@@ -940,7 +1085,7 @@ class _$AuthStateLoginSuccess implements AuthStateLoginSuccess {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(int seconds)? loginInProgress,
+    TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
@@ -953,7 +1098,7 @@ class _$AuthStateLoginSuccess implements AuthStateLoginSuccess {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(int seconds)? loginInProgress,
+    TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
@@ -1081,7 +1226,7 @@ class _$AuthStateLoginFailure implements AuthStateLoginFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
-    required TResult Function(int seconds) loginInProgress,
+    required TResult Function(bool showCancel) loginInProgress,
     required TResult Function() loginSuccess,
     required TResult Function(Error error) loginFailure,
     required TResult Function() logoutInProgress,
@@ -1094,7 +1239,7 @@ class _$AuthStateLoginFailure implements AuthStateLoginFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(int seconds)? loginInProgress,
+    TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
@@ -1107,7 +1252,7 @@ class _$AuthStateLoginFailure implements AuthStateLoginFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(int seconds)? loginInProgress,
+    TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
@@ -1215,7 +1360,7 @@ class _$AuthStateLogoutInProgress implements AuthStateLogoutInProgress {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
-    required TResult Function(int seconds) loginInProgress,
+    required TResult Function(bool showCancel) loginInProgress,
     required TResult Function() loginSuccess,
     required TResult Function(Error error) loginFailure,
     required TResult Function() logoutInProgress,
@@ -1228,7 +1373,7 @@ class _$AuthStateLogoutInProgress implements AuthStateLogoutInProgress {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(int seconds)? loginInProgress,
+    TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
@@ -1241,7 +1386,7 @@ class _$AuthStateLogoutInProgress implements AuthStateLogoutInProgress {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(int seconds)? loginInProgress,
+    TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
@@ -1369,7 +1514,7 @@ class _$AuthStateLogoutFailure implements AuthStateLogoutFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
-    required TResult Function(int seconds) loginInProgress,
+    required TResult Function(bool showCancel) loginInProgress,
     required TResult Function() loginSuccess,
     required TResult Function(Error error) loginFailure,
     required TResult Function() logoutInProgress,
@@ -1382,7 +1527,7 @@ class _$AuthStateLogoutFailure implements AuthStateLogoutFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(int seconds)? loginInProgress,
+    TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
@@ -1395,7 +1540,7 @@ class _$AuthStateLogoutFailure implements AuthStateLogoutFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(int seconds)? loginInProgress,
+    TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,

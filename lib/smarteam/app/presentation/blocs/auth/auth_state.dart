@@ -4,7 +4,7 @@ part of 'auth_bloc.dart';
 class AuthState with _$AuthState {
   const factory AuthState.notAuthorized() = AuthStateNotAuthorized;
 
-  const factory AuthState.loginInProgress(int seconds) = AuthstateLoginInProgress;
+  const factory AuthState.loginInProgress({required bool showCancel}) = AuthstateLoginInProgress;
 
   const factory AuthState.loginSuccess() = AuthStateLoginSuccess;
 

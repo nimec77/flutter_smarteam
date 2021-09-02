@@ -30,7 +30,7 @@ void main() {
       },
       act: (authBloc) => authBloc.add(const AuthEvent.loginStarted(username: 'username', password: 'password')),
       expect: () => [
-        const AuthState.loginInProgress(0),
+        const AuthState.loginInProgress(showCancel: false),
         const AuthState.loginSuccess(),
       ],
       verify: (_) {
@@ -48,7 +48,7 @@ void main() {
       },
       act: (authBloc) => authBloc.add(const AuthEvent.loginStarted(username: 'username', password: 'password')),
       expect: () => [
-        const AuthState.loginInProgress(0),
+        const AuthState.loginInProgress(showCancel: false),
         AuthState.loginFailure(loginError),
       ],
       verify: (_) {
@@ -67,7 +67,7 @@ void main() {
       },
       act: (authBloc) => authBloc.add(const AuthEvent.loginStarted(username: 'username', password: 'password')),
       expect: () => [
-        const AuthState.loginInProgress(0),
+        const AuthState.loginInProgress(showCancel: false),
         AuthState.loginFailure(SmarteamLoginFailure()),
       ],
       verify: (_) {
