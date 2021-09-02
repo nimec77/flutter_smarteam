@@ -41,6 +41,7 @@ class LoginPage extends StatelessWidget {
                   duration: const Duration(milliseconds: 500),
                   child: LoginInProgress(
                     onCancel: () {
+                      debugPrint('Cancel');
                       context.read<AuthBloc>().add(const AuthEvent.loginCanceled());
                     },
                   ),

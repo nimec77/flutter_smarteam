@@ -25,12 +25,22 @@ class _$AuthEventTearOff {
     );
   }
 
-  AuthEventShowCancel loginShowCancel() {
-    return const AuthEventShowCancel();
+  AuthEventLoginSuccessful loginSuccessful() {
+    return const AuthEventLoginSuccessful();
+  }
+
+  AuthEventLoginFailed loginFailed(Error error) {
+    return AuthEventLoginFailed(
+      error,
+    );
   }
 
   AuthEventLoginCanceled loginCanceled() {
     return const AuthEventLoginCanceled();
+  }
+
+  AuthEventShownCancel shownCancel() {
+    return const AuthEventShownCancel();
   }
 
   AuthEventLogoutStarted logoutStarted() {
@@ -46,24 +56,30 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String username, String password) loginStarted,
-    required TResult Function() loginShowCancel,
+    required TResult Function() loginSuccessful,
+    required TResult Function(Error error) loginFailed,
     required TResult Function() loginCanceled,
+    required TResult Function() shownCancel,
     required TResult Function() logoutStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
-    TResult Function()? loginShowCancel,
+    TResult Function()? loginSuccessful,
+    TResult Function(Error error)? loginFailed,
     TResult Function()? loginCanceled,
+    TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
-    TResult Function()? loginShowCancel,
+    TResult Function()? loginSuccessful,
+    TResult Function(Error error)? loginFailed,
     TResult Function()? loginCanceled,
+    TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
     required TResult orElse(),
   }) =>
@@ -71,24 +87,30 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(AuthEventLoginStarted value) loginStarted,
-    required TResult Function(AuthEventShowCancel value) loginShowCancel,
+    required TResult Function(AuthEventLoginSuccessful value) loginSuccessful,
+    required TResult Function(AuthEventLoginFailed value) loginFailed,
     required TResult Function(AuthEventLoginCanceled value) loginCanceled,
+    required TResult Function(AuthEventShownCancel value) shownCancel,
     required TResult Function(AuthEventLogoutStarted value) logoutStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthEventLoginStarted value)? loginStarted,
-    TResult Function(AuthEventShowCancel value)? loginShowCancel,
+    TResult Function(AuthEventLoginSuccessful value)? loginSuccessful,
+    TResult Function(AuthEventLoginFailed value)? loginFailed,
     TResult Function(AuthEventLoginCanceled value)? loginCanceled,
+    TResult Function(AuthEventShownCancel value)? shownCancel,
     TResult Function(AuthEventLogoutStarted value)? logoutStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthEventLoginStarted value)? loginStarted,
-    TResult Function(AuthEventShowCancel value)? loginShowCancel,
+    TResult Function(AuthEventLoginSuccessful value)? loginSuccessful,
+    TResult Function(AuthEventLoginFailed value)? loginFailed,
     TResult Function(AuthEventLoginCanceled value)? loginCanceled,
+    TResult Function(AuthEventShownCancel value)? shownCancel,
     TResult Function(AuthEventLogoutStarted value)? logoutStarted,
     required TResult orElse(),
   }) =>
@@ -191,8 +213,10 @@ class _$AuthEventLoginStarted implements AuthEventLoginStarted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String username, String password) loginStarted,
-    required TResult Function() loginShowCancel,
+    required TResult Function() loginSuccessful,
+    required TResult Function(Error error) loginFailed,
     required TResult Function() loginCanceled,
+    required TResult Function() shownCancel,
     required TResult Function() logoutStarted,
   }) {
     return loginStarted(username, password);
@@ -202,8 +226,10 @@ class _$AuthEventLoginStarted implements AuthEventLoginStarted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
-    TResult Function()? loginShowCancel,
+    TResult Function()? loginSuccessful,
+    TResult Function(Error error)? loginFailed,
     TResult Function()? loginCanceled,
+    TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
   }) {
     return loginStarted?.call(username, password);
@@ -213,8 +239,10 @@ class _$AuthEventLoginStarted implements AuthEventLoginStarted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
-    TResult Function()? loginShowCancel,
+    TResult Function()? loginSuccessful,
+    TResult Function(Error error)? loginFailed,
     TResult Function()? loginCanceled,
+    TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
     required TResult orElse(),
   }) {
@@ -228,8 +256,10 @@ class _$AuthEventLoginStarted implements AuthEventLoginStarted {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(AuthEventLoginStarted value) loginStarted,
-    required TResult Function(AuthEventShowCancel value) loginShowCancel,
+    required TResult Function(AuthEventLoginSuccessful value) loginSuccessful,
+    required TResult Function(AuthEventLoginFailed value) loginFailed,
     required TResult Function(AuthEventLoginCanceled value) loginCanceled,
+    required TResult Function(AuthEventShownCancel value) shownCancel,
     required TResult Function(AuthEventLogoutStarted value) logoutStarted,
   }) {
     return loginStarted(this);
@@ -239,8 +269,10 @@ class _$AuthEventLoginStarted implements AuthEventLoginStarted {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthEventLoginStarted value)? loginStarted,
-    TResult Function(AuthEventShowCancel value)? loginShowCancel,
+    TResult Function(AuthEventLoginSuccessful value)? loginSuccessful,
+    TResult Function(AuthEventLoginFailed value)? loginFailed,
     TResult Function(AuthEventLoginCanceled value)? loginCanceled,
+    TResult Function(AuthEventShownCancel value)? shownCancel,
     TResult Function(AuthEventLogoutStarted value)? logoutStarted,
   }) {
     return loginStarted?.call(this);
@@ -250,8 +282,10 @@ class _$AuthEventLoginStarted implements AuthEventLoginStarted {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthEventLoginStarted value)? loginStarted,
-    TResult Function(AuthEventShowCancel value)? loginShowCancel,
+    TResult Function(AuthEventLoginSuccessful value)? loginSuccessful,
+    TResult Function(AuthEventLoginFailed value)? loginFailed,
     TResult Function(AuthEventLoginCanceled value)? loginCanceled,
+    TResult Function(AuthEventShownCancel value)? shownCancel,
     TResult Function(AuthEventLogoutStarted value)? logoutStarted,
     required TResult orElse(),
   }) {
@@ -275,37 +309,38 @@ abstract class AuthEventLoginStarted implements AuthEvent {
 }
 
 /// @nodoc
-abstract class $AuthEventShowCancelCopyWith<$Res> {
-  factory $AuthEventShowCancelCopyWith(
-          AuthEventShowCancel value, $Res Function(AuthEventShowCancel) then) =
-      _$AuthEventShowCancelCopyWithImpl<$Res>;
+abstract class $AuthEventLoginSuccessfulCopyWith<$Res> {
+  factory $AuthEventLoginSuccessfulCopyWith(AuthEventLoginSuccessful value,
+          $Res Function(AuthEventLoginSuccessful) then) =
+      _$AuthEventLoginSuccessfulCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AuthEventShowCancelCopyWithImpl<$Res>
+class _$AuthEventLoginSuccessfulCopyWithImpl<$Res>
     extends _$AuthEventCopyWithImpl<$Res>
-    implements $AuthEventShowCancelCopyWith<$Res> {
-  _$AuthEventShowCancelCopyWithImpl(
-      AuthEventShowCancel _value, $Res Function(AuthEventShowCancel) _then)
-      : super(_value, (v) => _then(v as AuthEventShowCancel));
+    implements $AuthEventLoginSuccessfulCopyWith<$Res> {
+  _$AuthEventLoginSuccessfulCopyWithImpl(AuthEventLoginSuccessful _value,
+      $Res Function(AuthEventLoginSuccessful) _then)
+      : super(_value, (v) => _then(v as AuthEventLoginSuccessful));
 
   @override
-  AuthEventShowCancel get _value => super._value as AuthEventShowCancel;
+  AuthEventLoginSuccessful get _value =>
+      super._value as AuthEventLoginSuccessful;
 }
 
 /// @nodoc
 
-class _$AuthEventShowCancel implements AuthEventShowCancel {
-  const _$AuthEventShowCancel();
+class _$AuthEventLoginSuccessful implements AuthEventLoginSuccessful {
+  const _$AuthEventLoginSuccessful();
 
   @override
   String toString() {
-    return 'AuthEvent.loginShowCancel()';
+    return 'AuthEvent.loginSuccessful()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is AuthEventShowCancel);
+    return identical(this, other) || (other is AuthEventLoginSuccessful);
   }
 
   @override
@@ -315,35 +350,41 @@ class _$AuthEventShowCancel implements AuthEventShowCancel {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String username, String password) loginStarted,
-    required TResult Function() loginShowCancel,
+    required TResult Function() loginSuccessful,
+    required TResult Function(Error error) loginFailed,
     required TResult Function() loginCanceled,
+    required TResult Function() shownCancel,
     required TResult Function() logoutStarted,
   }) {
-    return loginShowCancel();
+    return loginSuccessful();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
-    TResult Function()? loginShowCancel,
+    TResult Function()? loginSuccessful,
+    TResult Function(Error error)? loginFailed,
     TResult Function()? loginCanceled,
+    TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
   }) {
-    return loginShowCancel?.call();
+    return loginSuccessful?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
-    TResult Function()? loginShowCancel,
+    TResult Function()? loginSuccessful,
+    TResult Function(Error error)? loginFailed,
     TResult Function()? loginCanceled,
+    TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
     required TResult orElse(),
   }) {
-    if (loginShowCancel != null) {
-      return loginShowCancel();
+    if (loginSuccessful != null) {
+      return loginSuccessful();
     }
     return orElse();
   }
@@ -352,42 +393,207 @@ class _$AuthEventShowCancel implements AuthEventShowCancel {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(AuthEventLoginStarted value) loginStarted,
-    required TResult Function(AuthEventShowCancel value) loginShowCancel,
+    required TResult Function(AuthEventLoginSuccessful value) loginSuccessful,
+    required TResult Function(AuthEventLoginFailed value) loginFailed,
     required TResult Function(AuthEventLoginCanceled value) loginCanceled,
+    required TResult Function(AuthEventShownCancel value) shownCancel,
     required TResult Function(AuthEventLogoutStarted value) logoutStarted,
   }) {
-    return loginShowCancel(this);
+    return loginSuccessful(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthEventLoginStarted value)? loginStarted,
-    TResult Function(AuthEventShowCancel value)? loginShowCancel,
+    TResult Function(AuthEventLoginSuccessful value)? loginSuccessful,
+    TResult Function(AuthEventLoginFailed value)? loginFailed,
     TResult Function(AuthEventLoginCanceled value)? loginCanceled,
+    TResult Function(AuthEventShownCancel value)? shownCancel,
     TResult Function(AuthEventLogoutStarted value)? logoutStarted,
   }) {
-    return loginShowCancel?.call(this);
+    return loginSuccessful?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthEventLoginStarted value)? loginStarted,
-    TResult Function(AuthEventShowCancel value)? loginShowCancel,
+    TResult Function(AuthEventLoginSuccessful value)? loginSuccessful,
+    TResult Function(AuthEventLoginFailed value)? loginFailed,
     TResult Function(AuthEventLoginCanceled value)? loginCanceled,
+    TResult Function(AuthEventShownCancel value)? shownCancel,
     TResult Function(AuthEventLogoutStarted value)? logoutStarted,
     required TResult orElse(),
   }) {
-    if (loginShowCancel != null) {
-      return loginShowCancel(this);
+    if (loginSuccessful != null) {
+      return loginSuccessful(this);
     }
     return orElse();
   }
 }
 
-abstract class AuthEventShowCancel implements AuthEvent {
-  const factory AuthEventShowCancel() = _$AuthEventShowCancel;
+abstract class AuthEventLoginSuccessful implements AuthEvent {
+  const factory AuthEventLoginSuccessful() = _$AuthEventLoginSuccessful;
+}
+
+/// @nodoc
+abstract class $AuthEventLoginFailedCopyWith<$Res> {
+  factory $AuthEventLoginFailedCopyWith(AuthEventLoginFailed value,
+          $Res Function(AuthEventLoginFailed) then) =
+      _$AuthEventLoginFailedCopyWithImpl<$Res>;
+  $Res call({Error error});
+}
+
+/// @nodoc
+class _$AuthEventLoginFailedCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res>
+    implements $AuthEventLoginFailedCopyWith<$Res> {
+  _$AuthEventLoginFailedCopyWithImpl(
+      AuthEventLoginFailed _value, $Res Function(AuthEventLoginFailed) _then)
+      : super(_value, (v) => _then(v as AuthEventLoginFailed));
+
+  @override
+  AuthEventLoginFailed get _value => super._value as AuthEventLoginFailed;
+
+  @override
+  $Res call({
+    Object? error = freezed,
+  }) {
+    return _then(AuthEventLoginFailed(
+      error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as Error,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AuthEventLoginFailed implements AuthEventLoginFailed {
+  const _$AuthEventLoginFailed(this.error);
+
+  @override
+  final Error error;
+
+  @override
+  String toString() {
+    return 'AuthEvent.loginFailed(error: $error)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is AuthEventLoginFailed &&
+            (identical(other.error, error) ||
+                const DeepCollectionEquality().equals(other.error, error)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+
+  @JsonKey(ignore: true)
+  @override
+  $AuthEventLoginFailedCopyWith<AuthEventLoginFailed> get copyWith =>
+      _$AuthEventLoginFailedCopyWithImpl<AuthEventLoginFailed>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String username, String password) loginStarted,
+    required TResult Function() loginSuccessful,
+    required TResult Function(Error error) loginFailed,
+    required TResult Function() loginCanceled,
+    required TResult Function() shownCancel,
+    required TResult Function() logoutStarted,
+  }) {
+    return loginFailed(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String username, String password)? loginStarted,
+    TResult Function()? loginSuccessful,
+    TResult Function(Error error)? loginFailed,
+    TResult Function()? loginCanceled,
+    TResult Function()? shownCancel,
+    TResult Function()? logoutStarted,
+  }) {
+    return loginFailed?.call(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String username, String password)? loginStarted,
+    TResult Function()? loginSuccessful,
+    TResult Function(Error error)? loginFailed,
+    TResult Function()? loginCanceled,
+    TResult Function()? shownCancel,
+    TResult Function()? logoutStarted,
+    required TResult orElse(),
+  }) {
+    if (loginFailed != null) {
+      return loginFailed(error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthEventLoginStarted value) loginStarted,
+    required TResult Function(AuthEventLoginSuccessful value) loginSuccessful,
+    required TResult Function(AuthEventLoginFailed value) loginFailed,
+    required TResult Function(AuthEventLoginCanceled value) loginCanceled,
+    required TResult Function(AuthEventShownCancel value) shownCancel,
+    required TResult Function(AuthEventLogoutStarted value) logoutStarted,
+  }) {
+    return loginFailed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthEventLoginStarted value)? loginStarted,
+    TResult Function(AuthEventLoginSuccessful value)? loginSuccessful,
+    TResult Function(AuthEventLoginFailed value)? loginFailed,
+    TResult Function(AuthEventLoginCanceled value)? loginCanceled,
+    TResult Function(AuthEventShownCancel value)? shownCancel,
+    TResult Function(AuthEventLogoutStarted value)? logoutStarted,
+  }) {
+    return loginFailed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthEventLoginStarted value)? loginStarted,
+    TResult Function(AuthEventLoginSuccessful value)? loginSuccessful,
+    TResult Function(AuthEventLoginFailed value)? loginFailed,
+    TResult Function(AuthEventLoginCanceled value)? loginCanceled,
+    TResult Function(AuthEventShownCancel value)? shownCancel,
+    TResult Function(AuthEventLogoutStarted value)? logoutStarted,
+    required TResult orElse(),
+  }) {
+    if (loginFailed != null) {
+      return loginFailed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthEventLoginFailed implements AuthEvent {
+  const factory AuthEventLoginFailed(Error error) = _$AuthEventLoginFailed;
+
+  Error get error => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AuthEventLoginFailedCopyWith<AuthEventLoginFailed> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -431,8 +637,10 @@ class _$AuthEventLoginCanceled implements AuthEventLoginCanceled {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String username, String password) loginStarted,
-    required TResult Function() loginShowCancel,
+    required TResult Function() loginSuccessful,
+    required TResult Function(Error error) loginFailed,
     required TResult Function() loginCanceled,
+    required TResult Function() shownCancel,
     required TResult Function() logoutStarted,
   }) {
     return loginCanceled();
@@ -442,8 +650,10 @@ class _$AuthEventLoginCanceled implements AuthEventLoginCanceled {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
-    TResult Function()? loginShowCancel,
+    TResult Function()? loginSuccessful,
+    TResult Function(Error error)? loginFailed,
     TResult Function()? loginCanceled,
+    TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
   }) {
     return loginCanceled?.call();
@@ -453,8 +663,10 @@ class _$AuthEventLoginCanceled implements AuthEventLoginCanceled {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
-    TResult Function()? loginShowCancel,
+    TResult Function()? loginSuccessful,
+    TResult Function(Error error)? loginFailed,
     TResult Function()? loginCanceled,
+    TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
     required TResult orElse(),
   }) {
@@ -468,8 +680,10 @@ class _$AuthEventLoginCanceled implements AuthEventLoginCanceled {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(AuthEventLoginStarted value) loginStarted,
-    required TResult Function(AuthEventShowCancel value) loginShowCancel,
+    required TResult Function(AuthEventLoginSuccessful value) loginSuccessful,
+    required TResult Function(AuthEventLoginFailed value) loginFailed,
     required TResult Function(AuthEventLoginCanceled value) loginCanceled,
+    required TResult Function(AuthEventShownCancel value) shownCancel,
     required TResult Function(AuthEventLogoutStarted value) logoutStarted,
   }) {
     return loginCanceled(this);
@@ -479,8 +693,10 @@ class _$AuthEventLoginCanceled implements AuthEventLoginCanceled {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthEventLoginStarted value)? loginStarted,
-    TResult Function(AuthEventShowCancel value)? loginShowCancel,
+    TResult Function(AuthEventLoginSuccessful value)? loginSuccessful,
+    TResult Function(AuthEventLoginFailed value)? loginFailed,
     TResult Function(AuthEventLoginCanceled value)? loginCanceled,
+    TResult Function(AuthEventShownCancel value)? shownCancel,
     TResult Function(AuthEventLogoutStarted value)? logoutStarted,
   }) {
     return loginCanceled?.call(this);
@@ -490,8 +706,10 @@ class _$AuthEventLoginCanceled implements AuthEventLoginCanceled {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthEventLoginStarted value)? loginStarted,
-    TResult Function(AuthEventShowCancel value)? loginShowCancel,
+    TResult Function(AuthEventLoginSuccessful value)? loginSuccessful,
+    TResult Function(AuthEventLoginFailed value)? loginFailed,
     TResult Function(AuthEventLoginCanceled value)? loginCanceled,
+    TResult Function(AuthEventShownCancel value)? shownCancel,
     TResult Function(AuthEventLogoutStarted value)? logoutStarted,
     required TResult orElse(),
   }) {
@@ -504,6 +722,134 @@ class _$AuthEventLoginCanceled implements AuthEventLoginCanceled {
 
 abstract class AuthEventLoginCanceled implements AuthEvent {
   const factory AuthEventLoginCanceled() = _$AuthEventLoginCanceled;
+}
+
+/// @nodoc
+abstract class $AuthEventShownCancelCopyWith<$Res> {
+  factory $AuthEventShownCancelCopyWith(AuthEventShownCancel value,
+          $Res Function(AuthEventShownCancel) then) =
+      _$AuthEventShownCancelCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$AuthEventShownCancelCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res>
+    implements $AuthEventShownCancelCopyWith<$Res> {
+  _$AuthEventShownCancelCopyWithImpl(
+      AuthEventShownCancel _value, $Res Function(AuthEventShownCancel) _then)
+      : super(_value, (v) => _then(v as AuthEventShownCancel));
+
+  @override
+  AuthEventShownCancel get _value => super._value as AuthEventShownCancel;
+}
+
+/// @nodoc
+
+class _$AuthEventShownCancel implements AuthEventShownCancel {
+  const _$AuthEventShownCancel();
+
+  @override
+  String toString() {
+    return 'AuthEvent.shownCancel()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is AuthEventShownCancel);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String username, String password) loginStarted,
+    required TResult Function() loginSuccessful,
+    required TResult Function(Error error) loginFailed,
+    required TResult Function() loginCanceled,
+    required TResult Function() shownCancel,
+    required TResult Function() logoutStarted,
+  }) {
+    return shownCancel();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String username, String password)? loginStarted,
+    TResult Function()? loginSuccessful,
+    TResult Function(Error error)? loginFailed,
+    TResult Function()? loginCanceled,
+    TResult Function()? shownCancel,
+    TResult Function()? logoutStarted,
+  }) {
+    return shownCancel?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String username, String password)? loginStarted,
+    TResult Function()? loginSuccessful,
+    TResult Function(Error error)? loginFailed,
+    TResult Function()? loginCanceled,
+    TResult Function()? shownCancel,
+    TResult Function()? logoutStarted,
+    required TResult orElse(),
+  }) {
+    if (shownCancel != null) {
+      return shownCancel();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthEventLoginStarted value) loginStarted,
+    required TResult Function(AuthEventLoginSuccessful value) loginSuccessful,
+    required TResult Function(AuthEventLoginFailed value) loginFailed,
+    required TResult Function(AuthEventLoginCanceled value) loginCanceled,
+    required TResult Function(AuthEventShownCancel value) shownCancel,
+    required TResult Function(AuthEventLogoutStarted value) logoutStarted,
+  }) {
+    return shownCancel(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthEventLoginStarted value)? loginStarted,
+    TResult Function(AuthEventLoginSuccessful value)? loginSuccessful,
+    TResult Function(AuthEventLoginFailed value)? loginFailed,
+    TResult Function(AuthEventLoginCanceled value)? loginCanceled,
+    TResult Function(AuthEventShownCancel value)? shownCancel,
+    TResult Function(AuthEventLogoutStarted value)? logoutStarted,
+  }) {
+    return shownCancel?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthEventLoginStarted value)? loginStarted,
+    TResult Function(AuthEventLoginSuccessful value)? loginSuccessful,
+    TResult Function(AuthEventLoginFailed value)? loginFailed,
+    TResult Function(AuthEventLoginCanceled value)? loginCanceled,
+    TResult Function(AuthEventShownCancel value)? shownCancel,
+    TResult Function(AuthEventLogoutStarted value)? logoutStarted,
+    required TResult orElse(),
+  }) {
+    if (shownCancel != null) {
+      return shownCancel(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthEventShownCancel implements AuthEvent {
+  const factory AuthEventShownCancel() = _$AuthEventShownCancel;
 }
 
 /// @nodoc
@@ -547,8 +893,10 @@ class _$AuthEventLogoutStarted implements AuthEventLogoutStarted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String username, String password) loginStarted,
-    required TResult Function() loginShowCancel,
+    required TResult Function() loginSuccessful,
+    required TResult Function(Error error) loginFailed,
     required TResult Function() loginCanceled,
+    required TResult Function() shownCancel,
     required TResult Function() logoutStarted,
   }) {
     return logoutStarted();
@@ -558,8 +906,10 @@ class _$AuthEventLogoutStarted implements AuthEventLogoutStarted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
-    TResult Function()? loginShowCancel,
+    TResult Function()? loginSuccessful,
+    TResult Function(Error error)? loginFailed,
     TResult Function()? loginCanceled,
+    TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
   }) {
     return logoutStarted?.call();
@@ -569,8 +919,10 @@ class _$AuthEventLogoutStarted implements AuthEventLogoutStarted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
-    TResult Function()? loginShowCancel,
+    TResult Function()? loginSuccessful,
+    TResult Function(Error error)? loginFailed,
     TResult Function()? loginCanceled,
+    TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
     required TResult orElse(),
   }) {
@@ -584,8 +936,10 @@ class _$AuthEventLogoutStarted implements AuthEventLogoutStarted {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(AuthEventLoginStarted value) loginStarted,
-    required TResult Function(AuthEventShowCancel value) loginShowCancel,
+    required TResult Function(AuthEventLoginSuccessful value) loginSuccessful,
+    required TResult Function(AuthEventLoginFailed value) loginFailed,
     required TResult Function(AuthEventLoginCanceled value) loginCanceled,
+    required TResult Function(AuthEventShownCancel value) shownCancel,
     required TResult Function(AuthEventLogoutStarted value) logoutStarted,
   }) {
     return logoutStarted(this);
@@ -595,8 +949,10 @@ class _$AuthEventLogoutStarted implements AuthEventLogoutStarted {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthEventLoginStarted value)? loginStarted,
-    TResult Function(AuthEventShowCancel value)? loginShowCancel,
+    TResult Function(AuthEventLoginSuccessful value)? loginSuccessful,
+    TResult Function(AuthEventLoginFailed value)? loginFailed,
     TResult Function(AuthEventLoginCanceled value)? loginCanceled,
+    TResult Function(AuthEventShownCancel value)? shownCancel,
     TResult Function(AuthEventLogoutStarted value)? logoutStarted,
   }) {
     return logoutStarted?.call(this);
@@ -606,8 +962,10 @@ class _$AuthEventLogoutStarted implements AuthEventLogoutStarted {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthEventLoginStarted value)? loginStarted,
-    TResult Function(AuthEventShowCancel value)? loginShowCancel,
+    TResult Function(AuthEventLoginSuccessful value)? loginSuccessful,
+    TResult Function(AuthEventLoginFailed value)? loginFailed,
     TResult Function(AuthEventLoginCanceled value)? loginCanceled,
+    TResult Function(AuthEventShownCancel value)? shownCancel,
     TResult Function(AuthEventLogoutStarted value)? logoutStarted,
     required TResult orElse(),
   }) {
@@ -640,6 +998,10 @@ class _$AuthStateTearOff {
     return const AuthStateLoginSuccess();
   }
 
+  AuthStateLognCancelSuccess loginCancelSuccess() {
+    return const AuthStateLognCancelSuccess();
+  }
+
   AuthStateLoginFailure loginFailure(Error error) {
     return AuthStateLoginFailure(
       error,
@@ -667,6 +1029,7 @@ mixin _$AuthState {
     required TResult Function() notAuthorized,
     required TResult Function(bool showCancel) loginInProgress,
     required TResult Function() loginSuccess,
+    required TResult Function() loginCancelSuccess,
     required TResult Function(Error error) loginFailure,
     required TResult Function() logoutInProgress,
     required TResult Function(Error error) logoutFailure,
@@ -677,6 +1040,7 @@ mixin _$AuthState {
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
+    TResult Function()? loginCancelSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
     TResult Function(Error error)? logoutFailure,
@@ -687,6 +1051,7 @@ mixin _$AuthState {
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
+    TResult Function()? loginCancelSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
     TResult Function(Error error)? logoutFailure,
@@ -698,6 +1063,8 @@ mixin _$AuthState {
     required TResult Function(AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(AuthstateLoginInProgress value) loginInProgress,
     required TResult Function(AuthStateLoginSuccess value) loginSuccess,
+    required TResult Function(AuthStateLognCancelSuccess value)
+        loginCancelSuccess,
     required TResult Function(AuthStateLoginFailure value) loginFailure,
     required TResult Function(AuthStateLogoutInProgress value) logoutInProgress,
     required TResult Function(AuthStateLogoutFailure value) logoutFailure,
@@ -708,6 +1075,7 @@ mixin _$AuthState {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
+    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -718,6 +1086,7 @@ mixin _$AuthState {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
+    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -784,6 +1153,7 @@ class _$AuthStateNotAuthorized implements AuthStateNotAuthorized {
     required TResult Function() notAuthorized,
     required TResult Function(bool showCancel) loginInProgress,
     required TResult Function() loginSuccess,
+    required TResult Function() loginCancelSuccess,
     required TResult Function(Error error) loginFailure,
     required TResult Function() logoutInProgress,
     required TResult Function(Error error) logoutFailure,
@@ -797,6 +1167,7 @@ class _$AuthStateNotAuthorized implements AuthStateNotAuthorized {
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
+    TResult Function()? loginCancelSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
     TResult Function(Error error)? logoutFailure,
@@ -810,6 +1181,7 @@ class _$AuthStateNotAuthorized implements AuthStateNotAuthorized {
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
+    TResult Function()? loginCancelSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
     TResult Function(Error error)? logoutFailure,
@@ -827,6 +1199,8 @@ class _$AuthStateNotAuthorized implements AuthStateNotAuthorized {
     required TResult Function(AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(AuthstateLoginInProgress value) loginInProgress,
     required TResult Function(AuthStateLoginSuccess value) loginSuccess,
+    required TResult Function(AuthStateLognCancelSuccess value)
+        loginCancelSuccess,
     required TResult Function(AuthStateLoginFailure value) loginFailure,
     required TResult Function(AuthStateLogoutInProgress value) logoutInProgress,
     required TResult Function(AuthStateLogoutFailure value) logoutFailure,
@@ -840,6 +1214,7 @@ class _$AuthStateNotAuthorized implements AuthStateNotAuthorized {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
+    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -853,6 +1228,7 @@ class _$AuthStateNotAuthorized implements AuthStateNotAuthorized {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
+    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -940,6 +1316,7 @@ class _$AuthstateLoginInProgress implements AuthstateLoginInProgress {
     required TResult Function() notAuthorized,
     required TResult Function(bool showCancel) loginInProgress,
     required TResult Function() loginSuccess,
+    required TResult Function() loginCancelSuccess,
     required TResult Function(Error error) loginFailure,
     required TResult Function() logoutInProgress,
     required TResult Function(Error error) logoutFailure,
@@ -953,6 +1330,7 @@ class _$AuthstateLoginInProgress implements AuthstateLoginInProgress {
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
+    TResult Function()? loginCancelSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
     TResult Function(Error error)? logoutFailure,
@@ -966,6 +1344,7 @@ class _$AuthstateLoginInProgress implements AuthstateLoginInProgress {
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
+    TResult Function()? loginCancelSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
     TResult Function(Error error)? logoutFailure,
@@ -983,6 +1362,8 @@ class _$AuthstateLoginInProgress implements AuthstateLoginInProgress {
     required TResult Function(AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(AuthstateLoginInProgress value) loginInProgress,
     required TResult Function(AuthStateLoginSuccess value) loginSuccess,
+    required TResult Function(AuthStateLognCancelSuccess value)
+        loginCancelSuccess,
     required TResult Function(AuthStateLoginFailure value) loginFailure,
     required TResult Function(AuthStateLogoutInProgress value) logoutInProgress,
     required TResult Function(AuthStateLogoutFailure value) logoutFailure,
@@ -996,6 +1377,7 @@ class _$AuthstateLoginInProgress implements AuthstateLoginInProgress {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
+    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -1009,6 +1391,7 @@ class _$AuthstateLoginInProgress implements AuthstateLoginInProgress {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
+    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -1074,6 +1457,7 @@ class _$AuthStateLoginSuccess implements AuthStateLoginSuccess {
     required TResult Function() notAuthorized,
     required TResult Function(bool showCancel) loginInProgress,
     required TResult Function() loginSuccess,
+    required TResult Function() loginCancelSuccess,
     required TResult Function(Error error) loginFailure,
     required TResult Function() logoutInProgress,
     required TResult Function(Error error) logoutFailure,
@@ -1087,6 +1471,7 @@ class _$AuthStateLoginSuccess implements AuthStateLoginSuccess {
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
+    TResult Function()? loginCancelSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
     TResult Function(Error error)? logoutFailure,
@@ -1100,6 +1485,7 @@ class _$AuthStateLoginSuccess implements AuthStateLoginSuccess {
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
+    TResult Function()? loginCancelSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
     TResult Function(Error error)? logoutFailure,
@@ -1117,6 +1503,8 @@ class _$AuthStateLoginSuccess implements AuthStateLoginSuccess {
     required TResult Function(AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(AuthstateLoginInProgress value) loginInProgress,
     required TResult Function(AuthStateLoginSuccess value) loginSuccess,
+    required TResult Function(AuthStateLognCancelSuccess value)
+        loginCancelSuccess,
     required TResult Function(AuthStateLoginFailure value) loginFailure,
     required TResult Function(AuthStateLogoutInProgress value) logoutInProgress,
     required TResult Function(AuthStateLogoutFailure value) logoutFailure,
@@ -1130,6 +1518,7 @@ class _$AuthStateLoginSuccess implements AuthStateLoginSuccess {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
+    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -1143,6 +1532,7 @@ class _$AuthStateLoginSuccess implements AuthStateLoginSuccess {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
+    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -1157,6 +1547,142 @@ class _$AuthStateLoginSuccess implements AuthStateLoginSuccess {
 
 abstract class AuthStateLoginSuccess implements AuthState {
   const factory AuthStateLoginSuccess() = _$AuthStateLoginSuccess;
+}
+
+/// @nodoc
+abstract class $AuthStateLognCancelSuccessCopyWith<$Res> {
+  factory $AuthStateLognCancelSuccessCopyWith(AuthStateLognCancelSuccess value,
+          $Res Function(AuthStateLognCancelSuccess) then) =
+      _$AuthStateLognCancelSuccessCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$AuthStateLognCancelSuccessCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res>
+    implements $AuthStateLognCancelSuccessCopyWith<$Res> {
+  _$AuthStateLognCancelSuccessCopyWithImpl(AuthStateLognCancelSuccess _value,
+      $Res Function(AuthStateLognCancelSuccess) _then)
+      : super(_value, (v) => _then(v as AuthStateLognCancelSuccess));
+
+  @override
+  AuthStateLognCancelSuccess get _value =>
+      super._value as AuthStateLognCancelSuccess;
+}
+
+/// @nodoc
+
+class _$AuthStateLognCancelSuccess implements AuthStateLognCancelSuccess {
+  const _$AuthStateLognCancelSuccess();
+
+  @override
+  String toString() {
+    return 'AuthState.loginCancelSuccess()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is AuthStateLognCancelSuccess);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() notAuthorized,
+    required TResult Function(bool showCancel) loginInProgress,
+    required TResult Function() loginSuccess,
+    required TResult Function() loginCancelSuccess,
+    required TResult Function(Error error) loginFailure,
+    required TResult Function() logoutInProgress,
+    required TResult Function(Error error) logoutFailure,
+  }) {
+    return loginCancelSuccess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? notAuthorized,
+    TResult Function(bool showCancel)? loginInProgress,
+    TResult Function()? loginSuccess,
+    TResult Function()? loginCancelSuccess,
+    TResult Function(Error error)? loginFailure,
+    TResult Function()? logoutInProgress,
+    TResult Function(Error error)? logoutFailure,
+  }) {
+    return loginCancelSuccess?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? notAuthorized,
+    TResult Function(bool showCancel)? loginInProgress,
+    TResult Function()? loginSuccess,
+    TResult Function()? loginCancelSuccess,
+    TResult Function(Error error)? loginFailure,
+    TResult Function()? logoutInProgress,
+    TResult Function(Error error)? logoutFailure,
+    required TResult orElse(),
+  }) {
+    if (loginCancelSuccess != null) {
+      return loginCancelSuccess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthStateNotAuthorized value) notAuthorized,
+    required TResult Function(AuthstateLoginInProgress value) loginInProgress,
+    required TResult Function(AuthStateLoginSuccess value) loginSuccess,
+    required TResult Function(AuthStateLognCancelSuccess value)
+        loginCancelSuccess,
+    required TResult Function(AuthStateLoginFailure value) loginFailure,
+    required TResult Function(AuthStateLogoutInProgress value) logoutInProgress,
+    required TResult Function(AuthStateLogoutFailure value) logoutFailure,
+  }) {
+    return loginCancelSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthStateNotAuthorized value)? notAuthorized,
+    TResult Function(AuthstateLoginInProgress value)? loginInProgress,
+    TResult Function(AuthStateLoginSuccess value)? loginSuccess,
+    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
+    TResult Function(AuthStateLoginFailure value)? loginFailure,
+    TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
+    TResult Function(AuthStateLogoutFailure value)? logoutFailure,
+  }) {
+    return loginCancelSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthStateNotAuthorized value)? notAuthorized,
+    TResult Function(AuthstateLoginInProgress value)? loginInProgress,
+    TResult Function(AuthStateLoginSuccess value)? loginSuccess,
+    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
+    TResult Function(AuthStateLoginFailure value)? loginFailure,
+    TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
+    TResult Function(AuthStateLogoutFailure value)? logoutFailure,
+    required TResult orElse(),
+  }) {
+    if (loginCancelSuccess != null) {
+      return loginCancelSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthStateLognCancelSuccess implements AuthState {
+  const factory AuthStateLognCancelSuccess() = _$AuthStateLognCancelSuccess;
 }
 
 /// @nodoc
@@ -1228,6 +1754,7 @@ class _$AuthStateLoginFailure implements AuthStateLoginFailure {
     required TResult Function() notAuthorized,
     required TResult Function(bool showCancel) loginInProgress,
     required TResult Function() loginSuccess,
+    required TResult Function() loginCancelSuccess,
     required TResult Function(Error error) loginFailure,
     required TResult Function() logoutInProgress,
     required TResult Function(Error error) logoutFailure,
@@ -1241,6 +1768,7 @@ class _$AuthStateLoginFailure implements AuthStateLoginFailure {
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
+    TResult Function()? loginCancelSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
     TResult Function(Error error)? logoutFailure,
@@ -1254,6 +1782,7 @@ class _$AuthStateLoginFailure implements AuthStateLoginFailure {
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
+    TResult Function()? loginCancelSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
     TResult Function(Error error)? logoutFailure,
@@ -1271,6 +1800,8 @@ class _$AuthStateLoginFailure implements AuthStateLoginFailure {
     required TResult Function(AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(AuthstateLoginInProgress value) loginInProgress,
     required TResult Function(AuthStateLoginSuccess value) loginSuccess,
+    required TResult Function(AuthStateLognCancelSuccess value)
+        loginCancelSuccess,
     required TResult Function(AuthStateLoginFailure value) loginFailure,
     required TResult Function(AuthStateLogoutInProgress value) logoutInProgress,
     required TResult Function(AuthStateLogoutFailure value) logoutFailure,
@@ -1284,6 +1815,7 @@ class _$AuthStateLoginFailure implements AuthStateLoginFailure {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
+    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -1297,6 +1829,7 @@ class _$AuthStateLoginFailure implements AuthStateLoginFailure {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
+    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -1362,6 +1895,7 @@ class _$AuthStateLogoutInProgress implements AuthStateLogoutInProgress {
     required TResult Function() notAuthorized,
     required TResult Function(bool showCancel) loginInProgress,
     required TResult Function() loginSuccess,
+    required TResult Function() loginCancelSuccess,
     required TResult Function(Error error) loginFailure,
     required TResult Function() logoutInProgress,
     required TResult Function(Error error) logoutFailure,
@@ -1375,6 +1909,7 @@ class _$AuthStateLogoutInProgress implements AuthStateLogoutInProgress {
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
+    TResult Function()? loginCancelSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
     TResult Function(Error error)? logoutFailure,
@@ -1388,6 +1923,7 @@ class _$AuthStateLogoutInProgress implements AuthStateLogoutInProgress {
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
+    TResult Function()? loginCancelSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
     TResult Function(Error error)? logoutFailure,
@@ -1405,6 +1941,8 @@ class _$AuthStateLogoutInProgress implements AuthStateLogoutInProgress {
     required TResult Function(AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(AuthstateLoginInProgress value) loginInProgress,
     required TResult Function(AuthStateLoginSuccess value) loginSuccess,
+    required TResult Function(AuthStateLognCancelSuccess value)
+        loginCancelSuccess,
     required TResult Function(AuthStateLoginFailure value) loginFailure,
     required TResult Function(AuthStateLogoutInProgress value) logoutInProgress,
     required TResult Function(AuthStateLogoutFailure value) logoutFailure,
@@ -1418,6 +1956,7 @@ class _$AuthStateLogoutInProgress implements AuthStateLogoutInProgress {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
+    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -1431,6 +1970,7 @@ class _$AuthStateLogoutInProgress implements AuthStateLogoutInProgress {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
+    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -1516,6 +2056,7 @@ class _$AuthStateLogoutFailure implements AuthStateLogoutFailure {
     required TResult Function() notAuthorized,
     required TResult Function(bool showCancel) loginInProgress,
     required TResult Function() loginSuccess,
+    required TResult Function() loginCancelSuccess,
     required TResult Function(Error error) loginFailure,
     required TResult Function() logoutInProgress,
     required TResult Function(Error error) logoutFailure,
@@ -1529,6 +2070,7 @@ class _$AuthStateLogoutFailure implements AuthStateLogoutFailure {
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
+    TResult Function()? loginCancelSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
     TResult Function(Error error)? logoutFailure,
@@ -1542,6 +2084,7 @@ class _$AuthStateLogoutFailure implements AuthStateLogoutFailure {
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
     TResult Function()? loginSuccess,
+    TResult Function()? loginCancelSuccess,
     TResult Function(Error error)? loginFailure,
     TResult Function()? logoutInProgress,
     TResult Function(Error error)? logoutFailure,
@@ -1559,6 +2102,8 @@ class _$AuthStateLogoutFailure implements AuthStateLogoutFailure {
     required TResult Function(AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(AuthstateLoginInProgress value) loginInProgress,
     required TResult Function(AuthStateLoginSuccess value) loginSuccess,
+    required TResult Function(AuthStateLognCancelSuccess value)
+        loginCancelSuccess,
     required TResult Function(AuthStateLoginFailure value) loginFailure,
     required TResult Function(AuthStateLogoutInProgress value) logoutInProgress,
     required TResult Function(AuthStateLogoutFailure value) logoutFailure,
@@ -1572,6 +2117,7 @@ class _$AuthStateLogoutFailure implements AuthStateLogoutFailure {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
+    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -1585,6 +2131,7 @@ class _$AuthStateLogoutFailure implements AuthStateLogoutFailure {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
+    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,

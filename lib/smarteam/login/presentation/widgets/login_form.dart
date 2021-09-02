@@ -102,6 +102,11 @@ class _LoginFormState extends State<LoginForm> {
                     _passwordFirstEnter = false;
                   });
                 },
+                onEditingComplete: () {
+                  if (_formIsValidated()) {
+                    _submit(context);
+                  }
+                },
               ),
               const SizedBox(height: 10),
               RememberCheckbox(
@@ -119,14 +124,7 @@ class _LoginFormState extends State<LoginForm> {
                 key: kLoginButtonKey,
                 text: l10n.loginButtonText,
                 enabled: widget.enabled && _formIsValidated(),
-                onPressed: () {
-                  context.read<AuthBloc>().add(
-                        AuthEvent.loginStarted(
-                          username: _usernameController.text,
-                          password: _passwordController.text,
-                        ),
-                      );
-                },
+                onPressed: () => _submit(context),
               ),
             ],
           ),
@@ -142,5 +140,14 @@ class _LoginFormState extends State<LoginForm> {
     }
 
     return form.validate() && !_usernameFirstEnter && !_passwordFirstEnter;
+  }
+
+  void _submit(BuildContext context) {
+    context.read<AuthBloc>().add(
+          AuthEvent.loginStarted(
+            username: _usernameController.text,
+            password: _passwordController.text,
+          ),
+        );
   }
 }

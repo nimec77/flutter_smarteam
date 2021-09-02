@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_smarteam/smarteam/app/domain/errors/smarteam_login_failure.dart';
 import 'package:flutter_smarteam/smarteam/app/domain/errors/smarteam_logout_failure.dart';
+import 'package:flutter_smarteam/smarteam/app/presentation/blocs/constants.dart';
 import 'package:flutter_smarteam/smarteam/login/domain/ports/smarteam_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
@@ -31,7 +32,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async* {
     yield* event.map(
       loginStarted: _mapLoginStartedToState,
-      loginShowCancel: _mapLoginShowCancelToState,
+      loginSuccessful: _mapLoginSuccessfulToState,
+      loginFailed: _mapLoginFailedToState,
+      shownCancel: _mapShownCancelToState,
       loginCanceled: _mapLoginCanceledToState,
       logoutStarted: _mapLogoutStartedToState,
     );
@@ -40,26 +43,32 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Stream<AuthState> _mapLoginStartedToState(AuthEventLoginStarted event) async* {
     yield const AuthState.loginInProgress(showCancel: false);
 
-    Future.delayed(const Duration(seconds: 1), _showCancel);
+    unawaited(_loginSmarteam(event.username, event.password));
 
-    // final result = await smarteamLoginRepository.userLogin(event.username, event.password);
-    // yield result.fold(
-    //   (error) => AuthState.loginFailure(error),
-    //   (loginResult) {
-    //     if (loginResult) {
-    //       return const AuthState.loginSuccess();
-    //     }
-    //     return AuthState.loginFailure(SmarteamLoginFailure());
-    //   },
-    // );
+    unawaited(_showCancel());
   }
 
-  Stream<AuthState> _mapLoginShowCancelToState(AuthEventShowCancel event) async* {
+  Stream<AuthState> _mapLoginSuccessfulToState(AuthEventLoginSuccessful event) async* {
+    if (state is AuthStateLognCancelSuccess) {
+      yield const AuthState.notAuthorized();
+      unawaited(smarteamLoginRepository.userLogout());
+    } else {
+      yield const AuthState.loginSuccess();
+    }
+  }
+
+  Stream<AuthState> _mapLoginFailedToState(AuthEventLoginFailed event) async* {
+    yield AuthState.loginFailure(event.error);
+  }
+
+  Stream<AuthState> _mapShownCancelToState(AuthEventShownCancel event) async* {
     yield const AuthState.loginInProgress(showCancel: true);
   }
 
   Stream<AuthState> _mapLoginCanceledToState(AuthEventLoginCanceled event) async* {
-    yield const AuthState.notAuthorized();
+    yield const AuthState.loginInProgress(showCancel: false);
+    await Future<void>.delayed(const Duration(seconds: 1));
+    yield const AuthState.loginCancelSuccess();
   }
 
   Stream<AuthState> _mapLogoutStartedToState(AuthEventLogoutStarted event) async* {
@@ -80,9 +89,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     yield const AuthState.notAuthorized();
   }
 
-  void _showCancel() {
+  Future<void> _loginSmarteam(String username, String password) async {
+    final result = await smarteamLoginRepository.userLogin(username, password);
+    result.fold(
+      (error) => add(AuthEvent.loginFailed(error)),
+      (loginResult) =>
+          loginResult ? add(const AuthEvent.loginSuccessful()) : add(AuthEvent.loginFailed(SmarteamLoginFailure())),
+    );
+  }
+
+  Future<void> _showCancel() async {
+    await Future<void>.delayed(kShowCancelDelay);
     if (state is AuthstateLoginInProgress) {
-      add(const AuthEvent.loginShowCancel());
+      add(const AuthEvent.shownCancel());
     }
   }
 }

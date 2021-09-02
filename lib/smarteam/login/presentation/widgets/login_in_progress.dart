@@ -14,7 +14,7 @@ class LoginInProgress extends StatelessWidget {
       child: Center(
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(15),
             color: Colors.white,
           ),
           child: Padding(

@@ -8,6 +8,8 @@ class AuthState with _$AuthState {
 
   const factory AuthState.loginSuccess() = AuthStateLoginSuccess;
 
+  const factory AuthState.loginCancelSuccess() = AuthStateLognCancelSuccess;
+
   const factory AuthState.loginFailure(Error error) = AuthStateLoginFailure;
 
   const factory AuthState.logoutInProgress() = AuthStateLogoutInProgress;
