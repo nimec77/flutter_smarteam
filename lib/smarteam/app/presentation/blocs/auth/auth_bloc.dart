@@ -49,7 +49,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Stream<AuthState> _mapLoginSuccessfulToState(AuthEventLoginSuccessful event) async* {
-    if (state is AuthStateLognCancelSuccess) {
+    if (state is AuthStateLoginCancelSuccess) {
       yield const AuthState.notAuthorized();
       unawaited(smarteamLoginRepository.userLogout());
     } else {

@@ -998,8 +998,8 @@ class _$AuthStateTearOff {
     return const AuthStateLoginSuccess();
   }
 
-  AuthStateLognCancelSuccess loginCancelSuccess() {
-    return const AuthStateLognCancelSuccess();
+  AuthStateLoginCancelSuccess loginCancelSuccess() {
+    return const AuthStateLoginCancelSuccess();
   }
 
   AuthStateLoginFailure loginFailure(Error error) {
@@ -1063,7 +1063,7 @@ mixin _$AuthState {
     required TResult Function(AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(AuthstateLoginInProgress value) loginInProgress,
     required TResult Function(AuthStateLoginSuccess value) loginSuccess,
-    required TResult Function(AuthStateLognCancelSuccess value)
+    required TResult Function(AuthStateLoginCancelSuccess value)
         loginCancelSuccess,
     required TResult Function(AuthStateLoginFailure value) loginFailure,
     required TResult Function(AuthStateLogoutInProgress value) logoutInProgress,
@@ -1075,7 +1075,7 @@ mixin _$AuthState {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
-    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
+    TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -1086,7 +1086,7 @@ mixin _$AuthState {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
-    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
+    TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -1199,7 +1199,7 @@ class _$AuthStateNotAuthorized implements AuthStateNotAuthorized {
     required TResult Function(AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(AuthstateLoginInProgress value) loginInProgress,
     required TResult Function(AuthStateLoginSuccess value) loginSuccess,
-    required TResult Function(AuthStateLognCancelSuccess value)
+    required TResult Function(AuthStateLoginCancelSuccess value)
         loginCancelSuccess,
     required TResult Function(AuthStateLoginFailure value) loginFailure,
     required TResult Function(AuthStateLogoutInProgress value) logoutInProgress,
@@ -1214,7 +1214,7 @@ class _$AuthStateNotAuthorized implements AuthStateNotAuthorized {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
-    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
+    TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -1228,7 +1228,7 @@ class _$AuthStateNotAuthorized implements AuthStateNotAuthorized {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
-    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
+    TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -1362,7 +1362,7 @@ class _$AuthstateLoginInProgress implements AuthstateLoginInProgress {
     required TResult Function(AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(AuthstateLoginInProgress value) loginInProgress,
     required TResult Function(AuthStateLoginSuccess value) loginSuccess,
-    required TResult Function(AuthStateLognCancelSuccess value)
+    required TResult Function(AuthStateLoginCancelSuccess value)
         loginCancelSuccess,
     required TResult Function(AuthStateLoginFailure value) loginFailure,
     required TResult Function(AuthStateLogoutInProgress value) logoutInProgress,
@@ -1377,7 +1377,7 @@ class _$AuthstateLoginInProgress implements AuthstateLoginInProgress {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
-    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
+    TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -1391,7 +1391,7 @@ class _$AuthstateLoginInProgress implements AuthstateLoginInProgress {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
-    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
+    TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -1503,7 +1503,7 @@ class _$AuthStateLoginSuccess implements AuthStateLoginSuccess {
     required TResult Function(AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(AuthstateLoginInProgress value) loginInProgress,
     required TResult Function(AuthStateLoginSuccess value) loginSuccess,
-    required TResult Function(AuthStateLognCancelSuccess value)
+    required TResult Function(AuthStateLoginCancelSuccess value)
         loginCancelSuccess,
     required TResult Function(AuthStateLoginFailure value) loginFailure,
     required TResult Function(AuthStateLogoutInProgress value) logoutInProgress,
@@ -1518,7 +1518,7 @@ class _$AuthStateLoginSuccess implements AuthStateLoginSuccess {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
-    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
+    TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -1532,7 +1532,7 @@ class _$AuthStateLoginSuccess implements AuthStateLoginSuccess {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
-    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
+    TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -1550,29 +1550,30 @@ abstract class AuthStateLoginSuccess implements AuthState {
 }
 
 /// @nodoc
-abstract class $AuthStateLognCancelSuccessCopyWith<$Res> {
-  factory $AuthStateLognCancelSuccessCopyWith(AuthStateLognCancelSuccess value,
-          $Res Function(AuthStateLognCancelSuccess) then) =
-      _$AuthStateLognCancelSuccessCopyWithImpl<$Res>;
+abstract class $AuthStateLoginCancelSuccessCopyWith<$Res> {
+  factory $AuthStateLoginCancelSuccessCopyWith(
+          AuthStateLoginCancelSuccess value,
+          $Res Function(AuthStateLoginCancelSuccess) then) =
+      _$AuthStateLoginCancelSuccessCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AuthStateLognCancelSuccessCopyWithImpl<$Res>
+class _$AuthStateLoginCancelSuccessCopyWithImpl<$Res>
     extends _$AuthStateCopyWithImpl<$Res>
-    implements $AuthStateLognCancelSuccessCopyWith<$Res> {
-  _$AuthStateLognCancelSuccessCopyWithImpl(AuthStateLognCancelSuccess _value,
-      $Res Function(AuthStateLognCancelSuccess) _then)
-      : super(_value, (v) => _then(v as AuthStateLognCancelSuccess));
+    implements $AuthStateLoginCancelSuccessCopyWith<$Res> {
+  _$AuthStateLoginCancelSuccessCopyWithImpl(AuthStateLoginCancelSuccess _value,
+      $Res Function(AuthStateLoginCancelSuccess) _then)
+      : super(_value, (v) => _then(v as AuthStateLoginCancelSuccess));
 
   @override
-  AuthStateLognCancelSuccess get _value =>
-      super._value as AuthStateLognCancelSuccess;
+  AuthStateLoginCancelSuccess get _value =>
+      super._value as AuthStateLoginCancelSuccess;
 }
 
 /// @nodoc
 
-class _$AuthStateLognCancelSuccess implements AuthStateLognCancelSuccess {
-  const _$AuthStateLognCancelSuccess();
+class _$AuthStateLoginCancelSuccess implements AuthStateLoginCancelSuccess {
+  const _$AuthStateLoginCancelSuccess();
 
   @override
   String toString() {
@@ -1581,7 +1582,7 @@ class _$AuthStateLognCancelSuccess implements AuthStateLognCancelSuccess {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is AuthStateLognCancelSuccess);
+    return identical(this, other) || (other is AuthStateLoginCancelSuccess);
   }
 
   @override
@@ -1639,7 +1640,7 @@ class _$AuthStateLognCancelSuccess implements AuthStateLognCancelSuccess {
     required TResult Function(AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(AuthstateLoginInProgress value) loginInProgress,
     required TResult Function(AuthStateLoginSuccess value) loginSuccess,
-    required TResult Function(AuthStateLognCancelSuccess value)
+    required TResult Function(AuthStateLoginCancelSuccess value)
         loginCancelSuccess,
     required TResult Function(AuthStateLoginFailure value) loginFailure,
     required TResult Function(AuthStateLogoutInProgress value) logoutInProgress,
@@ -1654,7 +1655,7 @@ class _$AuthStateLognCancelSuccess implements AuthStateLognCancelSuccess {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
-    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
+    TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -1668,7 +1669,7 @@ class _$AuthStateLognCancelSuccess implements AuthStateLognCancelSuccess {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
-    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
+    TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -1681,8 +1682,8 @@ class _$AuthStateLognCancelSuccess implements AuthStateLognCancelSuccess {
   }
 }
 
-abstract class AuthStateLognCancelSuccess implements AuthState {
-  const factory AuthStateLognCancelSuccess() = _$AuthStateLognCancelSuccess;
+abstract class AuthStateLoginCancelSuccess implements AuthState {
+  const factory AuthStateLoginCancelSuccess() = _$AuthStateLoginCancelSuccess;
 }
 
 /// @nodoc
@@ -1800,7 +1801,7 @@ class _$AuthStateLoginFailure implements AuthStateLoginFailure {
     required TResult Function(AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(AuthstateLoginInProgress value) loginInProgress,
     required TResult Function(AuthStateLoginSuccess value) loginSuccess,
-    required TResult Function(AuthStateLognCancelSuccess value)
+    required TResult Function(AuthStateLoginCancelSuccess value)
         loginCancelSuccess,
     required TResult Function(AuthStateLoginFailure value) loginFailure,
     required TResult Function(AuthStateLogoutInProgress value) logoutInProgress,
@@ -1815,7 +1816,7 @@ class _$AuthStateLoginFailure implements AuthStateLoginFailure {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
-    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
+    TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -1829,7 +1830,7 @@ class _$AuthStateLoginFailure implements AuthStateLoginFailure {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
-    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
+    TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -1941,7 +1942,7 @@ class _$AuthStateLogoutInProgress implements AuthStateLogoutInProgress {
     required TResult Function(AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(AuthstateLoginInProgress value) loginInProgress,
     required TResult Function(AuthStateLoginSuccess value) loginSuccess,
-    required TResult Function(AuthStateLognCancelSuccess value)
+    required TResult Function(AuthStateLoginCancelSuccess value)
         loginCancelSuccess,
     required TResult Function(AuthStateLoginFailure value) loginFailure,
     required TResult Function(AuthStateLogoutInProgress value) logoutInProgress,
@@ -1956,7 +1957,7 @@ class _$AuthStateLogoutInProgress implements AuthStateLogoutInProgress {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
-    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
+    TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -1970,7 +1971,7 @@ class _$AuthStateLogoutInProgress implements AuthStateLogoutInProgress {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
-    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
+    TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -2102,7 +2103,7 @@ class _$AuthStateLogoutFailure implements AuthStateLogoutFailure {
     required TResult Function(AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(AuthstateLoginInProgress value) loginInProgress,
     required TResult Function(AuthStateLoginSuccess value) loginSuccess,
-    required TResult Function(AuthStateLognCancelSuccess value)
+    required TResult Function(AuthStateLoginCancelSuccess value)
         loginCancelSuccess,
     required TResult Function(AuthStateLoginFailure value) loginFailure,
     required TResult Function(AuthStateLogoutInProgress value) logoutInProgress,
@@ -2117,7 +2118,7 @@ class _$AuthStateLogoutFailure implements AuthStateLogoutFailure {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
-    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
+    TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
@@ -2131,7 +2132,7 @@ class _$AuthStateLogoutFailure implements AuthStateLogoutFailure {
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
-    TResult Function(AuthStateLognCancelSuccess value)? loginCancelSuccess,
+    TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
     TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
     TResult Function(AuthStateLogoutFailure value)? logoutFailure,
