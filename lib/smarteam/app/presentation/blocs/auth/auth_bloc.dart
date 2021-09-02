@@ -67,7 +67,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Stream<AuthState> _mapLoginCanceledToState(AuthEventLoginCanceled event) async* {
     yield const AuthState.loginInProgress(showCancel: false);
-    await Future<void>.delayed(const Duration(seconds: 1));
+    await Future<void>.delayed(kAuthAnimationDelay);
     yield const AuthState.loginCancelSuccess();
   }
 
@@ -77,12 +77,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     yield* result.fold(
       (error) async* {
         yield AuthState.logoutFailure(error);
-        await Future<void>.delayed(const Duration(seconds: 1));
+        await Future<void>.delayed(kAuthAnimationDelay);
       },
       (logoutResult) async* {
         if (!logoutResult) {
           yield AuthState.logoutFailure(SmarteamLogoutFailure());
-          await Future<void>.delayed(const Duration(seconds: 1));
+          await Future<void>.delayed(kAuthAnimationDelay);
         }
       },
     );
