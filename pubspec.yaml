@@ -11,6 +11,7 @@ dependencies:
   dart_smarteam:
     git: git://github.com/nimec77/dart_smarteam.git
   dartz: ^0.10.0
+  flash: ^2.0.1
   flow_builder: ^0.0.4
   flutter:
     sdk: flutter
@@ -23,7 +24,7 @@ dependencies:
 
 dev_dependencies:
   bloc_test: ^8.1.0
-  build_runner: ^2.1.1
+  build_runner: ^2.1.2
   flutter_test:
     sdk: flutter
   freezed: ^0.14.5

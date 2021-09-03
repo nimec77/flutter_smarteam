@@ -39,5 +39,9 @@
   "splashPageTimeoutErrorMessage": "Инициализация не была завершена в отведенное время.",
   "@splashPageTimeoutErrorMessage": {
     "description": "Error message displayed on initialization timeout"
+  },
+  "snackbarHideButtonText": "СКРЫТЬ",
+  "@snackbarHideButtonText": {
+    "description": "Text displayed on hide button in snackbar"
   }
 }

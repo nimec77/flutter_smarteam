@@ -39,5 +39,9 @@
     "splashPageTimeoutErrorMessage": "Initialization was not completed in the allotted time.",
     "@splashPageTimeoutErrorMessage": {
         "description": "Error message displayed on initialization timeout"
+    },
+    "snackbarHideButtonText": "HIDE",
+    "@snackbarHideButtonText": {
+        "description": "Text displayed on hide button in snackbar"
     }
 }
