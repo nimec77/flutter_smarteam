@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_smarteam/smarteam/app/domain/errors/smarteam_login_failure.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/auth/auth_bloc.dart';
+import 'package:flutter_smarteam/smarteam/app/presentation/helpers/helper.dart' as helper;
 import 'package:flutter_smarteam/smarteam/login/presentation/common_widgets/background_widget.dart';
 import 'package:flutter_smarteam/smarteam/login/presentation/widgets/login_cart.dart';
 import 'package:flutter_smarteam/smarteam/login/presentation/widgets/login_in_progress.dart';
@@ -16,6 +18,10 @@ class LoginPage extends StatelessWidget {
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           debugPrint(state.toString());
+          state.maybeWhen(
+            loginFailure: (error) => _showErrorSnackbar(context, error),
+            orElse: () {},
+          );
         },
         builder: (context, state) {
           final enabled = state.maybeWhen(
@@ -40,16 +46,27 @@ class LoginPage extends StatelessWidget {
                   opacity: showLoginInProgress ? 1.0 : 0.0,
                   duration: const Duration(milliseconds: 500),
                   child: LoginInProgress(
-                    onCancel: () {
-                      debugPrint('Cancel');
-                      context.read<AuthBloc>().add(const AuthEvent.loginCanceled());
-                    },
+                    onCancel: () => context.read<AuthBloc>().add(const AuthEvent.loginCanceled()),
                   ),
                 ),
             ],
           );
         },
       ),
+    );
+  }
+
+  void _showErrorSnackbar(BuildContext context, Error error) {
+    final String text;
+    if (error is SmarteamLoginFailure) {
+      text = 'Invalid Credentials';
+    } else {
+      text = error.toString();
+    }
+    helper.showErrorSnackbars(
+      context: context,
+      title: 'Login Error',
+      text: text,
     );
   }
 }

@@ -15,7 +15,7 @@ Future<void> showErrorSnackbars({
     builder: (context, controller) {
       return Flash<void>.bar(
         controller: controller,
-        backgroundColor: Theme.of(context).colorScheme.secondary,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         horizontalDismissDirection: HorizontalDismissDirection.endToStart,
         margin: EdgeInsets.symmetric(horizontal: (MediaQuery.of(context).size.width - kSnakeWidth) / 2, vertical: 8),
         borderRadius: const BorderRadius.all(Radius.circular(15)),
@@ -24,23 +24,20 @@ Future<void> showErrorSnackbars({
         child: FlashBar(
           title: Text(
             title,
-            style: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
-          content: Text(
-            text,
-            style: TextStyle(color: Theme.of(context).primaryColor),
-          ),
+          content: Text(text),
           primaryAction: TextButton(
             onPressed: () => controller.dismiss(),
             style: ButtonStyle(
               foregroundColor: MaterialStateColor.resolveWith((states) {
                 if (states.contains(MaterialState.hovered)) {
-                  return Theme.of(context).primaryColor;
+                  return Colors.black;
                 }
-                return Colors.black;
+                return Theme.of(context).colorScheme.secondary;
               }),
             ),
-            child: Text(l10n.snackbarHideButtonText),
+            child: Text(l10n.snackbarHideButtonText, style: const TextStyle(fontWeight: FontWeight.bold)),
           ),
           icon: Icon(Icons.error, color: Theme.of(context).errorColor),
         ),
