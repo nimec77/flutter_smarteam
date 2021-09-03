@@ -43,5 +43,13 @@
   "snackbarHideButtonText": "СКРЫТЬ",
   "@snackbarHideButtonText": {
     "description": "Text displayed on hide button in snackbar"
+  },
+  "snackbarErrorTitle": "Ошибка",
+  "@snackbarErrorTitle": {
+    "description": "Text displayed on snackbar title"
+  },
+  "invalidCredentialsText": "Неверные учетные данные",
+  "@invalidCredentialsText": {
+    "description": "Invalid credentials error message"
   }
 }
