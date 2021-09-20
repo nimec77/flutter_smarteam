@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
 
 class LoginInProgress extends StatelessWidget {
-  const LoginInProgress({Key? key, this.onCancel}) : super(key: key);
+  const LoginInProgress({
+    Key? key,
+    this.onCancel,
+    this.width,
+    this.height,
+    this.value,
+  }) : super(key: key);
 
   final VoidCallback? onCancel;
+  final double? width;
+  final double? height;
+  final double? value;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      height: double.infinity,
+      width: width ?? double.infinity,
+      height: height ?? double.infinity,
       color: Colors.black54,
       child: Center(
         child: Container(
@@ -22,7 +31,7 @@ class LoginInProgress extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const CircularProgressIndicator(),
+                CircularProgressIndicator(value: value),
                 const SizedBox(width: 20),
                 const Text('Login in progress...'),
                 const SizedBox(width: 20),
