@@ -1,17 +1,17 @@
 import 'package:dart_smarteam/smarteam.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter_smarteam/smarteam/login/data/providers/smarteam_login_provider.dart';
+import 'package:flutter_smarteam/smarteam/login/data/providers/smarteam_user_provider.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../constants.dart';
 
 void main() {
   const smarteam = Smarteam();
-  late final SmarteamLoginProvider smarteamProvider;
+  late final SmarteamUserProvider smarteamProvider;
 
   setUpAll(() async {
     await smarteam.init();
-    smarteamProvider = SmarteamLoginProvider(const Smarteam());
+    smarteamProvider = SmarteamUserProvider(const Smarteam());
   });
 
   tearDownAll(() async {

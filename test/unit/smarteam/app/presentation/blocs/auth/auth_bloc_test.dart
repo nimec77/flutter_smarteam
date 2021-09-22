@@ -4,11 +4,11 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_smarteam/smarteam/app/domain/errors/smarteam_login_failure.dart';
 import 'package:flutter_smarteam/smarteam/app/domain/errors/smarteam_logout_failure.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/auth/auth_bloc.dart';
-import 'package:flutter_smarteam/smarteam/login/domain/ports/smarteam_repository.dart';
+import 'package:flutter_smarteam/smarteam/login/domain/ports/smarteam_user_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockSmarteamLoginRepository extends Mock implements SmarteamLoginRepository {}
+class MockSmarteamLoginRepository extends Mock implements SmarteamUserRepository {}
 
 void main() {
   final mockSmarteamLoginRepository = MockSmarteamLoginRepository();

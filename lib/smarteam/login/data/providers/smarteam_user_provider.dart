@@ -1,8 +1,8 @@
 import 'package:dart_smarteam/smarteam.dart';
 import 'package:dartz/dartz.dart';
 
-class SmarteamLoginProvider {
-  SmarteamLoginProvider(this.smarteam);
+class SmarteamUserProvider {
+  SmarteamUserProvider(this.smarteam);
 
   final Smarteam smarteam;
 

@@ -1,13 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/auth/auth_bloc.dart';
-import 'package:flutter_smarteam/smarteam/login/domain/ports/smarteam_repository.dart';
+import 'package:flutter_smarteam/smarteam/login/domain/ports/smarteam_user_repository.dart';
 import 'package:flutter_smarteam/smarteam/login/presentation/widgets/login_form.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../../../../helpers/helpers.dart';
 
-class MockSmarteamLoginRepository extends Mock implements SmarteamLoginRepository {}
+class MockSmarteamLoginRepository extends Mock implements SmarteamUserRepository {}
 
 void main() {
   final mockSmarteamLoginRepository = MockSmarteamLoginRepository();

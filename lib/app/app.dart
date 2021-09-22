@@ -13,9 +13,9 @@ import 'package:flutter_smarteam/app/constants.dart';
 import 'package:flutter_smarteam/l10n/l10n.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/auth/auth_bloc.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/init/init_bloc.dart';
-import 'package:flutter_smarteam/smarteam/login/data/providers/smarteam_login_provider.dart';
-import 'package:flutter_smarteam/smarteam/login/data/repositories/smarteam_repository_imp.dart';
-import 'package:flutter_smarteam/smarteam/login/domain/ports/smarteam_repository.dart';
+import 'package:flutter_smarteam/smarteam/login/data/providers/smarteam_user_provider.dart';
+import 'package:flutter_smarteam/smarteam/login/data/repositories/smarteam_user_repository_imp.dart';
+import 'package:flutter_smarteam/smarteam/login/domain/ports/smarteam_user_repository.dart';
 import 'package:flutter_smarteam/smarteam/smarteam.dart';
 import 'package:sizer/sizer.dart';
 
@@ -29,15 +29,15 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  late final SmarteamLoginProvider _smarteamLoginProvider;
-  late final SmarteamLoginRepository _smarteamLoginRepository;
+  late final SmarteamUserProvider _smarteamLoginProvider;
+  late final SmarteamUserRepository _smarteamLoginRepository;
   late final InitBloc _initBloc;
   late final AuthBloc _authBloc;
 
   @override
   void initState() {
-    _smarteamLoginProvider = SmarteamLoginProvider(widget.smarteam);
-    _smarteamLoginRepository = SmarteamLoginRepositoryImp(_smarteamLoginProvider);
+    _smarteamLoginProvider = SmarteamUserProvider(widget.smarteam);
+    _smarteamLoginRepository = SmarteamUserRepositoryImp(_smarteamLoginProvider);
     _initBloc = InitBloc(smarteam: widget.smarteam);
     _authBloc = AuthBloc(smarteamLoginRepository: _smarteamLoginRepository);
     super.initState();
