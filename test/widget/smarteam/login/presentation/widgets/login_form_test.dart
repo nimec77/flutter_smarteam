@@ -15,6 +15,8 @@ class Pair {
 }
 
 void main() {
+  setUpAll(TestWidgetsFlutterBinding.ensureInitialized);
+
   group('LoginForm text', () {
     testWidgets('LoginForm render test', (widgetTester) async {
       late final AppLocalizations l10n;

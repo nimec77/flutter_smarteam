@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/auth/auth_bloc.dart';
+import 'package:flutter_smarteam/smarteam/app/presentation/blocs/init/init_bloc.dart';
 import 'package:flutter_smarteam/smarteam/login/domain/ports/smarteam_user_repository.dart';
 import 'package:flutter_smarteam/smarteam/login/presentation/widgets/login_form.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
@@ -8,13 +9,15 @@ import 'package:mocktail/mocktail.dart';
 import '../../../../../helpers/helpers.dart';
 
 class MockSmarteamLoginRepository extends Mock implements SmarteamUserRepository {}
+class MockInitBlock extends Mock implements InitBloc {}
 
 void main() {
   final mockSmarteamLoginRepository = MockSmarteamLoginRepository();
+  final mockInitBloc = MockInitBlock();
 
   testGoldens('LoginForm render test', (tester) async {
     final widget = BlocProvider<AuthBloc>(
-      create: (context) => AuthBloc(smarteamLoginRepository: mockSmarteamLoginRepository),
+      create: (context) => AuthBloc(smarteamLoginRepository: mockSmarteamLoginRepository, initBloc: mockInitBloc),
       child: LoginForm(),
     );
     final builder = GoldenBuilder.column()..addScenario('LoginForm', widget);

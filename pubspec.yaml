@@ -42,5 +42,6 @@ flutter:
   generate: true
 
   assets:
-   - assets/images/
+   - assets/images/no_data.png
+   - assets/images/login_picture.png
 

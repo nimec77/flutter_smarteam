@@ -11,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_smarteam/app/constants.dart';
 import 'package:flutter_smarteam/l10n/l10n.dart';
+import 'package:flutter_smarteam/smarteam/app/data/providers/sqlite_provider.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/auth/auth_bloc.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/init/init_bloc.dart';
 import 'package:flutter_smarteam/smarteam/login/data/providers/smarteam_user_provider.dart';
@@ -38,8 +39,8 @@ class _AppState extends State<App> {
   void initState() {
     _smarteamLoginProvider = SmarteamUserProvider(widget.smarteam);
     _smarteamLoginRepository = SmarteamUserRepositoryImp(_smarteamLoginProvider);
-    _initBloc = InitBloc(smarteam: widget.smarteam);
-    _authBloc = AuthBloc(smarteamLoginRepository: _smarteamLoginRepository);
+    _initBloc = InitBloc(sqliteProvider: SqliteProvider(), smarteam: widget.smarteam);
+    _authBloc = AuthBloc(smarteamLoginRepository: _smarteamLoginRepository, initBloc: _initBloc);
     super.initState();
   }
 

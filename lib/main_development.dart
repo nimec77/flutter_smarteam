@@ -11,10 +11,8 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:dart_smarteam/smarteam.dart';
 import 'package:flutter/widgets.dart';
-
 import 'package:flutter_smarteam/app/app.dart';
 import 'package:flutter_smarteam/app/app_bloc_observer.dart';
-import 'package:flutter_smarteam/sqlite_helper.dart' as sqlite_helper;
 
 void main() {
   Bloc.observer = AppBlocObserver();
@@ -23,10 +21,7 @@ void main() {
   };
 
   runZonedGuarded(
-    () {
-      sqlite_helper.openSqlite();
-      runApp(const App(smarteam: Smarteam()));
-    },
+    () => runApp(const App(smarteam: Smarteam())),
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
   );
 }

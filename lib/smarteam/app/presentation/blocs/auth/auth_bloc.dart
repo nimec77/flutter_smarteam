@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_smarteam/smarteam/app/domain/errors/smarteam_login_failure.dart';
 import 'package:flutter_smarteam/smarteam/app/domain/errors/smarteam_logout_failure.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/constants.dart';
+import 'package:flutter_smarteam/smarteam/app/presentation/blocs/init/init_bloc.dart';
 import 'package:flutter_smarteam/smarteam/login/domain/ports/smarteam_user_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
@@ -15,9 +16,10 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc({required this.smarteamLoginRepository}) : super(const AuthState.notAuthorized());
+  AuthBloc({required this.smarteamLoginRepository, required this.initBloc}) : super(const AuthState.notAuthorized());
 
   final SmarteamUserRepository smarteamLoginRepository;
+  final InitBloc initBloc;
   StreamSubscription<AuthState>? _loginInProgressSubscription;
 
   @override

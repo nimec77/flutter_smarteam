@@ -580,8 +580,10 @@ class _$InitStateTearOff {
     );
   }
 
-  InitStateSuccess initSuccess() {
-    return const InitStateSuccess();
+  InitStateSuccess initSuccess(AppDatabase appDatabase) {
+    return InitStateSuccess(
+      appDatabase,
+    );
   }
 
   InitStateFailure initFailure(Error error) {
@@ -604,7 +606,7 @@ mixin _$InitState {
   TResult when<TResult extends Object?>({
     required TResult Function() notInit,
     required TResult Function(double progress) initInProgress,
-    required TResult Function() initSuccess,
+    required TResult Function(AppDatabase appDatabase) initSuccess,
     required TResult Function(Error error) initFailure,
     required TResult Function() initTimeout,
   }) =>
@@ -613,7 +615,7 @@ mixin _$InitState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function()? initSuccess,
+    TResult Function(AppDatabase appDatabase)? initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
   }) =>
@@ -622,7 +624,7 @@ mixin _$InitState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function()? initSuccess,
+    TResult Function(AppDatabase appDatabase)? initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
     required TResult orElse(),
@@ -714,7 +716,7 @@ class _$InitStateNotInit implements InitStateNotInit {
   TResult when<TResult extends Object?>({
     required TResult Function() notInit,
     required TResult Function(double progress) initInProgress,
-    required TResult Function() initSuccess,
+    required TResult Function(AppDatabase appDatabase) initSuccess,
     required TResult Function(Error error) initFailure,
     required TResult Function() initTimeout,
   }) {
@@ -726,7 +728,7 @@ class _$InitStateNotInit implements InitStateNotInit {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function()? initSuccess,
+    TResult Function(AppDatabase appDatabase)? initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
   }) {
@@ -738,7 +740,7 @@ class _$InitStateNotInit implements InitStateNotInit {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function()? initSuccess,
+    TResult Function(AppDatabase appDatabase)? initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
     required TResult orElse(),
@@ -862,7 +864,7 @@ class _$InitStateInProgress implements InitStateInProgress {
   TResult when<TResult extends Object?>({
     required TResult Function() notInit,
     required TResult Function(double progress) initInProgress,
-    required TResult Function() initSuccess,
+    required TResult Function(AppDatabase appDatabase) initSuccess,
     required TResult Function(Error error) initFailure,
     required TResult Function() initTimeout,
   }) {
@@ -874,7 +876,7 @@ class _$InitStateInProgress implements InitStateInProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function()? initSuccess,
+    TResult Function(AppDatabase appDatabase)? initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
   }) {
@@ -886,7 +888,7 @@ class _$InitStateInProgress implements InitStateInProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function()? initSuccess,
+    TResult Function(AppDatabase appDatabase)? initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
     required TResult orElse(),
@@ -952,6 +954,7 @@ abstract class $InitStateSuccessCopyWith<$Res> {
   factory $InitStateSuccessCopyWith(
           InitStateSuccess value, $Res Function(InitStateSuccess) then) =
       _$InitStateSuccessCopyWithImpl<$Res>;
+  $Res call({AppDatabase appDatabase});
 }
 
 /// @nodoc
@@ -963,36 +966,61 @@ class _$InitStateSuccessCopyWithImpl<$Res> extends _$InitStateCopyWithImpl<$Res>
 
   @override
   InitStateSuccess get _value => super._value as InitStateSuccess;
+
+  @override
+  $Res call({
+    Object? appDatabase = freezed,
+  }) {
+    return _then(InitStateSuccess(
+      appDatabase == freezed
+          ? _value.appDatabase
+          : appDatabase // ignore: cast_nullable_to_non_nullable
+              as AppDatabase,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$InitStateSuccess implements InitStateSuccess {
-  const _$InitStateSuccess();
+  const _$InitStateSuccess(this.appDatabase);
+
+  @override
+  final AppDatabase appDatabase;
 
   @override
   String toString() {
-    return 'InitState.initSuccess()';
+    return 'InitState.initSuccess(appDatabase: $appDatabase)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is InitStateSuccess);
+    return identical(this, other) ||
+        (other is InitStateSuccess &&
+            (identical(other.appDatabase, appDatabase) ||
+                const DeepCollectionEquality()
+                    .equals(other.appDatabase, appDatabase)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(appDatabase);
+
+  @JsonKey(ignore: true)
+  @override
+  $InitStateSuccessCopyWith<InitStateSuccess> get copyWith =>
+      _$InitStateSuccessCopyWithImpl<InitStateSuccess>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() notInit,
     required TResult Function(double progress) initInProgress,
-    required TResult Function() initSuccess,
+    required TResult Function(AppDatabase appDatabase) initSuccess,
     required TResult Function(Error error) initFailure,
     required TResult Function() initTimeout,
   }) {
-    return initSuccess();
+    return initSuccess(appDatabase);
   }
 
   @override
@@ -1000,11 +1028,11 @@ class _$InitStateSuccess implements InitStateSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function()? initSuccess,
+    TResult Function(AppDatabase appDatabase)? initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
   }) {
-    return initSuccess?.call();
+    return initSuccess?.call(appDatabase);
   }
 
   @override
@@ -1012,13 +1040,13 @@ class _$InitStateSuccess implements InitStateSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function()? initSuccess,
+    TResult Function(AppDatabase appDatabase)? initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
     required TResult orElse(),
   }) {
     if (initSuccess != null) {
-      return initSuccess();
+      return initSuccess(appDatabase);
     }
     return orElse();
   }
@@ -1065,7 +1093,12 @@ class _$InitStateSuccess implements InitStateSuccess {
 }
 
 abstract class InitStateSuccess implements InitState {
-  const factory InitStateSuccess() = _$InitStateSuccess;
+  const factory InitStateSuccess(AppDatabase appDatabase) = _$InitStateSuccess;
+
+  AppDatabase get appDatabase => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $InitStateSuccessCopyWith<InitStateSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1134,7 +1167,7 @@ class _$InitStateFailure implements InitStateFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() notInit,
     required TResult Function(double progress) initInProgress,
-    required TResult Function() initSuccess,
+    required TResult Function(AppDatabase appDatabase) initSuccess,
     required TResult Function(Error error) initFailure,
     required TResult Function() initTimeout,
   }) {
@@ -1146,7 +1179,7 @@ class _$InitStateFailure implements InitStateFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function()? initSuccess,
+    TResult Function(AppDatabase appDatabase)? initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
   }) {
@@ -1158,7 +1191,7 @@ class _$InitStateFailure implements InitStateFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function()? initSuccess,
+    TResult Function(AppDatabase appDatabase)? initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
     required TResult orElse(),
@@ -1260,7 +1293,7 @@ class _$InitStateTimeout implements InitStateTimeout {
   TResult when<TResult extends Object?>({
     required TResult Function() notInit,
     required TResult Function(double progress) initInProgress,
-    required TResult Function() initSuccess,
+    required TResult Function(AppDatabase appDatabase) initSuccess,
     required TResult Function(Error error) initFailure,
     required TResult Function() initTimeout,
   }) {
@@ -1272,7 +1305,7 @@ class _$InitStateTimeout implements InitStateTimeout {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function()? initSuccess,
+    TResult Function(AppDatabase appDatabase)? initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
   }) {
@@ -1284,7 +1317,7 @@ class _$InitStateTimeout implements InitStateTimeout {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function()? initSuccess,
+    TResult Function(AppDatabase appDatabase)? initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
     required TResult orElse(),

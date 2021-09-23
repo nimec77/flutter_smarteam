@@ -1,7 +1,7 @@
-import 'package:dartz/dartz.dart';
+import 'package:dart_smarteam/smarteam.dart';
 
 abstract class SmarteamUserRepository {
-  Future<Either<Error, bool>> userLogin(String username, String password);
+  Future<EitherBool> userLogin(String username, String password);
 
-  Future<Either<Error, bool>> userLogout();
+  Future<EitherBool> userLogout();
 }
