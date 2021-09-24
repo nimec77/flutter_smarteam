@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_smarteam/smarteam/app/domain/errors/smarteam_login_failure.dart';
-import 'package:flutter_smarteam/smarteam/app/domain/errors/smarteam_logout_failure.dart';
+import 'package:flutter_smarteam/smarteam/app/data/app_database.dart';
+import 'package:flutter_smarteam/smarteam/app/domain/errors/smarteam_user_error.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/constants.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/init/init_bloc.dart';
-import 'package:flutter_smarteam/smarteam/login/domain/ports/repositories/crypto_repository.dart';
-import 'package:flutter_smarteam/smarteam/login/domain/ports/repositories/smarteam_user_repository.dart';
+import 'package:flutter_smarteam/smarteam/login/domain/use_cases/credential_use_case.dart';
+import 'package:flutter_smarteam/smarteam/login/domain/use_cases/smart_user_use_case.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 
@@ -17,27 +17,35 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc({required this.initBloc}) : super(const AuthState.notAuthorized());
+  AuthBloc({required this.initBloc}) : super(const AuthState.notAuthorized()) {
+    initBloc.stream.where((state) => state is InitStateSuccess).listen((state) {
+      final success = initBloc.state as InitStateSuccess;
+      success.credentialEither.map(
+          (credential) => add(AuthEvent.loginStarted(username: credential.username, password: credential.password)));
+    });
+  }
 
   final InitBloc initBloc;
+  Credential? _credential;
 
   @override
   Future<void> close() {
     return super.close();
   }
 
-  SmarteamUserRepository get smarteamUserRepository {
+  SmartUserUseCase get smartUserUseCase {
     assert(initBloc.state is InitStateSuccess);
     final state = initBloc.state as InitStateSuccess;
 
-    return state.smarteamUserRepository;
+    return SmartUserUseCase(state.smarteamUserRepository);
   }
 
-  CryptoRepository get cryptoRepository {
+  CredentialUseCase get credentialUseCase {
     assert(initBloc.state is InitStateSuccess);
     final state = initBloc.state as InitStateSuccess;
 
-    return state.cryptoRepository;
+    return CredentialUseCase(
+        credentialsDao: state.appDatabase.credentialsDaoImp, cryptoRepository: state.cryptoRepository);
   }
 
   @override
@@ -65,9 +73,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Stream<AuthState> _mapLoginSuccessfulToState(AuthEventLoginSuccessful event) async* {
     if (state is AuthStateLoginCancelSuccess) {
       yield const AuthState.notAuthorized();
-      unawaited(smarteamUserRepository.userLogout());
+      unawaited(smartUserUseCase.userLogout());
     } else {
-      yield const AuthState.loginSuccess();
+      yield AuthState.loginSuccess(_credential!);
     }
   }
 
@@ -87,7 +95,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Stream<AuthState> _mapLogoutStartedToState(AuthEventLogoutStarted event) async* {
     yield const AuthState.logoutInProgress();
-    final result = await smarteamUserRepository.userLogout();
+    final result = await smartUserUseCase.userLogout();
     yield* result.fold(
       (error) async* {
         yield AuthState.logoutFailure(error);
@@ -95,7 +103,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       },
       (logoutResult) async* {
         if (!logoutResult) {
-          yield AuthState.logoutFailure(SmarteamLogoutFailure());
+          yield AuthState.logoutFailure(SmarteamUserError.logout(Error()));
           await Future<void>.delayed(kAuthAnimationDelay);
         }
       },
@@ -104,11 +112,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Future<void> _loginSmarteam(String username, String password) async {
-    final result = await smarteamUserRepository.userLogin(username, password);
-    result.fold(
-      (error) => add(AuthEvent.loginFailed(error)),
-      (loginResult) =>
-          loginResult ? add(const AuthEvent.loginSuccessful()) : add(AuthEvent.loginFailed(SmarteamLoginFailure())),
+    final credentialEither = await credentialUseCase.createCredential(username, password);
+    credentialEither.fold(
+      (error) => add(AuthEvent.loginFailed(SmarteamUserError.credential(error))),
+      (credential) async {
+        _credential = credential;
+        final result = await smartUserUseCase.userLogin(_credential!);
+        result.fold(
+          (error) => add(AuthEvent.loginFailed(error)),
+          (loginResult) => loginResult
+              ? add(const AuthEvent.loginSuccessful())
+              : add(AuthEvent.loginFailed(SmarteamUserError.login(Error()))),
+        );
+      },
     );
   }
 

@@ -1,5 +1,7 @@
+// ignore_for_file: avoid_catching_errors
 import 'package:dartz/dartz.dart';
 import 'package:flutter_smarteam/smarteam/app/data/app_database.dart';
+import 'package:flutter_smarteam/smarteam/app/domain/errors/credential_error.dart';
 import 'package:flutter_smarteam/smarteam/login/domain/entities/credentials.dart';
 import 'package:flutter_smarteam/smarteam/login/domain/ports/daos/credentials_dao.dart';
 import 'package:moor/moor.dart';
@@ -13,22 +15,22 @@ class CredentialsDaoImp extends DatabaseAccessor<AppDatabase> with _$Credentials
   final AppDatabase appDatabase;
 
   @override
-  Future<Either<Exception, Credential>> credentialBySid(String sid) async {
+  Future<Either<CredentialError, Credential>> credentialBySid(String sid) async {
     try {
       final result = select(credentials)..where((tbl) => tbl.sid.equals(sid));
       return Right(await result.getSingle());
-    } on InvalidDataException catch (e) {
-      return Left(e);
+    } on StateError catch(error) {
+      return Left(CredentialError.database(error));
     }
   }
 
   @override
-  Future<Either<Exception, int>> saveCredential(Credential credential) async {
+  Future<Either<CredentialError, int>> saveCredential(Credential credential) async {
     try {
       final result = await into(credentials).insertOnConflictUpdate(credential);
       return Right(result);
-    } on InvalidDataException catch (e) {
-      return Left(e);
+    } on StateError catch(error) {
+      return Left(CredentialError.database(error));
     }
   }
 }

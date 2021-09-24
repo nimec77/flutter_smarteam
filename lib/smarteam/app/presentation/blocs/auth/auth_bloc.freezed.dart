@@ -29,7 +29,7 @@ class _$AuthEventTearOff {
     return const AuthEventLoginSuccessful();
   }
 
-  AuthEventLoginFailed loginFailed(Error error) {
+  AuthEventLoginFailed loginFailed(SmarteamUserError error) {
     return AuthEventLoginFailed(
       error,
     );
@@ -57,7 +57,7 @@ mixin _$AuthEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String username, String password) loginStarted,
     required TResult Function() loginSuccessful,
-    required TResult Function(Error error) loginFailed,
+    required TResult Function(SmarteamUserError error) loginFailed,
     required TResult Function() loginCanceled,
     required TResult Function() shownCancel,
     required TResult Function() logoutStarted,
@@ -67,7 +67,7 @@ mixin _$AuthEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
     TResult Function()? loginSuccessful,
-    TResult Function(Error error)? loginFailed,
+    TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
     TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
@@ -77,7 +77,7 @@ mixin _$AuthEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
     TResult Function()? loginSuccessful,
-    TResult Function(Error error)? loginFailed,
+    TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
     TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
@@ -214,7 +214,7 @@ class _$AuthEventLoginStarted implements AuthEventLoginStarted {
   TResult when<TResult extends Object?>({
     required TResult Function(String username, String password) loginStarted,
     required TResult Function() loginSuccessful,
-    required TResult Function(Error error) loginFailed,
+    required TResult Function(SmarteamUserError error) loginFailed,
     required TResult Function() loginCanceled,
     required TResult Function() shownCancel,
     required TResult Function() logoutStarted,
@@ -227,7 +227,7 @@ class _$AuthEventLoginStarted implements AuthEventLoginStarted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
     TResult Function()? loginSuccessful,
-    TResult Function(Error error)? loginFailed,
+    TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
     TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
@@ -240,7 +240,7 @@ class _$AuthEventLoginStarted implements AuthEventLoginStarted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
     TResult Function()? loginSuccessful,
-    TResult Function(Error error)? loginFailed,
+    TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
     TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
@@ -351,7 +351,7 @@ class _$AuthEventLoginSuccessful implements AuthEventLoginSuccessful {
   TResult when<TResult extends Object?>({
     required TResult Function(String username, String password) loginStarted,
     required TResult Function() loginSuccessful,
-    required TResult Function(Error error) loginFailed,
+    required TResult Function(SmarteamUserError error) loginFailed,
     required TResult Function() loginCanceled,
     required TResult Function() shownCancel,
     required TResult Function() logoutStarted,
@@ -364,7 +364,7 @@ class _$AuthEventLoginSuccessful implements AuthEventLoginSuccessful {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
     TResult Function()? loginSuccessful,
-    TResult Function(Error error)? loginFailed,
+    TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
     TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
@@ -377,7 +377,7 @@ class _$AuthEventLoginSuccessful implements AuthEventLoginSuccessful {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
     TResult Function()? loginSuccessful,
-    TResult Function(Error error)? loginFailed,
+    TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
     TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
@@ -442,7 +442,9 @@ abstract class $AuthEventLoginFailedCopyWith<$Res> {
   factory $AuthEventLoginFailedCopyWith(AuthEventLoginFailed value,
           $Res Function(AuthEventLoginFailed) then) =
       _$AuthEventLoginFailedCopyWithImpl<$Res>;
-  $Res call({Error error});
+  $Res call({SmarteamUserError error});
+
+  $SmarteamUserErrorCopyWith<$Res> get error;
 }
 
 /// @nodoc
@@ -464,8 +466,15 @@ class _$AuthEventLoginFailedCopyWithImpl<$Res>
       error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as Error,
+              as SmarteamUserError,
     ));
+  }
+
+  @override
+  $SmarteamUserErrorCopyWith<$Res> get error {
+    return $SmarteamUserErrorCopyWith<$Res>(_value.error, (value) {
+      return _then(_value.copyWith(error: value));
+    });
   }
 }
 
@@ -475,7 +484,7 @@ class _$AuthEventLoginFailed implements AuthEventLoginFailed {
   const _$AuthEventLoginFailed(this.error);
 
   @override
-  final Error error;
+  final SmarteamUserError error;
 
   @override
   String toString() {
@@ -505,7 +514,7 @@ class _$AuthEventLoginFailed implements AuthEventLoginFailed {
   TResult when<TResult extends Object?>({
     required TResult Function(String username, String password) loginStarted,
     required TResult Function() loginSuccessful,
-    required TResult Function(Error error) loginFailed,
+    required TResult Function(SmarteamUserError error) loginFailed,
     required TResult Function() loginCanceled,
     required TResult Function() shownCancel,
     required TResult Function() logoutStarted,
@@ -518,7 +527,7 @@ class _$AuthEventLoginFailed implements AuthEventLoginFailed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
     TResult Function()? loginSuccessful,
-    TResult Function(Error error)? loginFailed,
+    TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
     TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
@@ -531,7 +540,7 @@ class _$AuthEventLoginFailed implements AuthEventLoginFailed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
     TResult Function()? loginSuccessful,
-    TResult Function(Error error)? loginFailed,
+    TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
     TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
@@ -588,9 +597,10 @@ class _$AuthEventLoginFailed implements AuthEventLoginFailed {
 }
 
 abstract class AuthEventLoginFailed implements AuthEvent {
-  const factory AuthEventLoginFailed(Error error) = _$AuthEventLoginFailed;
+  const factory AuthEventLoginFailed(SmarteamUserError error) =
+      _$AuthEventLoginFailed;
 
-  Error get error => throw _privateConstructorUsedError;
+  SmarteamUserError get error => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AuthEventLoginFailedCopyWith<AuthEventLoginFailed> get copyWith =>
       throw _privateConstructorUsedError;
@@ -638,7 +648,7 @@ class _$AuthEventLoginCanceled implements AuthEventLoginCanceled {
   TResult when<TResult extends Object?>({
     required TResult Function(String username, String password) loginStarted,
     required TResult Function() loginSuccessful,
-    required TResult Function(Error error) loginFailed,
+    required TResult Function(SmarteamUserError error) loginFailed,
     required TResult Function() loginCanceled,
     required TResult Function() shownCancel,
     required TResult Function() logoutStarted,
@@ -651,7 +661,7 @@ class _$AuthEventLoginCanceled implements AuthEventLoginCanceled {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
     TResult Function()? loginSuccessful,
-    TResult Function(Error error)? loginFailed,
+    TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
     TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
@@ -664,7 +674,7 @@ class _$AuthEventLoginCanceled implements AuthEventLoginCanceled {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
     TResult Function()? loginSuccessful,
-    TResult Function(Error error)? loginFailed,
+    TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
     TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
@@ -766,7 +776,7 @@ class _$AuthEventShownCancel implements AuthEventShownCancel {
   TResult when<TResult extends Object?>({
     required TResult Function(String username, String password) loginStarted,
     required TResult Function() loginSuccessful,
-    required TResult Function(Error error) loginFailed,
+    required TResult Function(SmarteamUserError error) loginFailed,
     required TResult Function() loginCanceled,
     required TResult Function() shownCancel,
     required TResult Function() logoutStarted,
@@ -779,7 +789,7 @@ class _$AuthEventShownCancel implements AuthEventShownCancel {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
     TResult Function()? loginSuccessful,
-    TResult Function(Error error)? loginFailed,
+    TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
     TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
@@ -792,7 +802,7 @@ class _$AuthEventShownCancel implements AuthEventShownCancel {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
     TResult Function()? loginSuccessful,
-    TResult Function(Error error)? loginFailed,
+    TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
     TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
@@ -894,7 +904,7 @@ class _$AuthEventLogoutStarted implements AuthEventLogoutStarted {
   TResult when<TResult extends Object?>({
     required TResult Function(String username, String password) loginStarted,
     required TResult Function() loginSuccessful,
-    required TResult Function(Error error) loginFailed,
+    required TResult Function(SmarteamUserError error) loginFailed,
     required TResult Function() loginCanceled,
     required TResult Function() shownCancel,
     required TResult Function() logoutStarted,
@@ -907,7 +917,7 @@ class _$AuthEventLogoutStarted implements AuthEventLogoutStarted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
     TResult Function()? loginSuccessful,
-    TResult Function(Error error)? loginFailed,
+    TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
     TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
@@ -920,7 +930,7 @@ class _$AuthEventLogoutStarted implements AuthEventLogoutStarted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String username, String password)? loginStarted,
     TResult Function()? loginSuccessful,
-    TResult Function(Error error)? loginFailed,
+    TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
     TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
@@ -994,15 +1004,17 @@ class _$AuthStateTearOff {
     );
   }
 
-  AuthStateLoginSuccess loginSuccess() {
-    return const AuthStateLoginSuccess();
+  AuthStateLoginSuccess loginSuccess(Credential credential) {
+    return AuthStateLoginSuccess(
+      credential,
+    );
   }
 
   AuthStateLoginCancelSuccess loginCancelSuccess() {
     return const AuthStateLoginCancelSuccess();
   }
 
-  AuthStateLoginFailure loginFailure(Error error) {
+  AuthStateLoginFailure loginFailure(SmarteamUserError error) {
     return AuthStateLoginFailure(
       error,
     );
@@ -1012,7 +1024,7 @@ class _$AuthStateTearOff {
     return const AuthStateLogoutInProgress();
   }
 
-  AuthStateLogoutFailure logoutFailure(Error error) {
+  AuthStateLogoutFailure logoutFailure(SmarteamUserError error) {
     return AuthStateLogoutFailure(
       error,
     );
@@ -1028,33 +1040,33 @@ mixin _$AuthState {
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
     required TResult Function(bool showCancel) loginInProgress,
-    required TResult Function() loginSuccess,
+    required TResult Function(Credential credential) loginSuccess,
     required TResult Function() loginCancelSuccess,
-    required TResult Function(Error error) loginFailure,
+    required TResult Function(SmarteamUserError error) loginFailure,
     required TResult Function() logoutInProgress,
-    required TResult Function(Error error) logoutFailure,
+    required TResult Function(SmarteamUserError error) logoutFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
-    TResult Function()? loginSuccess,
+    TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
-    TResult Function(Error error)? loginFailure,
+    TResult Function(SmarteamUserError error)? loginFailure,
     TResult Function()? logoutInProgress,
-    TResult Function(Error error)? logoutFailure,
+    TResult Function(SmarteamUserError error)? logoutFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
-    TResult Function()? loginSuccess,
+    TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
-    TResult Function(Error error)? loginFailure,
+    TResult Function(SmarteamUserError error)? loginFailure,
     TResult Function()? logoutInProgress,
-    TResult Function(Error error)? logoutFailure,
+    TResult Function(SmarteamUserError error)? logoutFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1152,11 +1164,11 @@ class _$AuthStateNotAuthorized implements AuthStateNotAuthorized {
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
     required TResult Function(bool showCancel) loginInProgress,
-    required TResult Function() loginSuccess,
+    required TResult Function(Credential credential) loginSuccess,
     required TResult Function() loginCancelSuccess,
-    required TResult Function(Error error) loginFailure,
+    required TResult Function(SmarteamUserError error) loginFailure,
     required TResult Function() logoutInProgress,
-    required TResult Function(Error error) logoutFailure,
+    required TResult Function(SmarteamUserError error) logoutFailure,
   }) {
     return notAuthorized();
   }
@@ -1166,11 +1178,11 @@ class _$AuthStateNotAuthorized implements AuthStateNotAuthorized {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
-    TResult Function()? loginSuccess,
+    TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
-    TResult Function(Error error)? loginFailure,
+    TResult Function(SmarteamUserError error)? loginFailure,
     TResult Function()? logoutInProgress,
-    TResult Function(Error error)? logoutFailure,
+    TResult Function(SmarteamUserError error)? logoutFailure,
   }) {
     return notAuthorized?.call();
   }
@@ -1180,11 +1192,11 @@ class _$AuthStateNotAuthorized implements AuthStateNotAuthorized {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
-    TResult Function()? loginSuccess,
+    TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
-    TResult Function(Error error)? loginFailure,
+    TResult Function(SmarteamUserError error)? loginFailure,
     TResult Function()? logoutInProgress,
-    TResult Function(Error error)? logoutFailure,
+    TResult Function(SmarteamUserError error)? logoutFailure,
     required TResult orElse(),
   }) {
     if (notAuthorized != null) {
@@ -1315,11 +1327,11 @@ class _$AuthstateLoginInProgress implements AuthstateLoginInProgress {
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
     required TResult Function(bool showCancel) loginInProgress,
-    required TResult Function() loginSuccess,
+    required TResult Function(Credential credential) loginSuccess,
     required TResult Function() loginCancelSuccess,
-    required TResult Function(Error error) loginFailure,
+    required TResult Function(SmarteamUserError error) loginFailure,
     required TResult Function() logoutInProgress,
-    required TResult Function(Error error) logoutFailure,
+    required TResult Function(SmarteamUserError error) logoutFailure,
   }) {
     return loginInProgress(showCancel);
   }
@@ -1329,11 +1341,11 @@ class _$AuthstateLoginInProgress implements AuthstateLoginInProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
-    TResult Function()? loginSuccess,
+    TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
-    TResult Function(Error error)? loginFailure,
+    TResult Function(SmarteamUserError error)? loginFailure,
     TResult Function()? logoutInProgress,
-    TResult Function(Error error)? logoutFailure,
+    TResult Function(SmarteamUserError error)? logoutFailure,
   }) {
     return loginInProgress?.call(showCancel);
   }
@@ -1343,11 +1355,11 @@ class _$AuthstateLoginInProgress implements AuthstateLoginInProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
-    TResult Function()? loginSuccess,
+    TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
-    TResult Function(Error error)? loginFailure,
+    TResult Function(SmarteamUserError error)? loginFailure,
     TResult Function()? logoutInProgress,
-    TResult Function(Error error)? logoutFailure,
+    TResult Function(SmarteamUserError error)? logoutFailure,
     required TResult orElse(),
   }) {
     if (loginInProgress != null) {
@@ -1419,6 +1431,7 @@ abstract class $AuthStateLoginSuccessCopyWith<$Res> {
   factory $AuthStateLoginSuccessCopyWith(AuthStateLoginSuccess value,
           $Res Function(AuthStateLoginSuccess) then) =
       _$AuthStateLoginSuccessCopyWithImpl<$Res>;
+  $Res call({Credential credential});
 }
 
 /// @nodoc
@@ -1431,38 +1444,64 @@ class _$AuthStateLoginSuccessCopyWithImpl<$Res>
 
   @override
   AuthStateLoginSuccess get _value => super._value as AuthStateLoginSuccess;
+
+  @override
+  $Res call({
+    Object? credential = freezed,
+  }) {
+    return _then(AuthStateLoginSuccess(
+      credential == freezed
+          ? _value.credential
+          : credential // ignore: cast_nullable_to_non_nullable
+              as Credential,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$AuthStateLoginSuccess implements AuthStateLoginSuccess {
-  const _$AuthStateLoginSuccess();
+  const _$AuthStateLoginSuccess(this.credential);
+
+  @override
+  final Credential credential;
 
   @override
   String toString() {
-    return 'AuthState.loginSuccess()';
+    return 'AuthState.loginSuccess(credential: $credential)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is AuthStateLoginSuccess);
+    return identical(this, other) ||
+        (other is AuthStateLoginSuccess &&
+            (identical(other.credential, credential) ||
+                const DeepCollectionEquality()
+                    .equals(other.credential, credential)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(credential);
+
+  @JsonKey(ignore: true)
+  @override
+  $AuthStateLoginSuccessCopyWith<AuthStateLoginSuccess> get copyWith =>
+      _$AuthStateLoginSuccessCopyWithImpl<AuthStateLoginSuccess>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
     required TResult Function(bool showCancel) loginInProgress,
-    required TResult Function() loginSuccess,
+    required TResult Function(Credential credential) loginSuccess,
     required TResult Function() loginCancelSuccess,
-    required TResult Function(Error error) loginFailure,
+    required TResult Function(SmarteamUserError error) loginFailure,
     required TResult Function() logoutInProgress,
-    required TResult Function(Error error) logoutFailure,
+    required TResult Function(SmarteamUserError error) logoutFailure,
   }) {
-    return loginSuccess();
+    return loginSuccess(credential);
   }
 
   @override
@@ -1470,13 +1509,13 @@ class _$AuthStateLoginSuccess implements AuthStateLoginSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
-    TResult Function()? loginSuccess,
+    TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
-    TResult Function(Error error)? loginFailure,
+    TResult Function(SmarteamUserError error)? loginFailure,
     TResult Function()? logoutInProgress,
-    TResult Function(Error error)? logoutFailure,
+    TResult Function(SmarteamUserError error)? logoutFailure,
   }) {
-    return loginSuccess?.call();
+    return loginSuccess?.call(credential);
   }
 
   @override
@@ -1484,15 +1523,15 @@ class _$AuthStateLoginSuccess implements AuthStateLoginSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
-    TResult Function()? loginSuccess,
+    TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
-    TResult Function(Error error)? loginFailure,
+    TResult Function(SmarteamUserError error)? loginFailure,
     TResult Function()? logoutInProgress,
-    TResult Function(Error error)? logoutFailure,
+    TResult Function(SmarteamUserError error)? logoutFailure,
     required TResult orElse(),
   }) {
     if (loginSuccess != null) {
-      return loginSuccess();
+      return loginSuccess(credential);
     }
     return orElse();
   }
@@ -1546,7 +1585,13 @@ class _$AuthStateLoginSuccess implements AuthStateLoginSuccess {
 }
 
 abstract class AuthStateLoginSuccess implements AuthState {
-  const factory AuthStateLoginSuccess() = _$AuthStateLoginSuccess;
+  const factory AuthStateLoginSuccess(Credential credential) =
+      _$AuthStateLoginSuccess;
+
+  Credential get credential => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AuthStateLoginSuccessCopyWith<AuthStateLoginSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1593,11 +1638,11 @@ class _$AuthStateLoginCancelSuccess implements AuthStateLoginCancelSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
     required TResult Function(bool showCancel) loginInProgress,
-    required TResult Function() loginSuccess,
+    required TResult Function(Credential credential) loginSuccess,
     required TResult Function() loginCancelSuccess,
-    required TResult Function(Error error) loginFailure,
+    required TResult Function(SmarteamUserError error) loginFailure,
     required TResult Function() logoutInProgress,
-    required TResult Function(Error error) logoutFailure,
+    required TResult Function(SmarteamUserError error) logoutFailure,
   }) {
     return loginCancelSuccess();
   }
@@ -1607,11 +1652,11 @@ class _$AuthStateLoginCancelSuccess implements AuthStateLoginCancelSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
-    TResult Function()? loginSuccess,
+    TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
-    TResult Function(Error error)? loginFailure,
+    TResult Function(SmarteamUserError error)? loginFailure,
     TResult Function()? logoutInProgress,
-    TResult Function(Error error)? logoutFailure,
+    TResult Function(SmarteamUserError error)? logoutFailure,
   }) {
     return loginCancelSuccess?.call();
   }
@@ -1621,11 +1666,11 @@ class _$AuthStateLoginCancelSuccess implements AuthStateLoginCancelSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
-    TResult Function()? loginSuccess,
+    TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
-    TResult Function(Error error)? loginFailure,
+    TResult Function(SmarteamUserError error)? loginFailure,
     TResult Function()? logoutInProgress,
-    TResult Function(Error error)? logoutFailure,
+    TResult Function(SmarteamUserError error)? logoutFailure,
     required TResult orElse(),
   }) {
     if (loginCancelSuccess != null) {
@@ -1691,7 +1736,9 @@ abstract class $AuthStateLoginFailureCopyWith<$Res> {
   factory $AuthStateLoginFailureCopyWith(AuthStateLoginFailure value,
           $Res Function(AuthStateLoginFailure) then) =
       _$AuthStateLoginFailureCopyWithImpl<$Res>;
-  $Res call({Error error});
+  $Res call({SmarteamUserError error});
+
+  $SmarteamUserErrorCopyWith<$Res> get error;
 }
 
 /// @nodoc
@@ -1713,8 +1760,15 @@ class _$AuthStateLoginFailureCopyWithImpl<$Res>
       error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as Error,
+              as SmarteamUserError,
     ));
+  }
+
+  @override
+  $SmarteamUserErrorCopyWith<$Res> get error {
+    return $SmarteamUserErrorCopyWith<$Res>(_value.error, (value) {
+      return _then(_value.copyWith(error: value));
+    });
   }
 }
 
@@ -1724,7 +1778,7 @@ class _$AuthStateLoginFailure implements AuthStateLoginFailure {
   const _$AuthStateLoginFailure(this.error);
 
   @override
-  final Error error;
+  final SmarteamUserError error;
 
   @override
   String toString() {
@@ -1754,11 +1808,11 @@ class _$AuthStateLoginFailure implements AuthStateLoginFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
     required TResult Function(bool showCancel) loginInProgress,
-    required TResult Function() loginSuccess,
+    required TResult Function(Credential credential) loginSuccess,
     required TResult Function() loginCancelSuccess,
-    required TResult Function(Error error) loginFailure,
+    required TResult Function(SmarteamUserError error) loginFailure,
     required TResult Function() logoutInProgress,
-    required TResult Function(Error error) logoutFailure,
+    required TResult Function(SmarteamUserError error) logoutFailure,
   }) {
     return loginFailure(error);
   }
@@ -1768,11 +1822,11 @@ class _$AuthStateLoginFailure implements AuthStateLoginFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
-    TResult Function()? loginSuccess,
+    TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
-    TResult Function(Error error)? loginFailure,
+    TResult Function(SmarteamUserError error)? loginFailure,
     TResult Function()? logoutInProgress,
-    TResult Function(Error error)? logoutFailure,
+    TResult Function(SmarteamUserError error)? logoutFailure,
   }) {
     return loginFailure?.call(error);
   }
@@ -1782,11 +1836,11 @@ class _$AuthStateLoginFailure implements AuthStateLoginFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
-    TResult Function()? loginSuccess,
+    TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
-    TResult Function(Error error)? loginFailure,
+    TResult Function(SmarteamUserError error)? loginFailure,
     TResult Function()? logoutInProgress,
-    TResult Function(Error error)? logoutFailure,
+    TResult Function(SmarteamUserError error)? logoutFailure,
     required TResult orElse(),
   }) {
     if (loginFailure != null) {
@@ -1844,9 +1898,10 @@ class _$AuthStateLoginFailure implements AuthStateLoginFailure {
 }
 
 abstract class AuthStateLoginFailure implements AuthState {
-  const factory AuthStateLoginFailure(Error error) = _$AuthStateLoginFailure;
+  const factory AuthStateLoginFailure(SmarteamUserError error) =
+      _$AuthStateLoginFailure;
 
-  Error get error => throw _privateConstructorUsedError;
+  SmarteamUserError get error => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AuthStateLoginFailureCopyWith<AuthStateLoginFailure> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1895,11 +1950,11 @@ class _$AuthStateLogoutInProgress implements AuthStateLogoutInProgress {
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
     required TResult Function(bool showCancel) loginInProgress,
-    required TResult Function() loginSuccess,
+    required TResult Function(Credential credential) loginSuccess,
     required TResult Function() loginCancelSuccess,
-    required TResult Function(Error error) loginFailure,
+    required TResult Function(SmarteamUserError error) loginFailure,
     required TResult Function() logoutInProgress,
-    required TResult Function(Error error) logoutFailure,
+    required TResult Function(SmarteamUserError error) logoutFailure,
   }) {
     return logoutInProgress();
   }
@@ -1909,11 +1964,11 @@ class _$AuthStateLogoutInProgress implements AuthStateLogoutInProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
-    TResult Function()? loginSuccess,
+    TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
-    TResult Function(Error error)? loginFailure,
+    TResult Function(SmarteamUserError error)? loginFailure,
     TResult Function()? logoutInProgress,
-    TResult Function(Error error)? logoutFailure,
+    TResult Function(SmarteamUserError error)? logoutFailure,
   }) {
     return logoutInProgress?.call();
   }
@@ -1923,11 +1978,11 @@ class _$AuthStateLogoutInProgress implements AuthStateLogoutInProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
-    TResult Function()? loginSuccess,
+    TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
-    TResult Function(Error error)? loginFailure,
+    TResult Function(SmarteamUserError error)? loginFailure,
     TResult Function()? logoutInProgress,
-    TResult Function(Error error)? logoutFailure,
+    TResult Function(SmarteamUserError error)? logoutFailure,
     required TResult orElse(),
   }) {
     if (logoutInProgress != null) {
@@ -1993,7 +2048,9 @@ abstract class $AuthStateLogoutFailureCopyWith<$Res> {
   factory $AuthStateLogoutFailureCopyWith(AuthStateLogoutFailure value,
           $Res Function(AuthStateLogoutFailure) then) =
       _$AuthStateLogoutFailureCopyWithImpl<$Res>;
-  $Res call({Error error});
+  $Res call({SmarteamUserError error});
+
+  $SmarteamUserErrorCopyWith<$Res> get error;
 }
 
 /// @nodoc
@@ -2015,8 +2072,15 @@ class _$AuthStateLogoutFailureCopyWithImpl<$Res>
       error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as Error,
+              as SmarteamUserError,
     ));
+  }
+
+  @override
+  $SmarteamUserErrorCopyWith<$Res> get error {
+    return $SmarteamUserErrorCopyWith<$Res>(_value.error, (value) {
+      return _then(_value.copyWith(error: value));
+    });
   }
 }
 
@@ -2026,7 +2090,7 @@ class _$AuthStateLogoutFailure implements AuthStateLogoutFailure {
   const _$AuthStateLogoutFailure(this.error);
 
   @override
-  final Error error;
+  final SmarteamUserError error;
 
   @override
   String toString() {
@@ -2056,11 +2120,11 @@ class _$AuthStateLogoutFailure implements AuthStateLogoutFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
     required TResult Function(bool showCancel) loginInProgress,
-    required TResult Function() loginSuccess,
+    required TResult Function(Credential credential) loginSuccess,
     required TResult Function() loginCancelSuccess,
-    required TResult Function(Error error) loginFailure,
+    required TResult Function(SmarteamUserError error) loginFailure,
     required TResult Function() logoutInProgress,
-    required TResult Function(Error error) logoutFailure,
+    required TResult Function(SmarteamUserError error) logoutFailure,
   }) {
     return logoutFailure(error);
   }
@@ -2070,11 +2134,11 @@ class _$AuthStateLogoutFailure implements AuthStateLogoutFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
-    TResult Function()? loginSuccess,
+    TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
-    TResult Function(Error error)? loginFailure,
+    TResult Function(SmarteamUserError error)? loginFailure,
     TResult Function()? logoutInProgress,
-    TResult Function(Error error)? logoutFailure,
+    TResult Function(SmarteamUserError error)? logoutFailure,
   }) {
     return logoutFailure?.call(error);
   }
@@ -2084,11 +2148,11 @@ class _$AuthStateLogoutFailure implements AuthStateLogoutFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function(bool showCancel)? loginInProgress,
-    TResult Function()? loginSuccess,
+    TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
-    TResult Function(Error error)? loginFailure,
+    TResult Function(SmarteamUserError error)? loginFailure,
     TResult Function()? logoutInProgress,
-    TResult Function(Error error)? logoutFailure,
+    TResult Function(SmarteamUserError error)? logoutFailure,
     required TResult orElse(),
   }) {
     if (logoutFailure != null) {
@@ -2146,9 +2210,10 @@ class _$AuthStateLogoutFailure implements AuthStateLogoutFailure {
 }
 
 abstract class AuthStateLogoutFailure implements AuthState {
-  const factory AuthStateLogoutFailure(Error error) = _$AuthStateLogoutFailure;
+  const factory AuthStateLogoutFailure(SmarteamUserError error) =
+      _$AuthStateLogoutFailure;
 
-  Error get error => throw _privateConstructorUsedError;
+  SmarteamUserError get error => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AuthStateLogoutFailureCopyWith<AuthStateLogoutFailure> get copyWith =>
       throw _privateConstructorUsedError;

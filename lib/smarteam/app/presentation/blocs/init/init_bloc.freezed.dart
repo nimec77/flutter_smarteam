@@ -583,15 +583,17 @@ class _$InitStateTearOff {
   InitStateSuccess initSuccess(
       {required AppDatabase appDatabase,
       required SmarteamUserRepository smarteamUserRepository,
-      required CryptoRepository cryptoRepository}) {
+      required CryptoRepository cryptoRepository,
+      required Either<CredentialError, Credential> credentialEither}) {
     return InitStateSuccess(
       appDatabase: appDatabase,
       smarteamUserRepository: smarteamUserRepository,
       cryptoRepository: cryptoRepository,
+      credentialEither: credentialEither,
     );
   }
 
-  InitStateFailure initFailure(Error error) {
+  InitStateFailure initFailure(SmarteamInitError error) {
     return InitStateFailure(
       error,
     );
@@ -614,9 +616,10 @@ mixin _$InitState {
     required TResult Function(
             AppDatabase appDatabase,
             SmarteamUserRepository smarteamUserRepository,
-            CryptoRepository cryptoRepository)
+            CryptoRepository cryptoRepository,
+            Either<CredentialError, Credential> credentialEither)
         initSuccess,
-    required TResult Function(Error error) initFailure,
+    required TResult Function(SmarteamInitError error) initFailure,
     required TResult Function() initTimeout,
   }) =>
       throw _privateConstructorUsedError;
@@ -627,9 +630,10 @@ mixin _$InitState {
     TResult Function(
             AppDatabase appDatabase,
             SmarteamUserRepository smarteamUserRepository,
-            CryptoRepository cryptoRepository)?
+            CryptoRepository cryptoRepository,
+            Either<CredentialError, Credential> credentialEither)?
         initSuccess,
-    TResult Function(Error error)? initFailure,
+    TResult Function(SmarteamInitError error)? initFailure,
     TResult Function()? initTimeout,
   }) =>
       throw _privateConstructorUsedError;
@@ -640,9 +644,10 @@ mixin _$InitState {
     TResult Function(
             AppDatabase appDatabase,
             SmarteamUserRepository smarteamUserRepository,
-            CryptoRepository cryptoRepository)?
+            CryptoRepository cryptoRepository,
+            Either<CredentialError, Credential> credentialEither)?
         initSuccess,
-    TResult Function(Error error)? initFailure,
+    TResult Function(SmarteamInitError error)? initFailure,
     TResult Function()? initTimeout,
     required TResult orElse(),
   }) =>
@@ -736,9 +741,10 @@ class _$InitStateNotInit implements InitStateNotInit {
     required TResult Function(
             AppDatabase appDatabase,
             SmarteamUserRepository smarteamUserRepository,
-            CryptoRepository cryptoRepository)
+            CryptoRepository cryptoRepository,
+            Either<CredentialError, Credential> credentialEither)
         initSuccess,
-    required TResult Function(Error error) initFailure,
+    required TResult Function(SmarteamInitError error) initFailure,
     required TResult Function() initTimeout,
   }) {
     return notInit();
@@ -752,9 +758,10 @@ class _$InitStateNotInit implements InitStateNotInit {
     TResult Function(
             AppDatabase appDatabase,
             SmarteamUserRepository smarteamUserRepository,
-            CryptoRepository cryptoRepository)?
+            CryptoRepository cryptoRepository,
+            Either<CredentialError, Credential> credentialEither)?
         initSuccess,
-    TResult Function(Error error)? initFailure,
+    TResult Function(SmarteamInitError error)? initFailure,
     TResult Function()? initTimeout,
   }) {
     return notInit?.call();
@@ -768,9 +775,10 @@ class _$InitStateNotInit implements InitStateNotInit {
     TResult Function(
             AppDatabase appDatabase,
             SmarteamUserRepository smarteamUserRepository,
-            CryptoRepository cryptoRepository)?
+            CryptoRepository cryptoRepository,
+            Either<CredentialError, Credential> credentialEither)?
         initSuccess,
-    TResult Function(Error error)? initFailure,
+    TResult Function(SmarteamInitError error)? initFailure,
     TResult Function()? initTimeout,
     required TResult orElse(),
   }) {
@@ -896,9 +904,10 @@ class _$InitStateInProgress implements InitStateInProgress {
     required TResult Function(
             AppDatabase appDatabase,
             SmarteamUserRepository smarteamUserRepository,
-            CryptoRepository cryptoRepository)
+            CryptoRepository cryptoRepository,
+            Either<CredentialError, Credential> credentialEither)
         initSuccess,
-    required TResult Function(Error error) initFailure,
+    required TResult Function(SmarteamInitError error) initFailure,
     required TResult Function() initTimeout,
   }) {
     return initInProgress(progress);
@@ -912,9 +921,10 @@ class _$InitStateInProgress implements InitStateInProgress {
     TResult Function(
             AppDatabase appDatabase,
             SmarteamUserRepository smarteamUserRepository,
-            CryptoRepository cryptoRepository)?
+            CryptoRepository cryptoRepository,
+            Either<CredentialError, Credential> credentialEither)?
         initSuccess,
-    TResult Function(Error error)? initFailure,
+    TResult Function(SmarteamInitError error)? initFailure,
     TResult Function()? initTimeout,
   }) {
     return initInProgress?.call(progress);
@@ -928,9 +938,10 @@ class _$InitStateInProgress implements InitStateInProgress {
     TResult Function(
             AppDatabase appDatabase,
             SmarteamUserRepository smarteamUserRepository,
-            CryptoRepository cryptoRepository)?
+            CryptoRepository cryptoRepository,
+            Either<CredentialError, Credential> credentialEither)?
         initSuccess,
-    TResult Function(Error error)? initFailure,
+    TResult Function(SmarteamInitError error)? initFailure,
     TResult Function()? initTimeout,
     required TResult orElse(),
   }) {
@@ -998,7 +1009,8 @@ abstract class $InitStateSuccessCopyWith<$Res> {
   $Res call(
       {AppDatabase appDatabase,
       SmarteamUserRepository smarteamUserRepository,
-      CryptoRepository cryptoRepository});
+      CryptoRepository cryptoRepository,
+      Either<CredentialError, Credential> credentialEither});
 }
 
 /// @nodoc
@@ -1016,6 +1028,7 @@ class _$InitStateSuccessCopyWithImpl<$Res> extends _$InitStateCopyWithImpl<$Res>
     Object? appDatabase = freezed,
     Object? smarteamUserRepository = freezed,
     Object? cryptoRepository = freezed,
+    Object? credentialEither = freezed,
   }) {
     return _then(InitStateSuccess(
       appDatabase: appDatabase == freezed
@@ -1030,6 +1043,10 @@ class _$InitStateSuccessCopyWithImpl<$Res> extends _$InitStateCopyWithImpl<$Res>
           ? _value.cryptoRepository
           : cryptoRepository // ignore: cast_nullable_to_non_nullable
               as CryptoRepository,
+      credentialEither: credentialEither == freezed
+          ? _value.credentialEither
+          : credentialEither // ignore: cast_nullable_to_non_nullable
+              as Either<CredentialError, Credential>,
     ));
   }
 }
@@ -1040,7 +1057,8 @@ class _$InitStateSuccess implements InitStateSuccess {
   const _$InitStateSuccess(
       {required this.appDatabase,
       required this.smarteamUserRepository,
-      required this.cryptoRepository});
+      required this.cryptoRepository,
+      required this.credentialEither});
 
   @override
   final AppDatabase appDatabase;
@@ -1048,10 +1066,12 @@ class _$InitStateSuccess implements InitStateSuccess {
   final SmarteamUserRepository smarteamUserRepository;
   @override
   final CryptoRepository cryptoRepository;
+  @override
+  final Either<CredentialError, Credential> credentialEither;
 
   @override
   String toString() {
-    return 'InitState.initSuccess(appDatabase: $appDatabase, smarteamUserRepository: $smarteamUserRepository, cryptoRepository: $cryptoRepository)';
+    return 'InitState.initSuccess(appDatabase: $appDatabase, smarteamUserRepository: $smarteamUserRepository, cryptoRepository: $cryptoRepository, credentialEither: $credentialEither)';
   }
 
   @override
@@ -1066,7 +1086,10 @@ class _$InitStateSuccess implements InitStateSuccess {
                     other.smarteamUserRepository, smarteamUserRepository)) &&
             (identical(other.cryptoRepository, cryptoRepository) ||
                 const DeepCollectionEquality()
-                    .equals(other.cryptoRepository, cryptoRepository)));
+                    .equals(other.cryptoRepository, cryptoRepository)) &&
+            (identical(other.credentialEither, credentialEither) ||
+                const DeepCollectionEquality()
+                    .equals(other.credentialEither, credentialEither)));
   }
 
   @override
@@ -1074,7 +1097,8 @@ class _$InitStateSuccess implements InitStateSuccess {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(appDatabase) ^
       const DeepCollectionEquality().hash(smarteamUserRepository) ^
-      const DeepCollectionEquality().hash(cryptoRepository);
+      const DeepCollectionEquality().hash(cryptoRepository) ^
+      const DeepCollectionEquality().hash(credentialEither);
 
   @JsonKey(ignore: true)
   @override
@@ -1089,12 +1113,14 @@ class _$InitStateSuccess implements InitStateSuccess {
     required TResult Function(
             AppDatabase appDatabase,
             SmarteamUserRepository smarteamUserRepository,
-            CryptoRepository cryptoRepository)
+            CryptoRepository cryptoRepository,
+            Either<CredentialError, Credential> credentialEither)
         initSuccess,
-    required TResult Function(Error error) initFailure,
+    required TResult Function(SmarteamInitError error) initFailure,
     required TResult Function() initTimeout,
   }) {
-    return initSuccess(appDatabase, smarteamUserRepository, cryptoRepository);
+    return initSuccess(appDatabase, smarteamUserRepository, cryptoRepository,
+        credentialEither);
   }
 
   @override
@@ -1105,13 +1131,14 @@ class _$InitStateSuccess implements InitStateSuccess {
     TResult Function(
             AppDatabase appDatabase,
             SmarteamUserRepository smarteamUserRepository,
-            CryptoRepository cryptoRepository)?
+            CryptoRepository cryptoRepository,
+            Either<CredentialError, Credential> credentialEither)?
         initSuccess,
-    TResult Function(Error error)? initFailure,
+    TResult Function(SmarteamInitError error)? initFailure,
     TResult Function()? initTimeout,
   }) {
-    return initSuccess?.call(
-        appDatabase, smarteamUserRepository, cryptoRepository);
+    return initSuccess?.call(appDatabase, smarteamUserRepository,
+        cryptoRepository, credentialEither);
   }
 
   @override
@@ -1122,14 +1149,16 @@ class _$InitStateSuccess implements InitStateSuccess {
     TResult Function(
             AppDatabase appDatabase,
             SmarteamUserRepository smarteamUserRepository,
-            CryptoRepository cryptoRepository)?
+            CryptoRepository cryptoRepository,
+            Either<CredentialError, Credential> credentialEither)?
         initSuccess,
-    TResult Function(Error error)? initFailure,
+    TResult Function(SmarteamInitError error)? initFailure,
     TResult Function()? initTimeout,
     required TResult orElse(),
   }) {
     if (initSuccess != null) {
-      return initSuccess(appDatabase, smarteamUserRepository, cryptoRepository);
+      return initSuccess(appDatabase, smarteamUserRepository, cryptoRepository,
+          credentialEither);
     }
     return orElse();
   }
@@ -1177,14 +1206,18 @@ class _$InitStateSuccess implements InitStateSuccess {
 
 abstract class InitStateSuccess implements InitState {
   const factory InitStateSuccess(
-      {required AppDatabase appDatabase,
-      required SmarteamUserRepository smarteamUserRepository,
-      required CryptoRepository cryptoRepository}) = _$InitStateSuccess;
+          {required AppDatabase appDatabase,
+          required SmarteamUserRepository smarteamUserRepository,
+          required CryptoRepository cryptoRepository,
+          required Either<CredentialError, Credential> credentialEither}) =
+      _$InitStateSuccess;
 
   AppDatabase get appDatabase => throw _privateConstructorUsedError;
   SmarteamUserRepository get smarteamUserRepository =>
       throw _privateConstructorUsedError;
   CryptoRepository get cryptoRepository => throw _privateConstructorUsedError;
+  Either<CredentialError, Credential> get credentialEither =>
+      throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $InitStateSuccessCopyWith<InitStateSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1195,7 +1228,9 @@ abstract class $InitStateFailureCopyWith<$Res> {
   factory $InitStateFailureCopyWith(
           InitStateFailure value, $Res Function(InitStateFailure) then) =
       _$InitStateFailureCopyWithImpl<$Res>;
-  $Res call({Error error});
+  $Res call({SmarteamInitError error});
+
+  $SmarteamInitErrorCopyWith<$Res> get error;
 }
 
 /// @nodoc
@@ -1216,8 +1251,15 @@ class _$InitStateFailureCopyWithImpl<$Res> extends _$InitStateCopyWithImpl<$Res>
       error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as Error,
+              as SmarteamInitError,
     ));
+  }
+
+  @override
+  $SmarteamInitErrorCopyWith<$Res> get error {
+    return $SmarteamInitErrorCopyWith<$Res>(_value.error, (value) {
+      return _then(_value.copyWith(error: value));
+    });
   }
 }
 
@@ -1227,7 +1269,7 @@ class _$InitStateFailure implements InitStateFailure {
   const _$InitStateFailure(this.error);
 
   @override
-  final Error error;
+  final SmarteamInitError error;
 
   @override
   String toString() {
@@ -1259,9 +1301,10 @@ class _$InitStateFailure implements InitStateFailure {
     required TResult Function(
             AppDatabase appDatabase,
             SmarteamUserRepository smarteamUserRepository,
-            CryptoRepository cryptoRepository)
+            CryptoRepository cryptoRepository,
+            Either<CredentialError, Credential> credentialEither)
         initSuccess,
-    required TResult Function(Error error) initFailure,
+    required TResult Function(SmarteamInitError error) initFailure,
     required TResult Function() initTimeout,
   }) {
     return initFailure(error);
@@ -1275,9 +1318,10 @@ class _$InitStateFailure implements InitStateFailure {
     TResult Function(
             AppDatabase appDatabase,
             SmarteamUserRepository smarteamUserRepository,
-            CryptoRepository cryptoRepository)?
+            CryptoRepository cryptoRepository,
+            Either<CredentialError, Credential> credentialEither)?
         initSuccess,
-    TResult Function(Error error)? initFailure,
+    TResult Function(SmarteamInitError error)? initFailure,
     TResult Function()? initTimeout,
   }) {
     return initFailure?.call(error);
@@ -1291,9 +1335,10 @@ class _$InitStateFailure implements InitStateFailure {
     TResult Function(
             AppDatabase appDatabase,
             SmarteamUserRepository smarteamUserRepository,
-            CryptoRepository cryptoRepository)?
+            CryptoRepository cryptoRepository,
+            Either<CredentialError, Credential> credentialEither)?
         initSuccess,
-    TResult Function(Error error)? initFailure,
+    TResult Function(SmarteamInitError error)? initFailure,
     TResult Function()? initTimeout,
     required TResult orElse(),
   }) {
@@ -1345,9 +1390,9 @@ class _$InitStateFailure implements InitStateFailure {
 }
 
 abstract class InitStateFailure implements InitState {
-  const factory InitStateFailure(Error error) = _$InitStateFailure;
+  const factory InitStateFailure(SmarteamInitError error) = _$InitStateFailure;
 
-  Error get error => throw _privateConstructorUsedError;
+  SmarteamInitError get error => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $InitStateFailureCopyWith<InitStateFailure> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1397,9 +1442,10 @@ class _$InitStateTimeout implements InitStateTimeout {
     required TResult Function(
             AppDatabase appDatabase,
             SmarteamUserRepository smarteamUserRepository,
-            CryptoRepository cryptoRepository)
+            CryptoRepository cryptoRepository,
+            Either<CredentialError, Credential> credentialEither)
         initSuccess,
-    required TResult Function(Error error) initFailure,
+    required TResult Function(SmarteamInitError error) initFailure,
     required TResult Function() initTimeout,
   }) {
     return initTimeout();
@@ -1413,9 +1459,10 @@ class _$InitStateTimeout implements InitStateTimeout {
     TResult Function(
             AppDatabase appDatabase,
             SmarteamUserRepository smarteamUserRepository,
-            CryptoRepository cryptoRepository)?
+            CryptoRepository cryptoRepository,
+            Either<CredentialError, Credential> credentialEither)?
         initSuccess,
-    TResult Function(Error error)? initFailure,
+    TResult Function(SmarteamInitError error)? initFailure,
     TResult Function()? initTimeout,
   }) {
     return initTimeout?.call();
@@ -1429,9 +1476,10 @@ class _$InitStateTimeout implements InitStateTimeout {
     TResult Function(
             AppDatabase appDatabase,
             SmarteamUserRepository smarteamUserRepository,
-            CryptoRepository cryptoRepository)?
+            CryptoRepository cryptoRepository,
+            Either<CredentialError, Credential> credentialEither)?
         initSuccess,
-    TResult Function(Error error)? initFailure,
+    TResult Function(SmarteamInitError error)? initFailure,
     TResult Function()? initTimeout,
     required TResult orElse(),
   }) {

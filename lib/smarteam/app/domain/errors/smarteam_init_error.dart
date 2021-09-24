@@ -1,5 +1,8 @@
-import 'package:dart_smarteam/smarteam.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class SmarteamInitError extends SmarteamError {
-  SmarteamInitError() : super('Smarteam Initialization Error');
+part 'smarteam_init_error.freezed.dart';
+
+@freezed
+class SmarteamInitError with _$SmarteamInitError {
+  const factory SmarteamInitError.init(Error error) = SmarteamInitErrorInit;
 }

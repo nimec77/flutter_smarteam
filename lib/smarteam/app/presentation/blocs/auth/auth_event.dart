@@ -6,7 +6,7 @@ class AuthEvent with _$AuthEvent {
 
   const factory AuthEvent.loginSuccessful() = AuthEventLoginSuccessful;
 
-  const factory AuthEvent.loginFailed(Error error)  = AuthEventLoginFailed;
+  const factory AuthEvent.loginFailed(SmarteamUserError error)  = AuthEventLoginFailed;
 
   const factory AuthEvent.loginCanceled() = AuthEventLoginCanceled;
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smarteam/l10n/l10n.dart';
-import 'package:flutter_smarteam/smarteam/app/domain/errors/smarteam_login_failure.dart';
+import 'package:flutter_smarteam/smarteam/app/domain/errors/smarteam_user_error.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/auth/auth_bloc.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/helpers/helper.dart' as helper;
 import 'package:flutter_smarteam/smarteam/login/presentation/common_widgets/background_widget.dart';
@@ -57,10 +57,10 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  void _showErrorSnackbar(BuildContext context, Error error) {
+  void _showErrorSnackbar(BuildContext context, SmarteamUserError error) {
     final l10n = context.l10n;
     final String text;
-    if (error is SmarteamLoginFailure) {
+    if (error is SmarteamUserErrorLogin) {
       text = l10n.invalidCredentialsText;
     } else {
       text = error.toString();

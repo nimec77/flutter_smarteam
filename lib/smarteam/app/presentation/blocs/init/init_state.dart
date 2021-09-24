@@ -10,9 +10,10 @@ class InitState with _$InitState {
     required AppDatabase appDatabase,
     required SmarteamUserRepository smarteamUserRepository,
     required CryptoRepository cryptoRepository,
+    required Either<CredentialError, Credential> credentialEither,
   }) = InitStateSuccess;
 
-  const factory InitState.initFailure(Error error) = InitStateFailure;
+  const factory InitState.initFailure(SmarteamInitError error) = InitStateFailure;
 
   const factory InitState.initTimeout() = InitStateTimeout;
 }

@@ -3,6 +3,7 @@ import 'package:dart_smarteam/smarteam.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smarteam/l10n/l10n.dart';
+import 'package:flutter_smarteam/smarteam/app/domain/errors/smarteam_init_error.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/init/init_bloc.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/pages/splash/splash_page.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/widgets/show_error_widget.dart';
@@ -74,7 +75,7 @@ void main() {
       final error = SmarteamError('Initialization error');
       whenListen<InitState>(
         mockInitBloc,
-        Stream.fromIterable([InitState.initFailure(error)]),
+        Stream.fromIterable([InitState.initFailure(SmarteamInitError.init(Error()))]),
         initialState: const InitState.notInit(),
       );
       final widget = BlocProvider<InitBloc>.value(

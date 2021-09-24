@@ -6,13 +6,13 @@ class AuthState with _$AuthState {
 
   const factory AuthState.loginInProgress({required bool showCancel}) = AuthstateLoginInProgress;
 
-  const factory AuthState.loginSuccess() = AuthStateLoginSuccess;
+  const factory AuthState.loginSuccess(Credential credential) = AuthStateLoginSuccess;
 
   const factory AuthState.loginCancelSuccess() = AuthStateLoginCancelSuccess;
 
-  const factory AuthState.loginFailure(Error error) = AuthStateLoginFailure;
+  const factory AuthState.loginFailure(SmarteamUserError error) = AuthStateLoginFailure;
 
   const factory AuthState.logoutInProgress() = AuthStateLogoutInProgress;
 
-  const factory AuthState.logoutFailure(Error error) = AuthStateLogoutFailure;
+  const factory AuthState.logoutFailure(SmarteamUserError error) = AuthStateLogoutFailure;
 }

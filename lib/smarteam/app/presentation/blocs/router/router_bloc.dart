@@ -26,7 +26,7 @@ class RouterBloc extends Bloc<RouterEvent, RouterState> {
             add(const RouterEvent.loginPageShown());
           }
         },
-        loginSuccess: () => add(const RouterEvent.homePageShown()),
+        loginSuccess: (_) => add(const RouterEvent.homePageShown()),
         orElse: () {},
       ),
     );

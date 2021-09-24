@@ -11,4 +11,14 @@ class CryptoRepositoryImp implements CryptoRepository {
   Future<EitherString> getSid() async {
     return cryptoProvider.getSid();
   }
+
+  @override
+  Future<EitherString> encode(String text) {
+    return cryptoProvider.encode(text);
+  }
+
+  @override
+  Future<EitherString> decode(String hexText) {
+    return cryptoProvider.decode(hexText);
+  }
 }

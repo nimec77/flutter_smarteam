@@ -90,7 +90,7 @@ void main() {
         expect: () => [
               const InitState.initInProgress(0.1),
               const InitState.initInProgress(0.2),
-              InitState.initFailure(SmarteamInitError()),
+              InitState.initFailure(SmarteamInitError.init(Error())),
             ],
         verify: (_) {
           verify(mockSmarteam.init).called(1);
@@ -109,7 +109,7 @@ void main() {
       expect: () => [
         const InitState.initInProgress(0.1),
         const InitState.initInProgress(0.2),
-        InitState.initFailure(SmarteamError('Error')),
+        InitState.initFailure(SmarteamInitError.init(SmarteamError('Error'))),
       ],
       verify: (_) {
         verify(mockSmarteam.init).called(1);

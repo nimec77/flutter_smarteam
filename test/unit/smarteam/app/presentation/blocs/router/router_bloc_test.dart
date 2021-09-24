@@ -1,4 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:flutter_smarteam/smarteam/app/domain/errors/smarteam_init_error.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/auth/auth_bloc.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/init/init_bloc.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/router/router_bloc.dart';
@@ -68,7 +69,7 @@ void main() {
       build: () {
         whenListen<InitState>(
           mockInitBloc,
-          Stream.fromIterable([InitState.initFailure(Error())]),
+          Stream.fromIterable([InitState.initFailure(SmarteamInitError.init(Error()))]),
           initialState: const InitState.notInit(),
         );
 
@@ -82,7 +83,7 @@ void main() {
       build: () {
         whenListen<InitState>(
           mockInitBloc,
-          Stream.fromIterable([InitState.initFailure(Error())]),
+          Stream.fromIterable([InitState.initFailure(SmarteamInitError.init(Error()))]),
           initialState: const InitState.notInit(),
         );
 
@@ -97,7 +98,7 @@ void main() {
       build: () {
         whenListen<InitState>(
           mockInitBloc,
-          Stream.fromIterable([InitState.initFailure(Error())]),
+          Stream.fromIterable([InitState.initFailure(SmarteamInitError.init(Error()))]),
           initialState: const InitState.notInit(),
         );
 
