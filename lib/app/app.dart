@@ -14,15 +14,13 @@ import 'package:flutter_smarteam/l10n/l10n.dart';
 import 'package:flutter_smarteam/smarteam/app/data/providers/sqlite_provider.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/auth/auth_bloc.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/init/init_bloc.dart';
-import 'package:flutter_smarteam/smarteam/login/data/providers/smarteam_user_provider.dart';
-import 'package:flutter_smarteam/smarteam/login/data/repositories/smarteam_user_repository_imp.dart';
-import 'package:flutter_smarteam/smarteam/login/domain/ports/smarteam_user_repository.dart';
 import 'package:flutter_smarteam/smarteam/smarteam.dart';
 import 'package:sizer/sizer.dart';
 
 class App extends StatefulWidget {
-  const App({Key? key, required this.smarteam}) : super(key: key);
+  const App({Key? key, required this.sqliteProvider, required this.smarteam}) : super(key: key);
 
+  final SqliteProvider sqliteProvider;
   final Smarteam smarteam;
 
   @override
@@ -30,17 +28,13 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  late final SmarteamUserProvider _smarteamLoginProvider;
-  late final SmarteamUserRepository _smarteamLoginRepository;
   late final InitBloc _initBloc;
   late final AuthBloc _authBloc;
 
   @override
   void initState() {
-    _smarteamLoginProvider = SmarteamUserProvider(widget.smarteam);
-    _smarteamLoginRepository = SmarteamUserRepositoryImp(_smarteamLoginProvider);
-    _initBloc = InitBloc(sqliteProvider: SqliteProvider(), smarteam: widget.smarteam);
-    _authBloc = AuthBloc(smarteamLoginRepository: _smarteamLoginRepository, initBloc: _initBloc);
+    _initBloc = InitBloc(sqliteProvider: widget.sqliteProvider, smarteam: widget.smarteam);
+    _authBloc = AuthBloc(initBloc: _initBloc);
     super.initState();
   }
 
@@ -49,6 +43,7 @@ class _AppState extends State<App> {
     _authBloc.close();
     _initBloc.close();
     widget.smarteam.dispose();
+    widget.sqliteProvider.dispose();
     super.dispose();
   }
 

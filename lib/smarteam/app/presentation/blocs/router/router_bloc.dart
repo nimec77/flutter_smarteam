@@ -12,7 +12,7 @@ part 'router_bloc.freezed.dart';
 class RouterBloc extends Bloc<RouterEvent, RouterState> {
   RouterBloc({required this.initBloc, required this.authBloc}) : super(const RouterState.splashPage()) {
     initBloc.stream.listen(
-      (state) => state.maybeWhen(
+      (state) => state.maybeMap(
         initSuccess: (_) => add(const RouterEvent.loginPageShown()),
         orElse: () {},
       ),

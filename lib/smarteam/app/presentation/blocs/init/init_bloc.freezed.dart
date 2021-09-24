@@ -580,9 +580,12 @@ class _$InitStateTearOff {
     );
   }
 
-  InitStateSuccess initSuccess(AppDatabase appDatabase) {
+  InitStateSuccess initSuccess(
+      {required AppDatabase appDatabase,
+      required SmarteamUserRepository smarteamUserRepository}) {
     return InitStateSuccess(
-      appDatabase,
+      appDatabase: appDatabase,
+      smarteamUserRepository: smarteamUserRepository,
     );
   }
 
@@ -606,7 +609,9 @@ mixin _$InitState {
   TResult when<TResult extends Object?>({
     required TResult Function() notInit,
     required TResult Function(double progress) initInProgress,
-    required TResult Function(AppDatabase appDatabase) initSuccess,
+    required TResult Function(AppDatabase appDatabase,
+            SmarteamUserRepository smarteamUserRepository)
+        initSuccess,
     required TResult Function(Error error) initFailure,
     required TResult Function() initTimeout,
   }) =>
@@ -615,7 +620,9 @@ mixin _$InitState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function(AppDatabase appDatabase)? initSuccess,
+    TResult Function(AppDatabase appDatabase,
+            SmarteamUserRepository smarteamUserRepository)?
+        initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
   }) =>
@@ -624,7 +631,9 @@ mixin _$InitState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function(AppDatabase appDatabase)? initSuccess,
+    TResult Function(AppDatabase appDatabase,
+            SmarteamUserRepository smarteamUserRepository)?
+        initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
     required TResult orElse(),
@@ -716,7 +725,9 @@ class _$InitStateNotInit implements InitStateNotInit {
   TResult when<TResult extends Object?>({
     required TResult Function() notInit,
     required TResult Function(double progress) initInProgress,
-    required TResult Function(AppDatabase appDatabase) initSuccess,
+    required TResult Function(AppDatabase appDatabase,
+            SmarteamUserRepository smarteamUserRepository)
+        initSuccess,
     required TResult Function(Error error) initFailure,
     required TResult Function() initTimeout,
   }) {
@@ -728,7 +739,9 @@ class _$InitStateNotInit implements InitStateNotInit {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function(AppDatabase appDatabase)? initSuccess,
+    TResult Function(AppDatabase appDatabase,
+            SmarteamUserRepository smarteamUserRepository)?
+        initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
   }) {
@@ -740,7 +753,9 @@ class _$InitStateNotInit implements InitStateNotInit {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function(AppDatabase appDatabase)? initSuccess,
+    TResult Function(AppDatabase appDatabase,
+            SmarteamUserRepository smarteamUserRepository)?
+        initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
     required TResult orElse(),
@@ -864,7 +879,9 @@ class _$InitStateInProgress implements InitStateInProgress {
   TResult when<TResult extends Object?>({
     required TResult Function() notInit,
     required TResult Function(double progress) initInProgress,
-    required TResult Function(AppDatabase appDatabase) initSuccess,
+    required TResult Function(AppDatabase appDatabase,
+            SmarteamUserRepository smarteamUserRepository)
+        initSuccess,
     required TResult Function(Error error) initFailure,
     required TResult Function() initTimeout,
   }) {
@@ -876,7 +893,9 @@ class _$InitStateInProgress implements InitStateInProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function(AppDatabase appDatabase)? initSuccess,
+    TResult Function(AppDatabase appDatabase,
+            SmarteamUserRepository smarteamUserRepository)?
+        initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
   }) {
@@ -888,7 +907,9 @@ class _$InitStateInProgress implements InitStateInProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function(AppDatabase appDatabase)? initSuccess,
+    TResult Function(AppDatabase appDatabase,
+            SmarteamUserRepository smarteamUserRepository)?
+        initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
     required TResult orElse(),
@@ -954,7 +975,8 @@ abstract class $InitStateSuccessCopyWith<$Res> {
   factory $InitStateSuccessCopyWith(
           InitStateSuccess value, $Res Function(InitStateSuccess) then) =
       _$InitStateSuccessCopyWithImpl<$Res>;
-  $Res call({AppDatabase appDatabase});
+  $Res call(
+      {AppDatabase appDatabase, SmarteamUserRepository smarteamUserRepository});
 }
 
 /// @nodoc
@@ -970,12 +992,17 @@ class _$InitStateSuccessCopyWithImpl<$Res> extends _$InitStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? appDatabase = freezed,
+    Object? smarteamUserRepository = freezed,
   }) {
     return _then(InitStateSuccess(
-      appDatabase == freezed
+      appDatabase: appDatabase == freezed
           ? _value.appDatabase
           : appDatabase // ignore: cast_nullable_to_non_nullable
               as AppDatabase,
+      smarteamUserRepository: smarteamUserRepository == freezed
+          ? _value.smarteamUserRepository
+          : smarteamUserRepository // ignore: cast_nullable_to_non_nullable
+              as SmarteamUserRepository,
     ));
   }
 }
@@ -983,14 +1010,17 @@ class _$InitStateSuccessCopyWithImpl<$Res> extends _$InitStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$InitStateSuccess implements InitStateSuccess {
-  const _$InitStateSuccess(this.appDatabase);
+  const _$InitStateSuccess(
+      {required this.appDatabase, required this.smarteamUserRepository});
 
   @override
   final AppDatabase appDatabase;
+  @override
+  final SmarteamUserRepository smarteamUserRepository;
 
   @override
   String toString() {
-    return 'InitState.initSuccess(appDatabase: $appDatabase)';
+    return 'InitState.initSuccess(appDatabase: $appDatabase, smarteamUserRepository: $smarteamUserRepository)';
   }
 
   @override
@@ -999,12 +1029,17 @@ class _$InitStateSuccess implements InitStateSuccess {
         (other is InitStateSuccess &&
             (identical(other.appDatabase, appDatabase) ||
                 const DeepCollectionEquality()
-                    .equals(other.appDatabase, appDatabase)));
+                    .equals(other.appDatabase, appDatabase)) &&
+            (identical(other.smarteamUserRepository, smarteamUserRepository) ||
+                const DeepCollectionEquality().equals(
+                    other.smarteamUserRepository, smarteamUserRepository)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(appDatabase);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(appDatabase) ^
+      const DeepCollectionEquality().hash(smarteamUserRepository);
 
   @JsonKey(ignore: true)
   @override
@@ -1016,11 +1051,13 @@ class _$InitStateSuccess implements InitStateSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() notInit,
     required TResult Function(double progress) initInProgress,
-    required TResult Function(AppDatabase appDatabase) initSuccess,
+    required TResult Function(AppDatabase appDatabase,
+            SmarteamUserRepository smarteamUserRepository)
+        initSuccess,
     required TResult Function(Error error) initFailure,
     required TResult Function() initTimeout,
   }) {
-    return initSuccess(appDatabase);
+    return initSuccess(appDatabase, smarteamUserRepository);
   }
 
   @override
@@ -1028,11 +1065,13 @@ class _$InitStateSuccess implements InitStateSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function(AppDatabase appDatabase)? initSuccess,
+    TResult Function(AppDatabase appDatabase,
+            SmarteamUserRepository smarteamUserRepository)?
+        initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
   }) {
-    return initSuccess?.call(appDatabase);
+    return initSuccess?.call(appDatabase, smarteamUserRepository);
   }
 
   @override
@@ -1040,13 +1079,15 @@ class _$InitStateSuccess implements InitStateSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function(AppDatabase appDatabase)? initSuccess,
+    TResult Function(AppDatabase appDatabase,
+            SmarteamUserRepository smarteamUserRepository)?
+        initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
     required TResult orElse(),
   }) {
     if (initSuccess != null) {
-      return initSuccess(appDatabase);
+      return initSuccess(appDatabase, smarteamUserRepository);
     }
     return orElse();
   }
@@ -1093,9 +1134,14 @@ class _$InitStateSuccess implements InitStateSuccess {
 }
 
 abstract class InitStateSuccess implements InitState {
-  const factory InitStateSuccess(AppDatabase appDatabase) = _$InitStateSuccess;
+  const factory InitStateSuccess(
+          {required AppDatabase appDatabase,
+          required SmarteamUserRepository smarteamUserRepository}) =
+      _$InitStateSuccess;
 
   AppDatabase get appDatabase => throw _privateConstructorUsedError;
+  SmarteamUserRepository get smarteamUserRepository =>
+      throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $InitStateSuccessCopyWith<InitStateSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1167,7 +1213,9 @@ class _$InitStateFailure implements InitStateFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() notInit,
     required TResult Function(double progress) initInProgress,
-    required TResult Function(AppDatabase appDatabase) initSuccess,
+    required TResult Function(AppDatabase appDatabase,
+            SmarteamUserRepository smarteamUserRepository)
+        initSuccess,
     required TResult Function(Error error) initFailure,
     required TResult Function() initTimeout,
   }) {
@@ -1179,7 +1227,9 @@ class _$InitStateFailure implements InitStateFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function(AppDatabase appDatabase)? initSuccess,
+    TResult Function(AppDatabase appDatabase,
+            SmarteamUserRepository smarteamUserRepository)?
+        initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
   }) {
@@ -1191,7 +1241,9 @@ class _$InitStateFailure implements InitStateFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function(AppDatabase appDatabase)? initSuccess,
+    TResult Function(AppDatabase appDatabase,
+            SmarteamUserRepository smarteamUserRepository)?
+        initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
     required TResult orElse(),
@@ -1293,7 +1345,9 @@ class _$InitStateTimeout implements InitStateTimeout {
   TResult when<TResult extends Object?>({
     required TResult Function() notInit,
     required TResult Function(double progress) initInProgress,
-    required TResult Function(AppDatabase appDatabase) initSuccess,
+    required TResult Function(AppDatabase appDatabase,
+            SmarteamUserRepository smarteamUserRepository)
+        initSuccess,
     required TResult Function(Error error) initFailure,
     required TResult Function() initTimeout,
   }) {
@@ -1305,7 +1359,9 @@ class _$InitStateTimeout implements InitStateTimeout {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function(AppDatabase appDatabase)? initSuccess,
+    TResult Function(AppDatabase appDatabase,
+            SmarteamUserRepository smarteamUserRepository)?
+        initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
   }) {
@@ -1317,7 +1373,9 @@ class _$InitStateTimeout implements InitStateTimeout {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notInit,
     TResult Function(double progress)? initInProgress,
-    TResult Function(AppDatabase appDatabase)? initSuccess,
+    TResult Function(AppDatabase appDatabase,
+            SmarteamUserRepository smarteamUserRepository)?
+        initSuccess,
     TResult Function(Error error)? initFailure,
     TResult Function()? initTimeout,
     required TResult orElse(),

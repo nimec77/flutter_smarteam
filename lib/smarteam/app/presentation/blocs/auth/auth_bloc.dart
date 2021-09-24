@@ -16,17 +16,22 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc({required this.smarteamLoginRepository, required this.initBloc}) : super(const AuthState.notAuthorized());
+  AuthBloc({required this.initBloc}) : super(const AuthState.notAuthorized());
 
-  final SmarteamUserRepository smarteamLoginRepository;
   final InitBloc initBloc;
-  StreamSubscription<AuthState>? _loginInProgressSubscription;
 
   @override
   Future<void> close() {
-    _loginInProgressSubscription?.cancel();
     return super.close();
   }
+
+  SmarteamUserRepository get smarteamUserRepository {
+    assert(initBloc.state is InitStateSuccess);
+    final state = initBloc.state as InitStateSuccess;
+
+    return state.smarteamUserRepository;
+  }
+
 
   @override
   Stream<AuthState> mapEventToState(
@@ -53,7 +58,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Stream<AuthState> _mapLoginSuccessfulToState(AuthEventLoginSuccessful event) async* {
     if (state is AuthStateLoginCancelSuccess) {
       yield const AuthState.notAuthorized();
-      unawaited(smarteamLoginRepository.userLogout());
+      unawaited(smarteamUserRepository.userLogout());
     } else {
       yield const AuthState.loginSuccess();
     }
@@ -75,7 +80,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Stream<AuthState> _mapLogoutStartedToState(AuthEventLogoutStarted event) async* {
     yield const AuthState.logoutInProgress();
-    final result = await smarteamLoginRepository.userLogout();
+    final result = await smarteamUserRepository.userLogout();
     yield* result.fold(
       (error) async* {
         yield AuthState.logoutFailure(error);
@@ -92,7 +97,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Future<void> _loginSmarteam(String username, String password) async {
-    final result = await smarteamLoginRepository.userLogin(username, password);
+    final result = await smarteamUserRepository.userLogin(username, password);
     result.fold(
       (error) => add(AuthEvent.loginFailed(error)),
       (loginResult) =>

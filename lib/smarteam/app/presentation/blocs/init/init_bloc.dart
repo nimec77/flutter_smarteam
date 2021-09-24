@@ -8,6 +8,9 @@ import 'package:flutter_smarteam/smarteam/app/data/app_database.dart';
 import 'package:flutter_smarteam/smarteam/app/data/providers/sqlite_provider.dart';
 import 'package:flutter_smarteam/smarteam/app/domain/errors/smarteam_init_error.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/pages/constants.dart';
+import 'package:flutter_smarteam/smarteam/login/data/providers/smarteam_user_provider.dart';
+import 'package:flutter_smarteam/smarteam/login/data/repositories/smarteam_user_repository_imp.dart';
+import 'package:flutter_smarteam/smarteam/login/domain/ports/smarteam_user_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 
@@ -56,7 +59,10 @@ class InitBloc extends Bloc<InitEvent, InitState> {
   Stream<InitState> _mapInitEndedToState(InitEventEnded event) async* {
     if (state is! InitStateFailure) {
       yield _initialized
-          ? InitState.initSuccess(AppDatabase.connect(sqliteProvider.databaseConnection))
+          ? InitState.initSuccess(
+              appDatabase: AppDatabase.connect(sqliteProvider.databaseConnection),
+              smarteamUserRepository: SmarteamUserRepositoryImp(SmarteamUserProvider(smarteam)),
+            )
           : const InitState.initTimeout();
     }
   }

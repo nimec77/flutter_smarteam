@@ -63,4 +63,8 @@ class SqliteProvider {
   DynamicLibrary _openOnWindows() {
     return DynamicLibrary.open(kSqliteDll);
   }
+
+  Future<void> dispose() async {
+    await databaseConnection.executor.close();
+  }
 }
