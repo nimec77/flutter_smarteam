@@ -5,7 +5,8 @@ import 'package:flutter_smarteam/smarteam/app/domain/errors/smarteam_login_failu
 import 'package:flutter_smarteam/smarteam/app/domain/errors/smarteam_logout_failure.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/constants.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/blocs/init/init_bloc.dart';
-import 'package:flutter_smarteam/smarteam/login/domain/ports/smarteam_user_repository.dart';
+import 'package:flutter_smarteam/smarteam/login/domain/ports/repositories/crypto_repository.dart';
+import 'package:flutter_smarteam/smarteam/login/domain/ports/repositories/smarteam_user_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 
@@ -32,6 +33,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     return state.smarteamUserRepository;
   }
 
+  CryptoRepository get cryptoRepository {
+    assert(initBloc.state is InitStateSuccess);
+    final state = initBloc.state as InitStateSuccess;
+
+    return state.cryptoRepository;
+  }
 
   @override
   Stream<AuthState> mapEventToState(

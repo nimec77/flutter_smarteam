@@ -228,8 +228,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
   _$AppDatabase.connect(DatabaseConnection c) : super.connect(c);
   late final $CredentialsTable credentials = $CredentialsTable(this);
-  late final CredentialsDao credentialsDao =
-      CredentialsDao(this as AppDatabase);
+  late final CredentialsDaoImp credentialsDaoImp =
+      CredentialsDaoImp(this as AppDatabase);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override

@@ -1,6 +1,6 @@
 import 'package:dart_smarteam/smarteam.dart';
 import 'package:flutter_smarteam/smarteam/login/data/providers/smarteam_user_provider.dart';
-import 'package:flutter_smarteam/smarteam/login/domain/ports/smarteam_user_repository.dart';
+import 'package:flutter_smarteam/smarteam/login/domain/ports/repositories/smarteam_user_repository.dart';
 
 class SmarteamUserRepositoryImp implements SmarteamUserRepository {
   SmarteamUserRepositoryImp(this.smarteamLoginProvider);

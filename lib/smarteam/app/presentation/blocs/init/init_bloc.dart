@@ -3,14 +3,19 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:dart_smarteam/smarteam.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_smarteam/smarteam/app/data/app_database.dart';
 import 'package:flutter_smarteam/smarteam/app/data/providers/sqlite_provider.dart';
 import 'package:flutter_smarteam/smarteam/app/domain/errors/smarteam_init_error.dart';
 import 'package:flutter_smarteam/smarteam/app/presentation/pages/constants.dart';
+import 'package:flutter_smarteam/smarteam/login/data/providers/crypto_provider.dart';
 import 'package:flutter_smarteam/smarteam/login/data/providers/smarteam_user_provider.dart';
+import 'package:flutter_smarteam/smarteam/login/data/repositories/crypto_repository_imp.dart';
 import 'package:flutter_smarteam/smarteam/login/data/repositories/smarteam_user_repository_imp.dart';
-import 'package:flutter_smarteam/smarteam/login/domain/ports/smarteam_user_repository.dart';
+import 'package:flutter_smarteam/smarteam/login/domain/ports/repositories/crypto_repository.dart';
+import 'package:flutter_smarteam/smarteam/login/domain/ports/repositories/smarteam_user_repository.dart';
+import 'package:flutter_smarteam/smarteam/login/domain/use_cases/credential_use_case.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 
@@ -43,6 +48,7 @@ class InitBloc extends Bloc<InitEvent, InitState> {
     await sqliteProvider.init();
     yield const InitState.initInProgress(0.2);
     final result = await smarteam.init();
+    yield const InitState.initInProgress(0.8);
     await Future<void>.delayed(const Duration(seconds: 1));
     yield result.fold(
       (error) => InitState.initFailure(error),
@@ -58,12 +64,17 @@ class InitBloc extends Bloc<InitEvent, InitState> {
 
   Stream<InitState> _mapInitEndedToState(InitEventEnded event) async* {
     if (state is! InitStateFailure) {
-      yield _initialized
-          ? InitState.initSuccess(
-              appDatabase: AppDatabase.connect(sqliteProvider.databaseConnection),
-              smarteamUserRepository: SmarteamUserRepositoryImp(SmarteamUserProvider(smarteam)),
-            )
-          : const InitState.initTimeout();
+      if (!_initialized) {
+        yield const InitState.initTimeout();
+        return;
+      }
+      final appDatabase = AppDatabase.connect(sqliteProvider.databaseConnection);
+      unawaited(_saveCredential(CredentialUseCase(appDatabase.credentialsDaoImp)));
+      yield InitState.initSuccess(
+        appDatabase: appDatabase,
+        smarteamUserRepository: SmarteamUserRepositoryImp(SmarteamUserProvider(smarteam)),
+        cryptoRepository: CryptoRepositoryImp(CryptoProvider(smarteam)),
+      );
     }
   }
 
@@ -74,5 +85,9 @@ class InitBloc extends Bloc<InitEvent, InitState> {
   Stream<InitState> _mapInitExitedToState(InitEventExited event) async* {
     await SystemNavigator.pop(animated: true);
     exit(0);
+  }
+
+  Future<Either<Exception, int>> _saveCredential(CredentialUseCase credentialUseCase) async {
+    return credentialUseCase.saveCredential(Credential(sid: 'sid', username: 'username', password: 'password'));
   }
 }

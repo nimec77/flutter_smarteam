@@ -9,3 +9,4 @@ class Credentials extends Table {
   @override
   Set<Column> get primaryKey => {sid};
 }
+
