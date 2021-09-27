@@ -18,10 +18,15 @@ class _$AuthEventTearOff {
   const _$AuthEventTearOff();
 
   AuthEventLoginStarted loginStarted(
-      {required String username, required String password}) {
+      {required String username,
+      required String password,
+      required bool saveCredential,
+      Duration showCancelDelay = kShowCancelDelay}) {
     return AuthEventLoginStarted(
       username: username,
       password: password,
+      saveCredential: saveCredential,
+      showCancelDelay: showCancelDelay,
     );
   }
 
@@ -55,7 +60,9 @@ const $AuthEvent = _$AuthEventTearOff();
 mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String username, String password) loginStarted,
+    required TResult Function(String username, String password,
+            bool saveCredential, Duration showCancelDelay)
+        loginStarted,
     required TResult Function() loginSuccessful,
     required TResult Function(SmarteamUserError error) loginFailed,
     required TResult Function() loginCanceled,
@@ -65,7 +72,9 @@ mixin _$AuthEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String username, String password)? loginStarted,
+    TResult Function(String username, String password, bool saveCredential,
+            Duration showCancelDelay)?
+        loginStarted,
     TResult Function()? loginSuccessful,
     TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
@@ -75,7 +84,9 @@ mixin _$AuthEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String username, String password)? loginStarted,
+    TResult Function(String username, String password, bool saveCredential,
+            Duration showCancelDelay)?
+        loginStarted,
     TResult Function()? loginSuccessful,
     TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
@@ -137,7 +148,11 @@ abstract class $AuthEventLoginStartedCopyWith<$Res> {
   factory $AuthEventLoginStartedCopyWith(AuthEventLoginStarted value,
           $Res Function(AuthEventLoginStarted) then) =
       _$AuthEventLoginStartedCopyWithImpl<$Res>;
-  $Res call({String username, String password});
+  $Res call(
+      {String username,
+      String password,
+      bool saveCredential,
+      Duration showCancelDelay});
 }
 
 /// @nodoc
@@ -155,6 +170,8 @@ class _$AuthEventLoginStartedCopyWithImpl<$Res>
   $Res call({
     Object? username = freezed,
     Object? password = freezed,
+    Object? saveCredential = freezed,
+    Object? showCancelDelay = freezed,
   }) {
     return _then(AuthEventLoginStarted(
       username: username == freezed
@@ -165,6 +182,14 @@ class _$AuthEventLoginStartedCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
+      saveCredential: saveCredential == freezed
+          ? _value.saveCredential
+          : saveCredential // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showCancelDelay: showCancelDelay == freezed
+          ? _value.showCancelDelay
+          : showCancelDelay // ignore: cast_nullable_to_non_nullable
+              as Duration,
     ));
   }
 }
@@ -173,16 +198,24 @@ class _$AuthEventLoginStartedCopyWithImpl<$Res>
 
 class _$AuthEventLoginStarted implements AuthEventLoginStarted {
   const _$AuthEventLoginStarted(
-      {required this.username, required this.password});
+      {required this.username,
+      required this.password,
+      required this.saveCredential,
+      this.showCancelDelay = kShowCancelDelay});
 
   @override
   final String username;
   @override
   final String password;
+  @override
+  final bool saveCredential;
+  @JsonKey(defaultValue: kShowCancelDelay)
+  @override
+  final Duration showCancelDelay;
 
   @override
   String toString() {
-    return 'AuthEvent.loginStarted(username: $username, password: $password)';
+    return 'AuthEvent.loginStarted(username: $username, password: $password, saveCredential: $saveCredential, showCancelDelay: $showCancelDelay)';
   }
 
   @override
@@ -194,14 +227,22 @@ class _$AuthEventLoginStarted implements AuthEventLoginStarted {
                     .equals(other.username, username)) &&
             (identical(other.password, password) ||
                 const DeepCollectionEquality()
-                    .equals(other.password, password)));
+                    .equals(other.password, password)) &&
+            (identical(other.saveCredential, saveCredential) ||
+                const DeepCollectionEquality()
+                    .equals(other.saveCredential, saveCredential)) &&
+            (identical(other.showCancelDelay, showCancelDelay) ||
+                const DeepCollectionEquality()
+                    .equals(other.showCancelDelay, showCancelDelay)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(username) ^
-      const DeepCollectionEquality().hash(password);
+      const DeepCollectionEquality().hash(password) ^
+      const DeepCollectionEquality().hash(saveCredential) ^
+      const DeepCollectionEquality().hash(showCancelDelay);
 
   @JsonKey(ignore: true)
   @override
@@ -212,33 +253,40 @@ class _$AuthEventLoginStarted implements AuthEventLoginStarted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String username, String password) loginStarted,
+    required TResult Function(String username, String password,
+            bool saveCredential, Duration showCancelDelay)
+        loginStarted,
     required TResult Function() loginSuccessful,
     required TResult Function(SmarteamUserError error) loginFailed,
     required TResult Function() loginCanceled,
     required TResult Function() shownCancel,
     required TResult Function() logoutStarted,
   }) {
-    return loginStarted(username, password);
+    return loginStarted(username, password, saveCredential, showCancelDelay);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String username, String password)? loginStarted,
+    TResult Function(String username, String password, bool saveCredential,
+            Duration showCancelDelay)?
+        loginStarted,
     TResult Function()? loginSuccessful,
     TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
     TResult Function()? shownCancel,
     TResult Function()? logoutStarted,
   }) {
-    return loginStarted?.call(username, password);
+    return loginStarted?.call(
+        username, password, saveCredential, showCancelDelay);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String username, String password)? loginStarted,
+    TResult Function(String username, String password, bool saveCredential,
+            Duration showCancelDelay)?
+        loginStarted,
     TResult Function()? loginSuccessful,
     TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
@@ -247,7 +295,7 @@ class _$AuthEventLoginStarted implements AuthEventLoginStarted {
     required TResult orElse(),
   }) {
     if (loginStarted != null) {
-      return loginStarted(username, password);
+      return loginStarted(username, password, saveCredential, showCancelDelay);
     }
     return orElse();
   }
@@ -299,10 +347,14 @@ class _$AuthEventLoginStarted implements AuthEventLoginStarted {
 abstract class AuthEventLoginStarted implements AuthEvent {
   const factory AuthEventLoginStarted(
       {required String username,
-      required String password}) = _$AuthEventLoginStarted;
+      required String password,
+      required bool saveCredential,
+      Duration showCancelDelay}) = _$AuthEventLoginStarted;
 
   String get username => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
+  bool get saveCredential => throw _privateConstructorUsedError;
+  Duration get showCancelDelay => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AuthEventLoginStartedCopyWith<AuthEventLoginStarted> get copyWith =>
       throw _privateConstructorUsedError;
@@ -349,7 +401,9 @@ class _$AuthEventLoginSuccessful implements AuthEventLoginSuccessful {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String username, String password) loginStarted,
+    required TResult Function(String username, String password,
+            bool saveCredential, Duration showCancelDelay)
+        loginStarted,
     required TResult Function() loginSuccessful,
     required TResult Function(SmarteamUserError error) loginFailed,
     required TResult Function() loginCanceled,
@@ -362,7 +416,9 @@ class _$AuthEventLoginSuccessful implements AuthEventLoginSuccessful {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String username, String password)? loginStarted,
+    TResult Function(String username, String password, bool saveCredential,
+            Duration showCancelDelay)?
+        loginStarted,
     TResult Function()? loginSuccessful,
     TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
@@ -375,7 +431,9 @@ class _$AuthEventLoginSuccessful implements AuthEventLoginSuccessful {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String username, String password)? loginStarted,
+    TResult Function(String username, String password, bool saveCredential,
+            Duration showCancelDelay)?
+        loginStarted,
     TResult Function()? loginSuccessful,
     TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
@@ -512,7 +570,9 @@ class _$AuthEventLoginFailed implements AuthEventLoginFailed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String username, String password) loginStarted,
+    required TResult Function(String username, String password,
+            bool saveCredential, Duration showCancelDelay)
+        loginStarted,
     required TResult Function() loginSuccessful,
     required TResult Function(SmarteamUserError error) loginFailed,
     required TResult Function() loginCanceled,
@@ -525,7 +585,9 @@ class _$AuthEventLoginFailed implements AuthEventLoginFailed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String username, String password)? loginStarted,
+    TResult Function(String username, String password, bool saveCredential,
+            Duration showCancelDelay)?
+        loginStarted,
     TResult Function()? loginSuccessful,
     TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
@@ -538,7 +600,9 @@ class _$AuthEventLoginFailed implements AuthEventLoginFailed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String username, String password)? loginStarted,
+    TResult Function(String username, String password, bool saveCredential,
+            Duration showCancelDelay)?
+        loginStarted,
     TResult Function()? loginSuccessful,
     TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
@@ -646,7 +710,9 @@ class _$AuthEventLoginCanceled implements AuthEventLoginCanceled {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String username, String password) loginStarted,
+    required TResult Function(String username, String password,
+            bool saveCredential, Duration showCancelDelay)
+        loginStarted,
     required TResult Function() loginSuccessful,
     required TResult Function(SmarteamUserError error) loginFailed,
     required TResult Function() loginCanceled,
@@ -659,7 +725,9 @@ class _$AuthEventLoginCanceled implements AuthEventLoginCanceled {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String username, String password)? loginStarted,
+    TResult Function(String username, String password, bool saveCredential,
+            Duration showCancelDelay)?
+        loginStarted,
     TResult Function()? loginSuccessful,
     TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
@@ -672,7 +740,9 @@ class _$AuthEventLoginCanceled implements AuthEventLoginCanceled {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String username, String password)? loginStarted,
+    TResult Function(String username, String password, bool saveCredential,
+            Duration showCancelDelay)?
+        loginStarted,
     TResult Function()? loginSuccessful,
     TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
@@ -774,7 +844,9 @@ class _$AuthEventShownCancel implements AuthEventShownCancel {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String username, String password) loginStarted,
+    required TResult Function(String username, String password,
+            bool saveCredential, Duration showCancelDelay)
+        loginStarted,
     required TResult Function() loginSuccessful,
     required TResult Function(SmarteamUserError error) loginFailed,
     required TResult Function() loginCanceled,
@@ -787,7 +859,9 @@ class _$AuthEventShownCancel implements AuthEventShownCancel {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String username, String password)? loginStarted,
+    TResult Function(String username, String password, bool saveCredential,
+            Duration showCancelDelay)?
+        loginStarted,
     TResult Function()? loginSuccessful,
     TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
@@ -800,7 +874,9 @@ class _$AuthEventShownCancel implements AuthEventShownCancel {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String username, String password)? loginStarted,
+    TResult Function(String username, String password, bool saveCredential,
+            Duration showCancelDelay)?
+        loginStarted,
     TResult Function()? loginSuccessful,
     TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
@@ -902,7 +978,9 @@ class _$AuthEventLogoutStarted implements AuthEventLogoutStarted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String username, String password) loginStarted,
+    required TResult Function(String username, String password,
+            bool saveCredential, Duration showCancelDelay)
+        loginStarted,
     required TResult Function() loginSuccessful,
     required TResult Function(SmarteamUserError error) loginFailed,
     required TResult Function() loginCanceled,
@@ -915,7 +993,9 @@ class _$AuthEventLogoutStarted implements AuthEventLogoutStarted {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String username, String password)? loginStarted,
+    TResult Function(String username, String password, bool saveCredential,
+            Duration showCancelDelay)?
+        loginStarted,
     TResult Function()? loginSuccessful,
     TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
@@ -928,7 +1008,9 @@ class _$AuthEventLogoutStarted implements AuthEventLogoutStarted {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String username, String password)? loginStarted,
+    TResult Function(String username, String password, bool saveCredential,
+            Duration showCancelDelay)?
+        loginStarted,
     TResult Function()? loginSuccessful,
     TResult Function(SmarteamUserError error)? loginFailed,
     TResult Function()? loginCanceled,
@@ -998,8 +1080,16 @@ class _$AuthStateTearOff {
     return const AuthStateNotAuthorized();
   }
 
-  AuthstateLoginInProgress loginInProgress({required bool showCancel}) {
+  AuthstateLoginInProgress loginInProgress(
+      {required String username, required String password}) {
     return AuthstateLoginInProgress(
+      username: username,
+      password: password,
+    );
+  }
+
+  AuthStateLoginShowCancel loginShowCancel({required bool showCancel}) {
+    return AuthStateLoginShowCancel(
       showCancel: showCancel,
     );
   }
@@ -1039,7 +1129,8 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
-    required TResult Function(bool showCancel) loginInProgress,
+    required TResult Function(String username, String password) loginInProgress,
+    required TResult Function(bool showCancel) loginShowCancel,
     required TResult Function(Credential credential) loginSuccess,
     required TResult Function() loginCancelSuccess,
     required TResult Function(SmarteamUserError error) loginFailure,
@@ -1050,7 +1141,8 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(bool showCancel)? loginInProgress,
+    TResult Function(String username, String password)? loginInProgress,
+    TResult Function(bool showCancel)? loginShowCancel,
     TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
     TResult Function(SmarteamUserError error)? loginFailure,
@@ -1061,7 +1153,8 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(bool showCancel)? loginInProgress,
+    TResult Function(String username, String password)? loginInProgress,
+    TResult Function(bool showCancel)? loginShowCancel,
     TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
     TResult Function(SmarteamUserError error)? loginFailure,
@@ -1074,6 +1167,7 @@ mixin _$AuthState {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(AuthstateLoginInProgress value) loginInProgress,
+    required TResult Function(AuthStateLoginShowCancel value) loginShowCancel,
     required TResult Function(AuthStateLoginSuccess value) loginSuccess,
     required TResult Function(AuthStateLoginCancelSuccess value)
         loginCancelSuccess,
@@ -1086,6 +1180,7 @@ mixin _$AuthState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
+    TResult Function(AuthStateLoginShowCancel value)? loginShowCancel,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
     TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
@@ -1097,6 +1192,7 @@ mixin _$AuthState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
+    TResult Function(AuthStateLoginShowCancel value)? loginShowCancel,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
     TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
@@ -1163,7 +1259,8 @@ class _$AuthStateNotAuthorized implements AuthStateNotAuthorized {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
-    required TResult Function(bool showCancel) loginInProgress,
+    required TResult Function(String username, String password) loginInProgress,
+    required TResult Function(bool showCancel) loginShowCancel,
     required TResult Function(Credential credential) loginSuccess,
     required TResult Function() loginCancelSuccess,
     required TResult Function(SmarteamUserError error) loginFailure,
@@ -1177,7 +1274,8 @@ class _$AuthStateNotAuthorized implements AuthStateNotAuthorized {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(bool showCancel)? loginInProgress,
+    TResult Function(String username, String password)? loginInProgress,
+    TResult Function(bool showCancel)? loginShowCancel,
     TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
     TResult Function(SmarteamUserError error)? loginFailure,
@@ -1191,7 +1289,8 @@ class _$AuthStateNotAuthorized implements AuthStateNotAuthorized {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(bool showCancel)? loginInProgress,
+    TResult Function(String username, String password)? loginInProgress,
+    TResult Function(bool showCancel)? loginShowCancel,
     TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
     TResult Function(SmarteamUserError error)? loginFailure,
@@ -1210,6 +1309,7 @@ class _$AuthStateNotAuthorized implements AuthStateNotAuthorized {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(AuthstateLoginInProgress value) loginInProgress,
+    required TResult Function(AuthStateLoginShowCancel value) loginShowCancel,
     required TResult Function(AuthStateLoginSuccess value) loginSuccess,
     required TResult Function(AuthStateLoginCancelSuccess value)
         loginCancelSuccess,
@@ -1225,6 +1325,7 @@ class _$AuthStateNotAuthorized implements AuthStateNotAuthorized {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
+    TResult Function(AuthStateLoginShowCancel value)? loginShowCancel,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
     TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
@@ -1239,6 +1340,7 @@ class _$AuthStateNotAuthorized implements AuthStateNotAuthorized {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
+    TResult Function(AuthStateLoginShowCancel value)? loginShowCancel,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
     TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
@@ -1262,7 +1364,7 @@ abstract class $AuthstateLoginInProgressCopyWith<$Res> {
   factory $AuthstateLoginInProgressCopyWith(AuthstateLoginInProgress value,
           $Res Function(AuthstateLoginInProgress) then) =
       _$AuthstateLoginInProgressCopyWithImpl<$Res>;
-  $Res call({bool showCancel});
+  $Res call({String username, String password});
 }
 
 /// @nodoc
@@ -1279,13 +1381,18 @@ class _$AuthstateLoginInProgressCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? showCancel = freezed,
+    Object? username = freezed,
+    Object? password = freezed,
   }) {
     return _then(AuthstateLoginInProgress(
-      showCancel: showCancel == freezed
-          ? _value.showCancel
-          : showCancel // ignore: cast_nullable_to_non_nullable
-              as bool,
+      username: username == freezed
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: password == freezed
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -1293,28 +1400,36 @@ class _$AuthstateLoginInProgressCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AuthstateLoginInProgress implements AuthstateLoginInProgress {
-  const _$AuthstateLoginInProgress({required this.showCancel});
+  const _$AuthstateLoginInProgress(
+      {required this.username, required this.password});
 
   @override
-  final bool showCancel;
+  final String username;
+  @override
+  final String password;
 
   @override
   String toString() {
-    return 'AuthState.loginInProgress(showCancel: $showCancel)';
+    return 'AuthState.loginInProgress(username: $username, password: $password)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is AuthstateLoginInProgress &&
-            (identical(other.showCancel, showCancel) ||
+            (identical(other.username, username) ||
                 const DeepCollectionEquality()
-                    .equals(other.showCancel, showCancel)));
+                    .equals(other.username, username)) &&
+            (identical(other.password, password) ||
+                const DeepCollectionEquality()
+                    .equals(other.password, password)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(showCancel);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(username) ^
+      const DeepCollectionEquality().hash(password);
 
   @JsonKey(ignore: true)
   @override
@@ -1326,35 +1441,38 @@ class _$AuthstateLoginInProgress implements AuthstateLoginInProgress {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
-    required TResult Function(bool showCancel) loginInProgress,
+    required TResult Function(String username, String password) loginInProgress,
+    required TResult Function(bool showCancel) loginShowCancel,
     required TResult Function(Credential credential) loginSuccess,
     required TResult Function() loginCancelSuccess,
     required TResult Function(SmarteamUserError error) loginFailure,
     required TResult Function() logoutInProgress,
     required TResult Function(SmarteamUserError error) logoutFailure,
   }) {
-    return loginInProgress(showCancel);
+    return loginInProgress(username, password);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(bool showCancel)? loginInProgress,
+    TResult Function(String username, String password)? loginInProgress,
+    TResult Function(bool showCancel)? loginShowCancel,
     TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
     TResult Function(SmarteamUserError error)? loginFailure,
     TResult Function()? logoutInProgress,
     TResult Function(SmarteamUserError error)? logoutFailure,
   }) {
-    return loginInProgress?.call(showCancel);
+    return loginInProgress?.call(username, password);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(bool showCancel)? loginInProgress,
+    TResult Function(String username, String password)? loginInProgress,
+    TResult Function(bool showCancel)? loginShowCancel,
     TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
     TResult Function(SmarteamUserError error)? loginFailure,
@@ -1363,7 +1481,7 @@ class _$AuthstateLoginInProgress implements AuthstateLoginInProgress {
     required TResult orElse(),
   }) {
     if (loginInProgress != null) {
-      return loginInProgress(showCancel);
+      return loginInProgress(username, password);
     }
     return orElse();
   }
@@ -1373,6 +1491,7 @@ class _$AuthstateLoginInProgress implements AuthstateLoginInProgress {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(AuthstateLoginInProgress value) loginInProgress,
+    required TResult Function(AuthStateLoginShowCancel value) loginShowCancel,
     required TResult Function(AuthStateLoginSuccess value) loginSuccess,
     required TResult Function(AuthStateLoginCancelSuccess value)
         loginCancelSuccess,
@@ -1388,6 +1507,7 @@ class _$AuthstateLoginInProgress implements AuthstateLoginInProgress {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
+    TResult Function(AuthStateLoginShowCancel value)? loginShowCancel,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
     TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
@@ -1402,6 +1522,7 @@ class _$AuthstateLoginInProgress implements AuthstateLoginInProgress {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
+    TResult Function(AuthStateLoginShowCancel value)? loginShowCancel,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
     TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
@@ -1417,12 +1538,189 @@ class _$AuthstateLoginInProgress implements AuthstateLoginInProgress {
 }
 
 abstract class AuthstateLoginInProgress implements AuthState {
-  const factory AuthstateLoginInProgress({required bool showCancel}) =
-      _$AuthstateLoginInProgress;
+  const factory AuthstateLoginInProgress(
+      {required String username,
+      required String password}) = _$AuthstateLoginInProgress;
+
+  String get username => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AuthstateLoginInProgressCopyWith<AuthstateLoginInProgress> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AuthStateLoginShowCancelCopyWith<$Res> {
+  factory $AuthStateLoginShowCancelCopyWith(AuthStateLoginShowCancel value,
+          $Res Function(AuthStateLoginShowCancel) then) =
+      _$AuthStateLoginShowCancelCopyWithImpl<$Res>;
+  $Res call({bool showCancel});
+}
+
+/// @nodoc
+class _$AuthStateLoginShowCancelCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res>
+    implements $AuthStateLoginShowCancelCopyWith<$Res> {
+  _$AuthStateLoginShowCancelCopyWithImpl(AuthStateLoginShowCancel _value,
+      $Res Function(AuthStateLoginShowCancel) _then)
+      : super(_value, (v) => _then(v as AuthStateLoginShowCancel));
+
+  @override
+  AuthStateLoginShowCancel get _value =>
+      super._value as AuthStateLoginShowCancel;
+
+  @override
+  $Res call({
+    Object? showCancel = freezed,
+  }) {
+    return _then(AuthStateLoginShowCancel(
+      showCancel: showCancel == freezed
+          ? _value.showCancel
+          : showCancel // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AuthStateLoginShowCancel implements AuthStateLoginShowCancel {
+  const _$AuthStateLoginShowCancel({required this.showCancel});
+
+  @override
+  final bool showCancel;
+
+  @override
+  String toString() {
+    return 'AuthState.loginShowCancel(showCancel: $showCancel)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is AuthStateLoginShowCancel &&
+            (identical(other.showCancel, showCancel) ||
+                const DeepCollectionEquality()
+                    .equals(other.showCancel, showCancel)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(showCancel);
+
+  @JsonKey(ignore: true)
+  @override
+  $AuthStateLoginShowCancelCopyWith<AuthStateLoginShowCancel> get copyWith =>
+      _$AuthStateLoginShowCancelCopyWithImpl<AuthStateLoginShowCancel>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() notAuthorized,
+    required TResult Function(String username, String password) loginInProgress,
+    required TResult Function(bool showCancel) loginShowCancel,
+    required TResult Function(Credential credential) loginSuccess,
+    required TResult Function() loginCancelSuccess,
+    required TResult Function(SmarteamUserError error) loginFailure,
+    required TResult Function() logoutInProgress,
+    required TResult Function(SmarteamUserError error) logoutFailure,
+  }) {
+    return loginShowCancel(showCancel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? notAuthorized,
+    TResult Function(String username, String password)? loginInProgress,
+    TResult Function(bool showCancel)? loginShowCancel,
+    TResult Function(Credential credential)? loginSuccess,
+    TResult Function()? loginCancelSuccess,
+    TResult Function(SmarteamUserError error)? loginFailure,
+    TResult Function()? logoutInProgress,
+    TResult Function(SmarteamUserError error)? logoutFailure,
+  }) {
+    return loginShowCancel?.call(showCancel);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? notAuthorized,
+    TResult Function(String username, String password)? loginInProgress,
+    TResult Function(bool showCancel)? loginShowCancel,
+    TResult Function(Credential credential)? loginSuccess,
+    TResult Function()? loginCancelSuccess,
+    TResult Function(SmarteamUserError error)? loginFailure,
+    TResult Function()? logoutInProgress,
+    TResult Function(SmarteamUserError error)? logoutFailure,
+    required TResult orElse(),
+  }) {
+    if (loginShowCancel != null) {
+      return loginShowCancel(showCancel);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthStateNotAuthorized value) notAuthorized,
+    required TResult Function(AuthstateLoginInProgress value) loginInProgress,
+    required TResult Function(AuthStateLoginShowCancel value) loginShowCancel,
+    required TResult Function(AuthStateLoginSuccess value) loginSuccess,
+    required TResult Function(AuthStateLoginCancelSuccess value)
+        loginCancelSuccess,
+    required TResult Function(AuthStateLoginFailure value) loginFailure,
+    required TResult Function(AuthStateLogoutInProgress value) logoutInProgress,
+    required TResult Function(AuthStateLogoutFailure value) logoutFailure,
+  }) {
+    return loginShowCancel(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthStateNotAuthorized value)? notAuthorized,
+    TResult Function(AuthstateLoginInProgress value)? loginInProgress,
+    TResult Function(AuthStateLoginShowCancel value)? loginShowCancel,
+    TResult Function(AuthStateLoginSuccess value)? loginSuccess,
+    TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
+    TResult Function(AuthStateLoginFailure value)? loginFailure,
+    TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
+    TResult Function(AuthStateLogoutFailure value)? logoutFailure,
+  }) {
+    return loginShowCancel?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthStateNotAuthorized value)? notAuthorized,
+    TResult Function(AuthstateLoginInProgress value)? loginInProgress,
+    TResult Function(AuthStateLoginShowCancel value)? loginShowCancel,
+    TResult Function(AuthStateLoginSuccess value)? loginSuccess,
+    TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
+    TResult Function(AuthStateLoginFailure value)? loginFailure,
+    TResult Function(AuthStateLogoutInProgress value)? logoutInProgress,
+    TResult Function(AuthStateLogoutFailure value)? logoutFailure,
+    required TResult orElse(),
+  }) {
+    if (loginShowCancel != null) {
+      return loginShowCancel(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthStateLoginShowCancel implements AuthState {
+  const factory AuthStateLoginShowCancel({required bool showCancel}) =
+      _$AuthStateLoginShowCancel;
 
   bool get showCancel => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AuthstateLoginInProgressCopyWith<AuthstateLoginInProgress> get copyWith =>
+  $AuthStateLoginShowCancelCopyWith<AuthStateLoginShowCancel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1494,7 +1792,8 @@ class _$AuthStateLoginSuccess implements AuthStateLoginSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
-    required TResult Function(bool showCancel) loginInProgress,
+    required TResult Function(String username, String password) loginInProgress,
+    required TResult Function(bool showCancel) loginShowCancel,
     required TResult Function(Credential credential) loginSuccess,
     required TResult Function() loginCancelSuccess,
     required TResult Function(SmarteamUserError error) loginFailure,
@@ -1508,7 +1807,8 @@ class _$AuthStateLoginSuccess implements AuthStateLoginSuccess {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(bool showCancel)? loginInProgress,
+    TResult Function(String username, String password)? loginInProgress,
+    TResult Function(bool showCancel)? loginShowCancel,
     TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
     TResult Function(SmarteamUserError error)? loginFailure,
@@ -1522,7 +1822,8 @@ class _$AuthStateLoginSuccess implements AuthStateLoginSuccess {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(bool showCancel)? loginInProgress,
+    TResult Function(String username, String password)? loginInProgress,
+    TResult Function(bool showCancel)? loginShowCancel,
     TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
     TResult Function(SmarteamUserError error)? loginFailure,
@@ -1541,6 +1842,7 @@ class _$AuthStateLoginSuccess implements AuthStateLoginSuccess {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(AuthstateLoginInProgress value) loginInProgress,
+    required TResult Function(AuthStateLoginShowCancel value) loginShowCancel,
     required TResult Function(AuthStateLoginSuccess value) loginSuccess,
     required TResult Function(AuthStateLoginCancelSuccess value)
         loginCancelSuccess,
@@ -1556,6 +1858,7 @@ class _$AuthStateLoginSuccess implements AuthStateLoginSuccess {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
+    TResult Function(AuthStateLoginShowCancel value)? loginShowCancel,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
     TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
@@ -1570,6 +1873,7 @@ class _$AuthStateLoginSuccess implements AuthStateLoginSuccess {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
+    TResult Function(AuthStateLoginShowCancel value)? loginShowCancel,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
     TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
@@ -1637,7 +1941,8 @@ class _$AuthStateLoginCancelSuccess implements AuthStateLoginCancelSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
-    required TResult Function(bool showCancel) loginInProgress,
+    required TResult Function(String username, String password) loginInProgress,
+    required TResult Function(bool showCancel) loginShowCancel,
     required TResult Function(Credential credential) loginSuccess,
     required TResult Function() loginCancelSuccess,
     required TResult Function(SmarteamUserError error) loginFailure,
@@ -1651,7 +1956,8 @@ class _$AuthStateLoginCancelSuccess implements AuthStateLoginCancelSuccess {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(bool showCancel)? loginInProgress,
+    TResult Function(String username, String password)? loginInProgress,
+    TResult Function(bool showCancel)? loginShowCancel,
     TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
     TResult Function(SmarteamUserError error)? loginFailure,
@@ -1665,7 +1971,8 @@ class _$AuthStateLoginCancelSuccess implements AuthStateLoginCancelSuccess {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(bool showCancel)? loginInProgress,
+    TResult Function(String username, String password)? loginInProgress,
+    TResult Function(bool showCancel)? loginShowCancel,
     TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
     TResult Function(SmarteamUserError error)? loginFailure,
@@ -1684,6 +1991,7 @@ class _$AuthStateLoginCancelSuccess implements AuthStateLoginCancelSuccess {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(AuthstateLoginInProgress value) loginInProgress,
+    required TResult Function(AuthStateLoginShowCancel value) loginShowCancel,
     required TResult Function(AuthStateLoginSuccess value) loginSuccess,
     required TResult Function(AuthStateLoginCancelSuccess value)
         loginCancelSuccess,
@@ -1699,6 +2007,7 @@ class _$AuthStateLoginCancelSuccess implements AuthStateLoginCancelSuccess {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
+    TResult Function(AuthStateLoginShowCancel value)? loginShowCancel,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
     TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
@@ -1713,6 +2022,7 @@ class _$AuthStateLoginCancelSuccess implements AuthStateLoginCancelSuccess {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
+    TResult Function(AuthStateLoginShowCancel value)? loginShowCancel,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
     TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
@@ -1807,7 +2117,8 @@ class _$AuthStateLoginFailure implements AuthStateLoginFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
-    required TResult Function(bool showCancel) loginInProgress,
+    required TResult Function(String username, String password) loginInProgress,
+    required TResult Function(bool showCancel) loginShowCancel,
     required TResult Function(Credential credential) loginSuccess,
     required TResult Function() loginCancelSuccess,
     required TResult Function(SmarteamUserError error) loginFailure,
@@ -1821,7 +2132,8 @@ class _$AuthStateLoginFailure implements AuthStateLoginFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(bool showCancel)? loginInProgress,
+    TResult Function(String username, String password)? loginInProgress,
+    TResult Function(bool showCancel)? loginShowCancel,
     TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
     TResult Function(SmarteamUserError error)? loginFailure,
@@ -1835,7 +2147,8 @@ class _$AuthStateLoginFailure implements AuthStateLoginFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(bool showCancel)? loginInProgress,
+    TResult Function(String username, String password)? loginInProgress,
+    TResult Function(bool showCancel)? loginShowCancel,
     TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
     TResult Function(SmarteamUserError error)? loginFailure,
@@ -1854,6 +2167,7 @@ class _$AuthStateLoginFailure implements AuthStateLoginFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(AuthstateLoginInProgress value) loginInProgress,
+    required TResult Function(AuthStateLoginShowCancel value) loginShowCancel,
     required TResult Function(AuthStateLoginSuccess value) loginSuccess,
     required TResult Function(AuthStateLoginCancelSuccess value)
         loginCancelSuccess,
@@ -1869,6 +2183,7 @@ class _$AuthStateLoginFailure implements AuthStateLoginFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
+    TResult Function(AuthStateLoginShowCancel value)? loginShowCancel,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
     TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
@@ -1883,6 +2198,7 @@ class _$AuthStateLoginFailure implements AuthStateLoginFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
+    TResult Function(AuthStateLoginShowCancel value)? loginShowCancel,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
     TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
@@ -1949,7 +2265,8 @@ class _$AuthStateLogoutInProgress implements AuthStateLogoutInProgress {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
-    required TResult Function(bool showCancel) loginInProgress,
+    required TResult Function(String username, String password) loginInProgress,
+    required TResult Function(bool showCancel) loginShowCancel,
     required TResult Function(Credential credential) loginSuccess,
     required TResult Function() loginCancelSuccess,
     required TResult Function(SmarteamUserError error) loginFailure,
@@ -1963,7 +2280,8 @@ class _$AuthStateLogoutInProgress implements AuthStateLogoutInProgress {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(bool showCancel)? loginInProgress,
+    TResult Function(String username, String password)? loginInProgress,
+    TResult Function(bool showCancel)? loginShowCancel,
     TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
     TResult Function(SmarteamUserError error)? loginFailure,
@@ -1977,7 +2295,8 @@ class _$AuthStateLogoutInProgress implements AuthStateLogoutInProgress {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(bool showCancel)? loginInProgress,
+    TResult Function(String username, String password)? loginInProgress,
+    TResult Function(bool showCancel)? loginShowCancel,
     TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
     TResult Function(SmarteamUserError error)? loginFailure,
@@ -1996,6 +2315,7 @@ class _$AuthStateLogoutInProgress implements AuthStateLogoutInProgress {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(AuthstateLoginInProgress value) loginInProgress,
+    required TResult Function(AuthStateLoginShowCancel value) loginShowCancel,
     required TResult Function(AuthStateLoginSuccess value) loginSuccess,
     required TResult Function(AuthStateLoginCancelSuccess value)
         loginCancelSuccess,
@@ -2011,6 +2331,7 @@ class _$AuthStateLogoutInProgress implements AuthStateLogoutInProgress {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
+    TResult Function(AuthStateLoginShowCancel value)? loginShowCancel,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
     TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
@@ -2025,6 +2346,7 @@ class _$AuthStateLogoutInProgress implements AuthStateLogoutInProgress {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
+    TResult Function(AuthStateLoginShowCancel value)? loginShowCancel,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
     TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
@@ -2119,7 +2441,8 @@ class _$AuthStateLogoutFailure implements AuthStateLogoutFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
-    required TResult Function(bool showCancel) loginInProgress,
+    required TResult Function(String username, String password) loginInProgress,
+    required TResult Function(bool showCancel) loginShowCancel,
     required TResult Function(Credential credential) loginSuccess,
     required TResult Function() loginCancelSuccess,
     required TResult Function(SmarteamUserError error) loginFailure,
@@ -2133,7 +2456,8 @@ class _$AuthStateLogoutFailure implements AuthStateLogoutFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(bool showCancel)? loginInProgress,
+    TResult Function(String username, String password)? loginInProgress,
+    TResult Function(bool showCancel)? loginShowCancel,
     TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
     TResult Function(SmarteamUserError error)? loginFailure,
@@ -2147,7 +2471,8 @@ class _$AuthStateLogoutFailure implements AuthStateLogoutFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
-    TResult Function(bool showCancel)? loginInProgress,
+    TResult Function(String username, String password)? loginInProgress,
+    TResult Function(bool showCancel)? loginShowCancel,
     TResult Function(Credential credential)? loginSuccess,
     TResult Function()? loginCancelSuccess,
     TResult Function(SmarteamUserError error)? loginFailure,
@@ -2166,6 +2491,7 @@ class _$AuthStateLogoutFailure implements AuthStateLogoutFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(AuthstateLoginInProgress value) loginInProgress,
+    required TResult Function(AuthStateLoginShowCancel value) loginShowCancel,
     required TResult Function(AuthStateLoginSuccess value) loginSuccess,
     required TResult Function(AuthStateLoginCancelSuccess value)
         loginCancelSuccess,
@@ -2181,6 +2507,7 @@ class _$AuthStateLogoutFailure implements AuthStateLogoutFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
+    TResult Function(AuthStateLoginShowCancel value)? loginShowCancel,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
     TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,
@@ -2195,6 +2522,7 @@ class _$AuthStateLogoutFailure implements AuthStateLogoutFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(AuthstateLoginInProgress value)? loginInProgress,
+    TResult Function(AuthStateLoginShowCancel value)? loginShowCancel,
     TResult Function(AuthStateLoginSuccess value)? loginSuccess,
     TResult Function(AuthStateLoginCancelSuccess value)? loginCancelSuccess,
     TResult Function(AuthStateLoginFailure value)? loginFailure,

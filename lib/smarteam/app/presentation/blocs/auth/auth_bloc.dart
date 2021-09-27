@@ -20,8 +20,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc({required this.initBloc}) : super(const AuthState.notAuthorized()) {
     initBloc.stream.where((state) => state is InitStateSuccess).listen((state) {
       final success = initBloc.state as InitStateSuccess;
-      success.credentialEither.map(
-          (credential) => add(AuthEvent.loginStarted(username: credential.username, password: credential.password)));
+      success.credentialEither.map((credential) {
+        add(AuthEvent.loginStarted(
+          username: credential.username,
+          password: credential.password,
+          saveCredential: true,
+          showCancelDelay: kAutoLoginShowCancelDelay,
+        ));
+      });
     });
   }
 
@@ -63,11 +69,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Stream<AuthState> _mapLoginStartedToState(AuthEventLoginStarted event) async* {
-    yield const AuthState.loginInProgress(showCancel: false);
+    yield AuthState.loginInProgress(username: event.username, password: event.password);
 
-    unawaited(_loginSmarteam(event.username, event.password));
+    unawaited(_loginSmarteam(username: event.username, password: event.password, saveCredential: event.saveCredential));
 
-    unawaited(_showCancel());
+    unawaited(_showCancel(event.showCancelDelay));
   }
 
   Stream<AuthState> _mapLoginSuccessfulToState(AuthEventLoginSuccessful event) async* {
@@ -84,11 +90,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Stream<AuthState> _mapShownCancelToState(AuthEventShownCancel event) async* {
-    yield const AuthState.loginInProgress(showCancel: true);
+    yield const AuthState.loginShowCancel(showCancel: true);
   }
 
   Stream<AuthState> _mapLoginCanceledToState(AuthEventLoginCanceled event) async* {
-    yield const AuthState.loginInProgress(showCancel: false);
+    yield const AuthState.loginShowCancel(showCancel: false);
     await Future<void>.delayed(kAuthAnimationDelay);
     yield const AuthState.loginCancelSuccess();
   }
@@ -111,7 +117,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     yield const AuthState.notAuthorized();
   }
 
-  Future<void> _loginSmarteam(String username, String password) async {
+  Future<void> _loginSmarteam({
+    required String username,
+    required String password,
+    required bool saveCredential,
+  }) async {
     final credentialEither = await credentialUseCase.createCredential(username, password);
     credentialEither.fold(
       (error) => add(AuthEvent.loginFailed(SmarteamUserError.credential(error))),
@@ -120,16 +130,23 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         final result = await smartUserUseCase.userLogin(_credential!);
         result.fold(
           (error) => add(AuthEvent.loginFailed(error)),
-          (loginResult) => loginResult
-              ? add(const AuthEvent.loginSuccessful())
-              : add(AuthEvent.loginFailed(SmarteamUserError.login(Error()))),
+          (loginResult) {
+            if (!loginResult) {
+              add(AuthEvent.loginFailed(SmarteamUserError.login(Error())));
+              return;
+            }
+            saveCredential
+                ? unawaited(credentialUseCase.saveCredential(credential))
+                : unawaited(credentialUseCase.deleteCredential());
+            add(const AuthEvent.loginSuccessful());
+          },
         );
       },
     );
   }
 
-  Future<void> _showCancel() async {
-    await Future<void>.delayed(kShowCancelDelay);
+  Future<void> _showCancel(Duration showCancelDelay) async {
+    await Future<void>.delayed(showCancelDelay);
     if (state is AuthstateLoginInProgress) {
       add(const AuthEvent.shownCancel());
     }

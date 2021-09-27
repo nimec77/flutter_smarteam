@@ -6,4 +6,6 @@ abstract class CredentialsDao {
   Future<Either<CredentialError, int>> saveCredential(Credential credential);
 
   Future<Either<CredentialError, Credential>> credentialBySid(String sid);
+
+  Future<Either<CredentialError, int>> deleteCredentialBySid(String sid);
 }

@@ -23,7 +23,7 @@ void main() {
       final widget = Builder(
         builder: (context) {
           l10n = context.l10n;
-          return LoginForm();
+          return LoginForm(username: '', password: '');
         },
       );
       await widgetTester.pumpSizerAndScaffold(widget);
@@ -47,7 +47,7 @@ void main() {
       final widget = Builder(
         builder: (context) {
           l10n = context.l10n;
-          return LoginForm();
+          return LoginForm(username: '', password: '');
         },
       );
       await widgetTester.pumpSizerAndScaffold(widget);
@@ -69,7 +69,7 @@ void main() {
       final widget = Builder(
         builder: (context) {
           l10n = context.l10n;
-          return LoginForm();
+          return LoginForm(username: '', password: '');
         },
       );
       await widgetTester.pumpSizerAndScaffold(widget);
@@ -87,7 +87,7 @@ void main() {
     });
 
     testWidgets('LoginForm LoginButton test', (widgetTester) async {
-      await widgetTester.pumpSizerAndScaffold(LoginForm());
+      await widgetTester.pumpSizerAndScaffold(LoginForm(username: '', password: ''));
 
       final loginButtonFinder = find.byKey(kLoginButtonKey);
       expect(widgetTester.widget<LoginButton>(loginButtonFinder).enabled, false);

@@ -18,23 +18,12 @@ class CredentialUseCase {
     );
   }
 
-  Future<Either<CredentialError, int>> saveCredential(String username, String password) async {
-    final sidEither = await cryptoRepository.getSid();
-    return sidEither.fold(
-      (error) => Left(CredentialError.sid(error)),
-      (sid) async {
-        final credential = Credential(
-          sid: sid,
-          username: username,
-          password: password,
-        );
-        final encodeEither = await cryptoRepository.encode(password);
-        return encodeEither.fold(
-          (error) => Left(CredentialError.encode(error)),
-          (encodedPassword) {
-            return credentialsDao.saveCredential(credential.copyWith(password: encodedPassword));
-          },
-        );
+  Future<Either<CredentialError, int>> saveCredential(Credential credential) async {
+    final encodeEither = await cryptoRepository.encode(credential.password);
+    return encodeEither.fold(
+      (error) => Left(CredentialError.encode(error)),
+      (encodedPassword) {
+        return credentialsDao.saveCredential(credential.copyWith(password: encodedPassword));
       },
     );
   }
@@ -56,6 +45,14 @@ class CredentialUseCase {
           },
         );
       },
+    );
+  }
+
+  Future<Either<CredentialError, int>> deleteCredential() async {
+    final sidEither = await cryptoRepository.getSid();
+    return sidEither.fold(
+      (error) => Left(CredentialError.sid(error)),
+      credentialsDao.deleteCredentialBySid,
     );
   }
 }

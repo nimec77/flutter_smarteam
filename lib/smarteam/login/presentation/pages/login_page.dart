@@ -25,24 +25,32 @@ class LoginPage extends StatelessWidget {
           );
         },
         builder: (context, state) {
-          final enabled = state.maybeWhen(
+          final enabled = state.maybeMap(
             loginInProgress: (_) => false,
-            logoutInProgress: () => false,
+            logoutInProgress: (_) => false,
             orElse: () => true,
           );
-          final loginInProgress = state.maybeWhen(
-            loginInProgress: (_) => true,
+          final loginShowCancel = state.maybeMap(
+            loginShowCancel: (_) => true,
             orElse: () => false,
           );
           final showLoginInProgress = state.maybeWhen(
-            loginInProgress: (showCancel) => showCancel,
+            loginShowCancel: (showCancel) => showCancel,
             orElse: () => false,
+          );
+          final username = state.maybeMap(
+            loginInProgress: (state) => state.username,
+            orElse: () => '',
+          );
+          final password = state.maybeMap(
+            loginInProgress: (state) => state.password,
+            orElse: () => '',
           );
           return Stack(
             children: [
               const BackgroundWidget(),
-              LoginCart(enabled: enabled),
-              if (loginInProgress)
+              LoginCart(username: username, password: password, enabled: enabled),
+              if (loginShowCancel)
                 AnimatedOpacity(
                   opacity: showLoginInProgress ? 1.0 : 0.0,
                   duration: const Duration(milliseconds: 500),

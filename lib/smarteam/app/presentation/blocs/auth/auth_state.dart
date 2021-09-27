@@ -4,7 +4,12 @@ part of 'auth_bloc.dart';
 class AuthState with _$AuthState {
   const factory AuthState.notAuthorized() = AuthStateNotAuthorized;
 
-  const factory AuthState.loginInProgress({required bool showCancel}) = AuthstateLoginInProgress;
+  const factory AuthState.loginInProgress({
+    required String username,
+    required String password,
+  }) = AuthstateLoginInProgress;
+
+  const factory AuthState.loginShowCancel({required bool showCancel}) = AuthStateLoginShowCancel;
 
   const factory AuthState.loginSuccess(Credential credential) = AuthStateLoginSuccess;
 

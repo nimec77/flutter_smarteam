@@ -15,7 +15,7 @@ void main() {
   testGoldens('LoginForm render test', (tester) async {
     final widget = BlocProvider<AuthBloc>(
       create: (context) => AuthBloc(initBloc: mockInitBloc),
-      child: LoginForm(),
+      child: LoginForm(username: '', password: ''),
     );
     final builder = GoldenBuilder.column()..addScenario('LoginForm', widget);
     await tester.pumpWidgetBuilder(

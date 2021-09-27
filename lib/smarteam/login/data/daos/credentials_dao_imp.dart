@@ -19,7 +19,7 @@ class CredentialsDaoImp extends DatabaseAccessor<AppDatabase> with _$Credentials
     try {
       final result = select(credentials)..where((tbl) => tbl.sid.equals(sid));
       return Right(await result.getSingle());
-    } on StateError catch(error) {
+    } on StateError catch (error) {
       return Left(CredentialError.database(error));
     }
   }
@@ -29,7 +29,17 @@ class CredentialsDaoImp extends DatabaseAccessor<AppDatabase> with _$Credentials
     try {
       final result = await into(credentials).insertOnConflictUpdate(credential);
       return Right(result);
-    } on StateError catch(error) {
+    } on StateError catch (error) {
+      return Left(CredentialError.database(error));
+    }
+  }
+
+  @override
+  Future<Either<CredentialError, int>> deleteCredentialBySid(String sid) async {
+    try {
+      final result = delete(credentials)..where((tbl) => tbl.sid.equals(sid));
+      return Right(await result.go());
+    } on StateError catch (error) {
       return Left(CredentialError.database(error));
     }
   }

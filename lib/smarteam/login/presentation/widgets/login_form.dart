@@ -10,8 +10,15 @@ import 'package:flutter_smarteam/smarteam/login/presentation/common_widgets/reme
 import 'package:sizer/sizer.dart';
 
 class LoginForm extends StatefulWidget with UsernameAndPasswordValidators {
-  LoginForm({Key? key, this.enabled = true}) : super(key: key);
+  LoginForm({
+    Key? key,
+    required this.username,
+    required this.password,
+    this.enabled = true,
+  }) : super(key: key);
 
+  final String username;
+  final String password;
   final bool enabled;
 
   @override
@@ -20,8 +27,8 @@ class LoginForm extends StatefulWidget with UsernameAndPasswordValidators {
 
 class _LoginFormState extends State<LoginForm> {
   final _loginFormKey = GlobalKey<FormState>();
-  final _usernameController = TextEditingController();
-  final _passwordController = TextEditingController();
+  late final TextEditingController _usernameController;
+  late final TextEditingController _passwordController;
   final _usernameFocusNode = FocusNode();
   final _passwordFocusNode = FocusNode();
   var _rememberCredentials = false;
@@ -30,6 +37,8 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   void initState() {
+    _usernameController = TextEditingController.fromValue(TextEditingValue(text: widget.username));
+    _passwordController = TextEditingController.fromValue(TextEditingValue(text: widget.password));
     super.initState();
   }
 
@@ -145,9 +154,9 @@ class _LoginFormState extends State<LoginForm> {
   void _submit(BuildContext context) {
     context.read<AuthBloc>().add(
           AuthEvent.loginStarted(
-            username: _usernameController.text,
-            password: _passwordController.text,
-          ),
+              username: _usernameController.text,
+              password: _passwordController.text,
+              saveCredential: _rememberCredentials),
         );
   }
 }
